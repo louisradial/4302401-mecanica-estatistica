@@ -7,5 +7,26 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-
+    A função geradora dos momentos \(\phi(t)\) de uma distribuição binomial de \(N\) ensaios com probabilidade \(p\) é dada por
+    \begin{align*}
+        \phi(t) = \mean{e^{kt}} &= \sum_{k=0}^N e^{tk}\binom{N}{k} p^{k}(1-p)^{N-k}\\
+                                &= \sum_{k=0}  \binom{N}{k} (e^t p)^k (1 - p)^{N -k}\\
+                                &= (e^t p + 1 - p)^N.
+    \end{align*}
+    Assim, os momentos da distribuição binomial são dados por
+    \begin{equation*}
+        \mean{k} = \phi'(0) = Np
+        \quad\text{e}\quad
+        \mean{k^2} = \phi''(0) = Np(1 - p) + N^2p^2.
+    \end{equation*}
+    Portanto, a distribuição gaussiana correspondente é
+    \begin{equation*}
+        p_G(k) = \frac{1}{\sqrt{2\pi Np(1 - p)}} \exp\left[-\frac{(x - Np)^2}{2Np(1-p)}\right],
+    \end{equation*}
+    pois a variância da distribuição binomial é \(\sigma^2 = \mean{k^2} - \mean{k}^2 = Np(1 - p)\).
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[height=0.3\textheight]{figuras/exercício03.png}
+        \caption{Comparação entre distribuições binomiais e suas distribuições gaussianas correspondentes}
+    \end{figure}
 \end{proof}
