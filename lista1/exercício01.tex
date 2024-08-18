@@ -1,0 +1,11 @@
+\begin{exercício}{Ensaio de Bernoulli}{exercício1}
+    Em média 5\% dos produtos vendidos por uma loja são devolvidos. Qual é a probabilidade de que, nas próximas quatro unidades vendidas deste produto, duas sejam devolvidas?
+\end{exercício}
+\begin{proof}[Resolução]
+    Podemos modelar o problema como série de ensaios de Bernoulli nos quais a probabilidade de sucesso é \(p = 0.95\). Dessa forma, a probabilidade de que \(k\) unidades não serão devolvidas nas próximas \(N\) vendas é dada pela distribuição binomial,
+    \begin{equation*}
+        P(k) = \binom{N}{k} p^k (1-p)^{N-k}.
+    \end{equation*}
+    Assim, a probabilidade de haver duas devoluções em quatro unidades vendidas é 0.0135375.
+\end{proof}
+
