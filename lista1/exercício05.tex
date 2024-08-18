@@ -1,10 +1,26 @@
 \begin{exercício}{Função geradora para a distribuição de Poisson}{exercício5}
     A probabilidade de que um evento ocorra \(k\) vezes num total de \(n\) tentativas é dada por
     \begin{equation*}
-        P(k) = \frac{\lambda^k}{k!}\exp(-k).
+        P(k) = \frac{\lambda^k}{k!}\exp(-\lambda).
     \end{equation*}
     Obtenha a função geradora \(\phi(t)\) para a distribuição de Poisson bem como a média \(\mean{k}\) e a variância \(\sigma^2 = \mean{k^2} - \mean{k}^2\).
 \end{exercício}
 \begin{proof}[Resolução]
-
+    A função geradora é dada por \(\phi(t) = \mean{e^{tk}}\), isto é,
+    \begin{align*}
+        \phi(t) &= e^{-\lambda}\sum_{k = 0}^\infty \frac{\lambda^k}{k!}e^{tk}\\
+                &= e^{-\lambda} \sum_{k = 0}^\infty \frac{(\lambda e^t)^k}{k!}\\
+                &= \exp[\lambda (e^t - 1)].
+    \end{align*}
+    Notemos que \(\ln \phi = \lambda (e^t -1)\), então
+    \begin{equation*}
+        \diff{\phi}{t} = \lambda e^t \phi(t) \quad\text{e}\quad
+        \diff[2]{\phi}{t} = \left(\lambda e^t  + \lambda^2 e^{2t}\right)\phi(t)
+    \end{equation*}
+    são as primeiras duas derivadas da função geradora. Logo,
+    \begin{equation*}
+        \mean{k} = \lambda\quad\text{e}\quad
+        \mean{k^2} = \lambda + \lambda^2
+    \end{equation*}
+    portanto a variância é \(\sigma^2 = \lambda.\)
 \end{proof}
