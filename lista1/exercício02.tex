@@ -1,0 +1,12 @@
+\begin{exercício}{Soma de distribuições uniformes discretas}{exercício2}
+    Qual é a probabilidade de fazer pelo menos 6 pontos numa jogada de 3 dados?
+\end{exercício}
+\begin{proof}[Resolução]
+    Notemos que numa jogada de 3 dados a pontuação de
+    \begin{enumerate}[label=(\alph*)]
+        \item 3 pontos tem probabilidade de \(\frac1{216}\), pois devemos ter \(\set{111}\);
+        \item 4 pontos tem probabilidade de \(\frac3{216}\), pois devemos ter alguma permutação de \(\set{112}\);
+        \item 5 pontos tem probabilidade de \(\frac6{216}\), pois devemos ter alguma permutação de \(\set{113}\) ou de \(\set{122}\).
+    \end{enumerate}
+    Desse modo, a probabilidade de ter no máximo 5 pontos é \(\frac{5}{108}\), e consequentemente, a probabilidade de se ter pelo menos 6 pontos é \(\frac{103}{108}\).
+\end{proof}
