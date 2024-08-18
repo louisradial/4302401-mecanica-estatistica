@@ -2,5 +2,21 @@
     A probabilidade de que um evento caracterizado pela probabilidade \(p\) ocorra \(k\) vezes num total de \(n\) tentativas é dada pela distribuição binomial. Considere uma situação em que \(p\) seja pequeno e a distribuição seja apreciavelmente diferente de zero apenas para \(k \ll n\). Nessas circunstâncias, mostre que \(P(k) \sim \frac{\lambda^k}{k!}\exp(-\lambda)\), onde \(\lambda = np\) é o número médio de eventos.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Pela distribuição binomial, temos
+    \begin{equation*}
+        P(k) = \binom{n}{k} p^{k}(1-p)^{n - k} = \frac{p^k}{k!} (1 -p)^{n-k} \prod_{\ell = 0}^{k-1} (n - \ell)
+    \end{equation*}
+    como a probabilidade do evento ocorrer \(k\) vezes. Em termos de \(\lambda = np\), temos
+    \begin{equation*}
+        P(k) = \frac{\lambda^k}{k!} \left(1 - \frac{\lambda}{n}\right)^{n - k}\prod_{\ell = 0}^{k - 1} \left(1 - \frac{\ell}{n}\right).
+    \end{equation*}
+    Sob a hipótese \(k \ll n\), obtemos
+    \begin{equation*}
+        P(k) \simeq \frac{\lambda^k}{k!} \left(1 - \frac{\lambda}{n}\right)^{n},
+    \end{equation*}
+    de modo que
+    \begin{equation*}
+        \lim_{n \to \infty} P(k) = \frac{\lambda^k}{k!} \exp(-\lambda),
+    \end{equation*}
+    como desejado.
 \end{proof}
