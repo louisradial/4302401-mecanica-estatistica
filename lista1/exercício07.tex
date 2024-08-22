@@ -1,17 +1,30 @@
 \begin{exercício}{Distribuição de Maxwell para as velocidades moleculares}{exercício7}
     Considere a densidade de probabilidade dada por
     \begin{equation*}
-        \rho(v_x,v_y,v_z) = \left(\frac{\beta m}{2\pi}\right)^{\frac32}\exp\left[-\beta m \left(v_x^2 + v_y^2 + v_z^2\right)\right],
+        \rho(v_x,v_y,v_z) = \left(\frac{\beta m}{2\pi}\right)^{\frac32}\exp\left[-\frac{\beta m}{2} \left(v_x^2 + v_y^2 + v_z^2\right)\right],
     \end{equation*}
     em que \(\vetor{v} = v_x\vetor{e}_x+v_y\vetor{e}_y+v_z\vetor{e}_z\) é a velocidade e \(\beta = \frac{1}{k_BT}\), sendo \(k_B\) a constante de Boltzmann e \(T\) a temperatura absoluta.
     \begin{enumerate}[label=(\alph*)]
         \item Mostre que
             \begin{equation*}
-                \rho(v, \theta, \phi) = v^2 \sin\theta\left(\frac{\beta m}{2\pi}\right)^{\frac32}\exp\left(-\beta m v^2\right),
+                \rho(v, \theta, \phi) = v^2 \sin\theta\left(\frac{\beta m}{2\pi}\right)^{\frac32}\exp\left(-\frac{\beta m}{2} v^2\right),
             \end{equation*}
             onde \(v = \norm{\vetor{v}}\), \(v\cos\theta = v_z\) e \(v\sin\theta\cos\phi = v_x\).
         \item Obtenha a densidade de probabilidade marginal \(\rho_v(v)\).
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    Ao mudar de variáveis, regiões de integração equivalentes devem corresponder às mesmas probabilidades, isto é,
+    \begin{equation*}
+        \abs{\rho(v_x, v_y, v_z) \dl{v_x}\dl{v_y}\dl{v_z}} = \abs{\rho(v, \theta, \phi) \dl{v}\dl{\theta}\dl{\phi}}.
+    \end{equation*}
+    Como \(\dl{v_x}\dl{v_y}\dl{v_z} = v^2 \sin\theta \dl{v} \dl{\theta}\dl{\phi}\), temos
+    \begin{equation*}
+        \rho(v, \theta, \phi) = v^2 \sin\theta \left(\frac{\beta m}{2\pi}\right)^{\frac32} \exp\left(- \frac{\beta m}{2} v^2\right),
+    \end{equation*}
+    uma vez que \(v^2 = v_x^2 + v_y^2 + v_z^2\). Integrando sobre as variáveis angulares,
+    \begin{equation*}
+        \rho_v(v) = \int_0^\pi \dli\theta \int_0^{2\pi} \dli{\phi} \rho(v, \theta, \phi) = 4\pi v^2 \left(\frac{\beta m}{2\pi}\right)^{\frac32} \exp\left(-\frac{\beta m}{2} v^2\right),
+    \end{equation*}
+    obtemos a probabilidade marginal \(\rho_v(v)\).
 \end{proof}
