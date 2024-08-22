@@ -8,5 +8,60 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    Para que a distribuição esteja normalizada, devemos ter \(\zeta = 2\cosh(\beta H)\). Assim, a energia média do íon \(\mean{E_i}\) é
+    \begin{equation*}
+        \mean{E_i} = -\sum_{\sigma_i \in \set{-1, 1}} \frac{H \sigma_i}{\zeta}\exp(\beta H \sigma_i) = -H\tanh(\beta H).
+    \end{equation*}
 
+    \begin{figure}[!h]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.8\linewidth,
+                height=0.25\textheight,
+                xmin=0, xmax=5,
+                ymin=-1.1,ymax=0.25,
+                domain=0:5,
+                samples=500,
+                axis lines=middle,
+                xlabel={$T$},
+                ylabel={$\mean{E_i}$},
+                legend pos=north east,
+                ytick=\empty,
+                xtick=\empty
+            ]
+                \addplot[thick, Mauve] {- tanh(1/\x)};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Energia média \(\mean{E_i}\) do íon em função da temperatura \(T\).}
+    \end{figure}
+
+    Notemos que
+    \begin{equation*}
+        \mean{\sigma_i} = \sum_{\sigma_i\in\set{-1,1}} \frac{\sigma_i}{\zeta} \exp(\beta H \sigma_i) = -\frac{1}{H}\mean{E_i} = \tanh(\beta H)
+    \end{equation*}
+    é o primeiro momento de \(\sigma_i\), que chamaremos de magnetização \(m\) e podemos escrever
+    \begin{equation*}
+        m(T, H) = \tanh\left(\frac{H}{k_B T}\right).
+    \end{equation*}
+
+    Por outro lado, temos
+    \begin{equation*}
+        \diffp*{\ln \zeta}{H} = \zeta^{-1} \diffp{\zeta}{H} = \beta \tanh(\beta H) = \beta m,
+    \end{equation*}
+    isto é,
+    \begin{equation*}
+        m = k_B T \diffp*{\ln \zeta}{H}.
+    \end{equation*}
+    É fácil constatar a partir da expressão que relaciona a magnetização com o valor esperado de \(\sigma_i\) que, independente do valor de \(\beta\), a magnetização se anula na ausência do campo magnético, isto é, \(m(T, 0) = 0\).
+
+    Veja que
+    \begin{equation*}
+        \mean{\sigma_i^2} = \sum_{\sigma_i\in \set{-1,1}} \frac{\sigma_i^2}{\zeta}\exp(\beta H \sigma_i) = \sum_{\sigma_i \in \set{-1,1}} \frac{1}{\zeta} \exp(\beta H \sigma_i) = 1,
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \chi = \mean{\sigma_i}^2 - \mean{\sigma_i}^2 = 1 - m^2 = \sech^2(\beta H)
+    \end{equation*}
+    é a variância de \(\sigma_i\).
 \end{proof}
