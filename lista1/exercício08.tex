@@ -1,14 +1,40 @@
 \begin{exercício}{Caminho aleatório unidimensional}{exercício8}
     Num caminho aleatório em uma dimensão, depois de \(N\) passos a partir da origem, a posição é dada por \(x = \sum_{j=1}^N s_j\), onde \(\set{s_j}\) é o conjunto de variáveis aleatórias independentes, identicamente distribuídas de acordo com a distribuição de probabilidades
     \begin{equation*}
-        P(s) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp{\left(-\frac{(s - \ell)^2}{2 \sigma^2}\right)},
+        P(s) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp{\left(-\frac{(s - \mu)^2}{2 \sigma^2}\right)},
     \end{equation*}
-    onde \(\sigma\) e \(\ell\) são constantes positivas.
+    onde \(\sigma\) e \(\mu\) são constantes positivas.
     \begin{enumerate}[label=(\alph*)]
         \item Ache o deslocamento médio a partir da origem depois de \(N\) passos.
         \item Qual é o valor do desvio quadrático médio da variável aleatória \(x\)?
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Consideremos a função característica de \(x\), \(g_x(k) = \mean{\exp(ikx)}.\) Como as variáveis aleatórias \(s_j\) são independentes e igualmente distribuídas, segue que
+    \begin{equation*}
+        g_x(k) = \mean*{\exp\left(ik \sum_{j=1}^N s_j\right)} = \prod_{j=1}^N \mean{\exp(ik s_j)}= \mean{\exp(iks)}^N = g_s(k)^N,
+    \end{equation*}
+    onde \(s\) é uma variável aleatória distribuída segundo a gaussiana \(P(s)\). A função característica de \(s\) é dada por
+    \begin{align*}
+        g_s(k) = \int_{\mathbb{R}}\dli{s} e^{iks} P(s)
+        &= \frac{1}{\sqrt{2\pi \sigma^2}} \int_{\mathbb{R}}\dli{s} \exp\left(-\frac{(s - \mu)^2 - 2 i\sigma^2 ks}{2 \sigma^2} \right)\\
+        &= \frac{\exp\left(-\frac{\mu^2}{2\sigma^2}\right)}{\sqrt{2\pi\sigma^2}}\int_{\mathbb{R}}\dli{s} \exp\left(-\frac{s^2 - 2 (\mu + i\sigma^2 k)s}{2 \sigma^2} \right)\\
+        &= \frac{\exp\left(\frac{(\mu + i \sigma^2 k)^2-\mu^2}{2\sigma^2}\right)}{\sqrt{2\pi\sigma^2}}\int_{\mathbb{R}}\dli{s} \exp\left(-\frac{(s - \mu - i \sigma^2 k)^2}{2 \sigma^2}\right)\\
+        &= \exp\left(i \mu k - \frac12 \sigma^2 k^2\right),
+    \end{align*}
+    logo
+    \begin{equation*}
+        g_x(k) = \exp\left(i N\mu k - \frac12 N\sigma^2 k^2\right)
+    \end{equation*}
+    é a expressão para a função característica de \(x\). Note que temos
+    \begin{equation*}
+        \ln\left[g_x(k)\right] = N \mu (ik) + \frac12 N \sigma^2 (ik)^2
+    \end{equation*}
+    logo
+    \begin{equation*}
+        \mean{x} = N \mu
+        \quad\text{e}\quad
+        \mean{x^2} - \mean{x}^2 = N \sigma^2
+    \end{equation*}
+    são os únicos cumulantes não nulos de \(x\).
 \end{proof}
