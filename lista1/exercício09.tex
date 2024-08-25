@@ -2,5 +2,15 @@
     Considere agora uma coleção de \(N\) íons paramagnéticos na presença de um campo magnético \(H\). Da mesma forma que no \cref{ex:exercício6} cada íon é permitido estar apenas na direção paralela ou antiparalela ao campo magnético. Como ficariam as expressões para a magnetização \(M\) e variância totais? No limite de \(N\) muito grande, como seria a forma da distribuição de probabilidades \(P_N(M)\) da variável aleatória \(M\)?
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Assumiremos que os íons não interagem entre si, isto é, a direção de um dado íon não afeta a direção dos outros íons da coleção. Assim, a variável aleatória \(\sigma_c = \sum_{j = 1}^N \sigma_{i}^{(j)},\) onde \(\sigma_{i}^{(j)}\) representa a variável aleatória estudada no \cref{ex:exercício6}, é uma soma de variáveis independentes e igualmente distribuídas. Neste caso, o cumulante da soma é a soma dos cumulantes, portanto a magnetização total \(M = \mean{\sigma_c}\) e a variância total \(X = \mean{\sigma_c^2} - \mean{\sigma_c}^2\) são dadas por
+    \begin{equation*}
+        M(T, H) = Nm = N \tanh\left(\frac{H}{k_BT}\right)
+        \quad\text{e}\quad
+        X(T, H) = N \chi = N \sech^2\left(\frac{H}{k_B T}\right).
+    \end{equation*}
+    No limite em que \(N \to \infty\), a variável aleatória dada por \(\frac{\sigma_c - Nm}{\sqrt{N}}\) converge como distribuição à uma gaussiana de valor esperado nulo e variância \(\mean{\sigma_i^2} - \mean{\sigma_i}^2 = \chi,\) pelo teorema do limite central. Deste modo,
+    \begin{equation*}
+        P_N(\sigma_c = s) \simeq \frac{1}{\sqrt{2\pi N \sech^2\left(\frac{H}{k_B T}\right)}} \exp\left\{-\frac{\left[s - N\tanh\left(\frac{H}{k_BT}\right)\right]^2}{2N \sech^2\left(\frac{H}{k_B T}\right)}\right\}
+    \end{equation*}
+    é uma aproximação para a densidade de probabilidade de \(\sigma_c\) para \(N\) suficientemente grande.
 \end{proof}
