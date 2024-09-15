@@ -1,0 +1,65 @@
+\begin{exercício}{Modelo de íons magnéticos localizados}{exercício1}
+    Considere um modelo de \(N\) íons magnéticos localizados, definido pelo hamiltoniano de spin \(\mathcal{H} = -\mu_BH \sum_{i = 1}^N S_i\), onde a variável \(S_i\) pode assumir os valores \(-1\) ou \(+1\) para qualquer sítio \(i\), \(\mu_B\) denota o magnéton de Bohr, e \(H\) é a intensidade do campo \(\vetor{H}\). Dada a energia total \(E\), obtenha
+    \begin{enumerate}[label=(\alph*)]
+        \item A expressão do número de estados microscópicos acessíveis ao sistema, \(\Omega(E, N)\), bem como a entropia por partícula, \(s(u),\) onde \(u = \frac{E}{N}\).
+        \item Obtenha uma expressão para o calor específico \(c\) em função da temperatura \(T\). Esboce um gráfico de \(c\) contra \(T\), verificando o máximo arredondado característico do efeito Schottky.
+    \end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução]
+    Notemos que o estado fundamental do sistema é aquele em que os íons estão orientados de acordo com o campo \(\vetor{H}\), portanto sua energia é \(-N\mu_BH\). Para cada íon excitado há um acréscimo de \(2 \mu_B H\) na energia, portanto a energia \(E_n\) para um estado com \(n\) íons excitados é \( E_n = \mu_B H (2n - N).\) Notemos que para tal estado, há \(\binom{N}{n}\) microestados possíveis, portanto
+    \begin{equation*}
+        \Omega(E, N) = \frac{N!}{\left(\frac{N}{2} - \frac{E}{2\mu_B H}\right)!\left(\frac{N}{2} + \frac{E}{2\mu_B H}\right)!}.
+    \end{equation*}
+    Assim, a entropia do sistema é dada por
+    \begin{align*}
+        S(E, N) &= k_B \left\{\ln(N!) - \ln\left[\left(\frac{N}{2} - \frac{E}{2\mu_BH}\right)!\right]- \ln\left[\left(\frac{N}{2} + \frac{E}{2\mu_BH}\right)!\right]\right\}\\
+                &\simeq k_B \left[N \ln N - \xlnx{\left(\frac{N}{2} - \frac{E}{2\mu_B H}\right)} - \xlnx{\left(\frac{N}{2} + \frac{E}{2\mu_B H}\right)}\right]\\
+                &= -\frac{N}{2}k_B\left[\xlnx{\left(1 - \frac{u}{\mu_BH}\right)} + \xlnx{\left(1 + \frac{u}{\mu_BH}\right)} - 2\ln2\right]\\
+                &= - \frac{N}{2} k_B\left\{\ln\left[1 - \left(\frac{u}{\mu_B H}\right)^2\right] + \frac{u}{\mu_B H}\ln\left(\frac{\mu_BH + u}{\mu_BH - u}\right) - 2\ln2\right\},
+    \end{align*}
+    portanto temos
+    \begin{equation*}
+        s(u) = -\frac12k_B\left\{\ln\left[1 - \left(\frac{u}{\mu_B H}\right)^2\right] + \frac{u}{\mu_B H}\ln\left(\frac{\mu_BH + u}{\mu_BH - u}\right) - 2\ln2\right\}
+    \end{equation*}
+    como a entropia por partícula.
+
+    A temperatura é dada por
+    \begin{align*}
+        \frac{1}{T} = \diffp{s}{u}[N] &= -\frac12 k_B\left[\frac{-2\frac{u}{\mu_B^2 H^2}}{1 - \left(\frac{u}{\mu_BH}\right)^2} + \frac{1}{\mu_B H} \ln\left(\frac{\mu_B H + u}{\mu_B H - u}\right) + \frac{u}{\mu_B H} \frac{\mu_B H - u}{\mu_B H + u} \frac{2\mu_B H}{(\mu_B H - u)^2}\right]\\
+                        &= - \frac{k_B}{2\mu_B H}\ln\left(\frac{\mu_B H + u}{\mu_BH - u}\right),
+    \end{align*}
+    então podemos expressar a energia por partícula como
+    \begin{equation*}
+        u = \mu_B H\frac{\exp(-2 \mu_B H\beta) - 1}{1 + \exp(-2\mu_BH \beta)} = -\mu_B H \tanh(\mu_B H \beta),
+    \end{equation*}
+    onde \(\beta = \frac{1}{k_B T}\).
+
+    \begin{figure}[!h]
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.8\linewidth,
+                    height=0.25\textheight,
+                    xmin=0, xmax=5,
+                    ymin=-.01,ymax=0.5,
+                    domain=0:5,
+                    samples=500,
+                    axis lines=middle,
+                    xlabel={$T$},
+                    ylabel={\(c_H\)},
+                    legend pos=north east,
+                    ytick=\empty,
+                    xtick={1},
+                    xticklabels={\(\frac{\mu_B H}{k_B}\)}
+                ]
+                    \addplot[thick, Mauve] {(\x*cosh(1/\x))^(-2)};
+                \end{axis}
+            \end{tikzpicture}
+            \caption{Calor específico \(c_H\) a campo constante em função da temperatura \(T\)}
+        \end{figure}
+    Desse modo,
+    \begin{equation*}
+        c_H = \diffp{u}{T}[H] = k_B\left[\frac{\mu_B H}{k_BT}\sech\left(\frac{\mu_B H}{k_BT}\right)\right]^2
+    \end{equation*}
+    é o calor específico a campo constante \(c_H\). Nota-se pelo gráfico que há um máximo dessa grandeza para uma temperatura próxima, mas inferior, a \(\frac{\mu_BH}{k_B}\).
+\end{proof}
