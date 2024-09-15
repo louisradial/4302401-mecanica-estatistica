@@ -7,5 +7,45 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    Dado \(V\) e \(N < V\), temos \(\binom{V}{N}\) maneiras de distribuir as partículas nas células, isto é,
+    \begin{equation*}
+        \Omega(N, V) = \frac{V!}{(V-N)!N!}
+    \end{equation*}
+    é a densidades de estados microscópicos. Assim, temos
+    \begin{align*}
+        S(N, V) &= k_B\left\{\ln(V!) - \ln[(V-N)!] - ln(N!)\right\}\\
+                &\simeq k_B\left[\xlnx{V} - \xlnx{(V-N)} - \xlnx{N}\right]\\
+                &= k_B \left[V \ln\left(\frac{V}{V-N}\right) + N \ln\left(\frac{V - N}{N}\right)\right]\\
+                &= Nk_B \left[v \ln\left(\frac{v}{v - 1}\right) + \ln(v-1)\right]\\
+                &= N k_B \left[\xlnx{v} - \xlnx{(v - 1)}\right],
+    \end{align*}
+    logo a entropia por partícula é
+    \begin{equation*}
+        s_N(v) = k_B\left[\xlnx{v} - \xlnx{(v - 1)}\right].
+    \end{equation*}
 
+    A pressão é dada por
+    \begin{equation*}
+        \frac{P}{T} = \diffp{s_N}{v}[N] = k_B \ln\left(\frac{v}{v - 1}\right) = -k_B \ln({1 - \rho}),
+    \end{equation*}
+    onde \(\rho = \frac{N}{V}\) é a densidade de partículas. Como \(\ln(1+x) \simeq x + O(x^2)\), temos
+    \begin{equation*}
+        \frac{P}{T} \simeq k_B \rho + O(\rho^2) \implies P V \simeq k_B N T
+    \end{equation*}
+    no limite em que \(\rho \to 0\), correspondente à equação de gases ideais.
+
+    Notemos que
+    \begin{align*}
+        S(N, V) &= V k_B \left[-\ln\left(1 - \frac{N}{V}\right) + \frac{N}{V}\ln\left(\frac{1 - \frac{N}{V}}{\frac{N}{V}}\right)\right]\\
+                &= V k_B\left[\xlnx{\rho} - \xlnx{(1 - \rho)}\right],
+    \end{align*}
+    portanto a entropia por célula é
+    \begin{equation*}
+        s_V(\rho) = k_B \left[\xlnx{\rho} - \xlnx{(1 - \rho)}\right].
+    \end{equation*}
+    O potencial químico absoluto \(\mu\) é dado por
+    \begin{equation*}
+        \frac{\mu}{T} = - \diffp{S}{N}[V] = - \diffp{s_V}{\rho}[V] = -k_B\left[2 + \ln(\rho - \rho^2)\right].
+    \end{equation*}
+    Nos limites em que \(\rho \to 0\) e \(\rho \to 1\), temos \(\mu \to \infty\).
 \end{proof}
