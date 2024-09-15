@@ -40,19 +40,21 @@
                 \begin{axis}[
                     width=0.8\linewidth,
                     height=0.25\textheight,
-                    xmin=0, xmax=5,
-                    ymin=-.01,ymax=0.5,
-                    domain=0:5,
+                    xmin=0, xmax=7.15,
+                    ymin=0,ymax=0.55,
+                    domain=0:7.5,
                     samples=500,
                     axis lines=middle,
-                    xlabel={$T$},
-                    ylabel={\(c_H\)},
+                    xlabel={\(\dfrac{k_BT}{\mu_BH}\)},
+                    ylabel={\(\dfrac{c_H}{k_B}\)},
                     legend pos=north east,
-                    ytick=\empty,
-                    xtick={1},
-                    xticklabels={\(\frac{\mu_B H}{k_B}\)}
+                    ytick={0,0.1,0.2,0.3,0.4,0.5},
+                    xtick={0, 1, 2, 3, 4, 5, 6, 7},
+                    % xticklabels={0, \(\frac{\mu_B H}{k_B}\), \(\frac{\mu_B H}{k_B}\)}
                 ]
                     \addplot[thick, Mauve] {(\x*cosh(1/\x))^(-2)};
+                    \draw[dashed] (0.833557,0) -- (0.833557, 0.439229);
+                    \draw[dashed] (0,0.439229) -- (0.833557, 0.439229);
                 \end{axis}
             \end{tikzpicture}
             \caption{Calor específico \(c_H\) a campo constante em função da temperatura \(T\)}
