@@ -8,5 +8,55 @@
     e expresse essas quantidades em termos de \(Z\) e suas derivadas com relação à \(\beta\).
 \end{exercício}
 \begin{proof}[Resolução]
+    Dada a função de partição
+    \begin{equation*}
+        Z = \sum_{E} \Omega(E) e^{-\beta E} = \sum_{E} \exp(\ln \Omega(E) - \beta E),
+    \end{equation*}
+    consideremos o termo de maior contribuição,
+    \begin{equation*}
+        Z \sim \max_{E}\set{\exp(\ln \Omega(E) - \beta E)}= \exp\left(-\beta \min_{E}\set{E - k_B T \ln \Omega(E)}\right).
+    \end{equation*}
+    Como \(S(E) = k_B \ln \Omega(E)\), e \(F = E - TS(E)\) é a energia livre de Helmholtz,
+    \begin{equation*}
+        \todo
+    \end{equation*}
 
+    Consideremos a distribuição canônica
+    \begin{equation*}
+        P_i = \frac{1}{Z}e^{-\beta E_i},
+    \end{equation*}
+    então o valor esperado da energia é dado por
+    \begin{equation*}
+        \mean{E} = \sum_{i} E_i P_i = -\frac{1}{Z} \diffp*{\sum_{i}{e^{-\beta E_i}}}{\beta} = - \diffp{\ln Z}{\beta},
+    \end{equation*}
+    e o seu segundo momento por
+    \begin{equation*}
+        \mean{E^2} = \sum_{i} E_i^2 P_i = \frac{1}{Z}\diffp[2]{\sum_i{e^{-\beta E_i}}}{\beta} = \frac{1}{Z} \diffp[2]{Z}{\beta}.
+    \end{equation*}
+    Assim, a variância da energia é
+    \begin{equation*}
+        \mean{E^2} - \mean{E}^2 = \frac{1}{Z}\diffp[2]{Z}{\beta} - \frac{1}{Z^2} \left(\diffp{Z}{\beta}\right)^2 = \diffp*{\left(\frac{1}{Z}\diffp{Z}{\beta}\right)}{\beta} = - \diffp{\mean{E}}{\beta},
+    \end{equation*}
+    portanto identificando o valor esperado da energia com a energia interna, temos
+    \begin{equation*}
+        \mean{E^2} - \mean{E}^2 = - \diffp{U}{\beta} = -\diffp{U}{T} \diff{T}{\beta} = \frac{1}{k_B \beta^2} N c_V,
+    \end{equation*}
+    onde \(c_V = \diffp{u}{T}\) é o calor específico. Então, podemos escrever
+    \begin{equation*}
+        c_V = \frac{k_B \beta^2}{N} \diffp[2]{\ln Z}{\beta}.
+    \end{equation*}
+
+    Notemos agora que
+    \begin{equation*}
+        S = -k_B \beta^2 \diffp*{\left(\beta^{-1} \ln Z\right)}{\beta} = k_B \ln Z - k_B \beta \diffp{\ln{Z}}{\beta},
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \diffp{S}{\beta} = -k_B \beta \diffp[2]{\ln Z}{\beta} = -\frac{k_B \beta N c_V}{k_B \beta^2},
+    \end{equation*}
+    isto é,
+    \begin{equation*}
+        c_V = -\beta \diffp{s}{\beta},
+    \end{equation*}
+    onde \(s = \frac{S}{N}.\)
 \end{proof}
