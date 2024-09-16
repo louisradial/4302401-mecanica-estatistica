@@ -2,10 +2,56 @@
     Considere um sistema de \(N\) átomos localizados, fracamente interagentes, cada um podendo estar em dois estados cujas energias são \(0\) e \(\epsilon > 0\).
     \begin{enumerate}[label=(\alph*)]
         \item Faça um gráfico das probabilidades canônicas como funções da temperatura.
-        \item Determine a energia média \(U\), a entropia \(S\), e a capacidade térmica \(C\).
+    \item Determine a energia média \(U\), a entropia \(S\), e a capacidade térmica \(C\).
         \item Faça um gráfico dessas grandezas como funções da temperatura indicando seus valores nos limites \(T \to 0\) e \(T \to \infty\).
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-
+    A função de partição para o sistema é
+    \begin{equation*}
+        Z = (1 + e^{-\beta \epsilon})^N,
+    \end{equation*}
+    portanto a energia média é
+    \begin{equation*}
+        U = - \diffp{\ln Z}{\beta} = \frac{N \epsilon e^{-\beta \epsilon}}{1 + e^{-\beta \epsilon}}  = \frac{N \epsilon}{1 + e^{\beta \epsilon}},
+    \end{equation*}
+    a entropia é
+    \begin{equation*}
+        S = k_B N\left[ \ln(1 + e^{- \beta \epsilon}) + \frac{\beta \epsilon}{1 + e^{\beta \epsilon}}\right],
+    \end{equation*}
+    e a capacidade térmica é
+    \begin{equation*}
+        C = \diffp{U}{T} = \diffp{U}{\beta}\diff{\beta}{T} = k_B \beta^2\frac{N \epsilon^2 e^{\beta \epsilon}}{(1 + e^{\beta \epsilon})^2}.
+    \end{equation*}
+    \begin{figure}[!h]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.8\linewidth,
+                height=0.25\textheight,
+                xmin=0, xmax=10.15,
+                ymin=0,ymax=0.75,
+                domain=0:10.5,
+                samples=500,
+                axis lines=middle,
+                xlabel={\(\dfrac{k_BT}{\epsilon}\)},
+                xlabel near ticks,
+                ylabel=\empty,
+                legend pos=south east,
+                ytick={0,0.1,0.2,0.3,0.4,0.5,0.6,0.7},
+                xtick={0, 1, 2, 3, 4, 5, 6, 7, 8,9,10},
+                % xticklabels={0, \(\frac{\mu_B H}{k_B}\), \(\frac{\mu_B H}{k_B}\)}
+            ]
+            \addplot[thick, Mauve] {1/(1 + exp(1/x))};
+            \addlegendentry{\(\frac{U}{N \epsilon}\)}
+            \addplot[thick, Pink] {ln(1 + exp(-1/x)) + (1/x)/(1+exp(1/x))};
+            \addlegendentry{\(\frac{S}{N k_B}\)}
+            \addplot[thick, Peach] {((1/x)/(1 + exp(1/x)))^2 * exp(1/x)};
+            \addlegendentry{\(\frac{C}{N k_B}\)}
+            \addplot[thick, dashed] {0.5};
+            \addplot[thick, dashed] {ln(2)};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Energia média, entropia e capacidade térmica para o sistema de dois níveis de átomos fracamente interagentes}
+    \end{figure}
 \end{proof}
