@@ -8,19 +8,6 @@
     e expresse essas quantidades em termos de \(Z\) e suas derivadas com relação à \(\beta\).
 \end{exercício}
 \begin{proof}[Resolução]
-    Dada a função de partição
-    \begin{equation*}
-        Z = \sum_{E} \Omega(E) e^{-\beta E} = \sum_{E} \exp(\ln \Omega(E) - \beta E),
-    \end{equation*}
-    consideremos o termo de maior contribuição,
-    \begin{equation*}
-        Z \sim \max_{E}\set{\exp(\ln \Omega(E) - \beta E)}= \exp\left(-\beta \min_{E}\set{E - k_B T \ln \Omega(E)}\right).
-    \end{equation*}
-    Como \(S(E) = k_B \ln \Omega(E)\), e \(F = E - TS(E)\) é a energia livre de Helmholtz,
-    \begin{equation*}
-        \todo
-    \end{equation*}
-
     Consideremos a distribuição canônica
     \begin{equation*}
         P_i = \frac{1}{Z}e^{-\beta E_i},
@@ -46,6 +33,14 @@
         c_V = \frac{k_B \beta^2}{N} \diffp[2]{\ln Z}{\beta}.
     \end{equation*}
 
+    Da relação entre a energia livre de Helmholtz \(F\) e a função de partição, temos
+    \begin{equation*}
+        \mean{E} = \diffp{(\beta F)}{\beta} = F + \frac{1}{k_B T} \diffp{F}{T} \diff{T}{\beta} = F - T \diffp{F}{T},
+    \end{equation*}
+    portanto de \(U = F + TS\), segue que
+    \begin{equation*}
+        S = - \diffp{F}{T} = -\diffp{F}{\beta}\diff{\beta}{T} = k_B \beta^2 \diffp{F}{\beta}.
+    \end{equation*}
     Notemos agora que
     \begin{equation*}
         S = -k_B \beta^2 \diffp*{\left(\beta^{-1} \ln Z\right)}{\beta} = k_B \ln Z - k_B \beta \diffp{\ln{Z}}{\beta},
