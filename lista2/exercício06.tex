@@ -21,12 +21,21 @@
     A energia interna por oscilador é
     \begin{align*}
         u &= -\frac1N \diffp{\ln Z}{\beta} = \diffp{(\beta f)}{\beta}= \hbar\omega_0\left[\tanh(\beta \hbar \omega_0)+\frac12 \right]\\
-          &= \hbar \omega_0 \left[\frac{1}{\tanh\left(\frac{\hbar \omega_0}{k_B T}\right)} + \frac12\right],
+          &= \hbar \omega_0 \left[\frac{1}{\tanh\left(\frac{\hbar \omega_0}{k_B T}\right)} + \frac12\right].
     \end{align*}
-    e a entropia por oscilador é dada por
+    Para \(\hbar \omega_0 \ll k_B T\), temos
     \begin{align*}
-        s = \frac{u - f}{T} = \frac{\hbar \omega_0}{T\tanh\left(\frac{\hbar\omega_0}{k_BT}\right)} - k_B \ln\left[2\sinh\left(\frac{\hbar \omega_0}{k_B T}\right)\right]
+        \frac{1}{\tanh\left(\frac{\hbar \omega_0}{k_B T}\right)} = \frac{1 + e^{-2\left(\frac{\hbar \omega_0}{k_B T}\right)}}{1 - e^{-2\left(\frac{\hbar \omega_0}{k_B T}\right)}}
+                                                                 &= 1 + \frac2{e^{2\left(\frac{\hbar \omega_0}{k_B T}\right)} - 1}\\
+                                                                 &= 1 + \frac2{\sum_{k = 1}^\infty \left(2\frac{\hbar \omega_0}{k_B T}\right)^2}\\
+                                                                 &\simeq \frac{k_B T}{\hbar \omega_0} + \frac{\hbar \omega_0}{3k_B T},
     \end{align*}
+    portanto
+    \begin{equation*}
+        u \simeq u_\mathrm{c} = \hbar \omega_0 \left(\frac{k_B T}{\hbar\omega_0} + \frac{1}{2} + \frac{\hbar \omega_0}{3 k_B T}\right)
+    \end{equation*}
+    é a expressão para a energia interna no limite clássico.
+
     \begin{figure}[!ht]
         \centering
         \begin{tikzpicture}
@@ -39,7 +48,8 @@
                 samples=500,
                 axis lines=middle,
                 xlabel={T},
-                % xlabel near ticks,
+                xlabel near ticks,
+                ylabel near ticks,
                 ylabel={\(u\)},
                 legend pos=south east,
                 ytick={3/2},
@@ -48,15 +58,105 @@
                 yticklabels={\(\frac32\hbar \omega_0\)},
             ]
             \addplot[thick, Mauve] {1/tanh(1/x) + 1/2};
-            \addplot[thick, Mauve] {(1/x)/tanh(1/x) - ln(2*sinh(1/x))};
-            \addplot[thin, dashed] {3/2};
+            \addlegendentry{\(u\)}
+            \addplot[thick, dashed, Pink] {x + 1/2 + 1/(3*x)};
+            \addlegendentry{\(u_\mathrm{c}\)}
+            % \addplot[thin, dashed] {3/2};
             \end{axis}
         \end{tikzpicture}
         \caption{Energia interna por oscilador.}
     \end{figure}
 
-    No limite clássico \(\hbar \omega_0 \ll k_B T\), temos \(\frac{1}{\tanh\left(\frac{\hbar \omega_0}{k_B T}\right)} \simeq \frac{k_B T}{\hbar \omega_0} + \frac{\hbar \omega_0}{3 k_B T} + O\left[\left(\frac{\hbar \omega_0}{k_B T}\right)^3\right]\), portanto
+    A entropia por oscilador é dada por
+    \begin{align*}
+        s = \frac{u - f}{T} = \frac{\hbar \omega_0}{T\tanh\left(\frac{\hbar\omega_0}{k_BT}\right)} - k_B \ln\left[2\sinh\left(\frac{\hbar \omega_0}{k_B T}\right)\right].
+    \end{align*}
+    Para \(\hbar \omega_0 \ll k_B T\), temos
+    \begin{align*}
+        \ln\left[2\sinh\left(\frac{\hbar \omega_0}{k_B T}\right)\right] &= \ln\left[2 \sum_{k=0}^\infty \frac{\left(\frac{\hbar\omega_0}{k_BT}\right)^{2k+1}}{(2k+1)!}\right]\\
+                                                                        &= \ln\left[2\left(\frac{\hbar\omega_0}{k_BT}\right)\sum_{k=0}^\infty \frac{\left(\frac{\hbar\omega_0}{k_BT}\right)^{2k}}{(2k+1)!}\right]\\
+                                                                        &= \ln\left(\frac{2\hbar\omega_0}{k_BT}\right) + \ln\left[1 + \sum_{k=1}^\infty\frac{\left(\frac{\hbar\omega_0}{k_BT}\right)^{2k}}{(2k+1)!}\right]\\
+                                                                        &\simeq \ln\left(\frac{2\hbar\omega_0}{k_BT}\right) + \frac16\left(\frac{\hbar\omega_0}{k_BT}\right)^2,
+    \end{align*}
+    portanto
+    \begin{align*}
+        s \simeq s_\mathrm{c} &= \frac{\hbar \omega_0}{T} \left(\frac{k_B T}{\hbar\omega_0} + \frac{1}{2} + \frac{\hbar \omega_0}{3 k_B T}\right) - k_B\ln\left(\frac{2\hbar\omega_0}{k_BT}\right) - \frac16\left(\frac{\hbar\omega_0}{k_BT}\right)^2\\
+                              &= k_B \left[1 + \frac{\hbar\omega_0}{2k_B T} + \frac16\left(\frac{\hbar \omega_0}{k_B T}\right)^2 - \ln\left(\frac{2\hbar \omega_0}{k_B T}\right)\right]
+    \end{align*}
+    é a expressão para a entropia no limite clássico.
+
+    \begin{figure}[!ht]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.8\linewidth,
+                height=0.25\textheight,
+                xmin=0, xmax=20.5,
+                ymin=0,ymax=3.75,
+                domain=0:70.5,
+                samples=500,
+                axis lines=middle,
+                xlabel={T},
+                xlabel near ticks,
+                ylabel near ticks,
+                ylabel={\(s\)},
+                legend pos=south east,
+                ytick={1},
+                xtick={0, 4, 8, 12, 16,20},
+                xticklabels={0, \(\frac{4\hbar \omega}{k_B}\), \(\frac{8\hbar \omega_0}{k_B}\), \(\frac{12\hbar \omega_0}{k_B}\), \(\frac{16\hbar \omega_0}{k_B}\), \(\frac{20\hbar \omega_0}{k_B}\)},
+                yticklabels={\(k_B\)},
+            ]
+            \addplot[thick, Mauve] {(1/x)/tanh(1/x) - ln(2*sinh(1/x))};
+            \addlegendentry{\(s\)}
+            \addplot[thick, Pink, dashed] {1 + 1/(2*x) + 1/6*(1/x)^2 - ln(2/x)};
+            \addlegendentry{\(s_\mathrm{c}\)}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Entropia por oscilador.}
+    \end{figure}
+
+    \begin{figure}[!ht]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.8\linewidth,
+                height=0.25\textheight,
+                xmin=0, xmax=10.5,
+                ymin=0,ymax=1.15,
+                domain=0:70.5,
+                samples=1000,
+                axis lines=middle,
+                xlabel={T},
+                xlabel near ticks,
+                ylabel near ticks,
+                ylabel={\(c\)},
+                legend pos=south east,
+                ytick={1},
+                xtick={0, 2, 4, 6, 8,10},
+                xticklabels={0, \(\frac{2\hbar \omega}{k_B}\), \(\frac{4\hbar \omega_0}{k_B}\), \(\frac{6\hbar \omega_0}{k_B}\), \(\frac{8\hbar \omega_0}{k_B}\), \(\frac{10\hbar \omega_0}{k_B}\)},
+                yticklabels={\(k_B\)},
+                unbounded coords=jump
+            ]
+            \addplot[thick, Mauve] {((1/x)/(sinh(1/x)))^2};
+            \addlegendentry{\(c\)}
+            \addplot[thick, Pink, dashed] {1 - 1/(3*x^2)};
+            \addlegendentry{\(c_\mathrm{c}\)}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Calor específico.}
+    \end{figure}
+
+    O calor específico é dado por
     \begin{equation*}
-        u \simeq k_B T + \frac{\hbar \omega_0}{2} + \frac{(\hbar \omega_0)^2}{3 k_B T}.
+        c = \diffp{u}{T} = \hbar \omega_0 \frac{\frac{\hbar\omega_0}{k_BT^2}\sech^2\left(\frac{\hbar \omega_0}{k_B T}\right)}{\tanh^2\left(\frac{\hbar\omega_0}{k_B T}\right)} = k_B\left[\frac{\hbar \omega_0}{k_B T\sinh\left(\frac{\hbar \omega_0}{k_BT}\right)}\right]^2.
     \end{equation*}
+    Para \(\hbar \omega_0\ll k_BT\), temos
+    \begin{equation*}
+        \left[\frac{\left(\frac{\hbar\omega_0}{k_BT}\right)}{\sinh{\left(\frac{\hbar\omega_0}{k_BT}\right)}}\right]^2 = \left[\frac{1}{\sum_{k=0} \frac{\left(\frac{\hbar\omega_0}{k_BT}\right)^{2k}}{(2k+1)!}}\right]^2 \simeq \left[1 - \frac16\left(\frac{\hbar\omega_0}{k_BT}\right)^2\right]^2 \simeq 1 - \frac13\left(\frac{\hbar\omega_0}{k_BT}\right)^2,
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        c\simeq c_\mathrm{c} = k_B\left[1 - \frac13\left(\frac{\hbar \omega_0}{k_B T}\right)^2\right]
+    \end{equation*}
+    é a expressão para entropia no limite clássico.
 \end{proof}
