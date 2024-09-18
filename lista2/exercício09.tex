@@ -10,5 +10,117 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    Notemos que podemos escrever a Hamiltoniana por
+    \begin{equation*}
+        \mathcal{H} = -J \sum_{i=1}^{\frac{N}{2}} \sigma_{2i - 1} \sigma_{2i} - H\sum_{j=1}^{\frac{N}{2}} \left(\sigma_{2j-1} + \sigma_{2j}\right) = -\sum_{i = 1}^{\frac{N}{2}} \left[J \sigma_{2i-1} \sigma_{2i} + H\left(\sigma_{2i-1} + \sigma_{2i}\right)\right],
+    \end{equation*}
+    portanto definindo \(S_i = J \sigma_{2i -1} \sigma_{2i} + H(\sigma_{2i - 1} + \sigma_{2i})\), temos \(\mathcal{H} = - \sum_{i = 1}^{\frac{N}{2}}S_i,\) com \(S_i\) e \(S_j\) independentes desde que \(i \neq j\). Como os possíveis valores de \(S_i\) são \(J + 2H, -J\) e \(J - 2H\), com \(-J\) ocorrendo para \(\sigma_{2i-1} = - \sigma_{2i}\), a função de partição do sistema é
+    \begin{equation*}
+        Z = \left[e^{\beta (J + 2H)} + 2 e^{-\beta J} + e^{\beta (J - 2H)}\right]^{\frac{N}{2}} = \left[2e^{\beta J}\cosh(2\beta H) + 2 e^{-\beta J}\right]^{\frac{N}{2}}.
+    \end{equation*}
+    Assim, a energia livre de Helmholtz é dada por
+    \begin{equation*}
+        F = - \frac{\ln Z}{\beta} = - \frac{N}{2 \beta} \ln\left[2e^{\beta J}\cosh(2\beta H) + 2 e^{-\beta J}\right]
+    \end{equation*}
+    e
+    \begin{equation*}
+        u = -\frac{1}{N} \diffp{\ln Z}{\beta} = \frac{1}{N} \diffp{(\beta F)}{\beta} =-\frac{J e^{\beta J} \cosh(2 \beta H) + 2H e^{\beta J}\sinh(2\beta H)-J e^{-\beta J}}{2e^{\beta J}\cosh(2\beta H) +  2e^{-\beta J}}
+    \end{equation*}
+    é a energia interna por partícula.
+    \begin{figure}[!ht]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.8\linewidth,
+                height=0.25\textheight,
+                xmin=0, xmax=5.1,
+                ymin=-0.6,ymax=0.2,
+                domain=0:6,
+                samples=500,
+                axis lines=middle,
+                xlabel={\(T\)},
+                % xlabel near ticks,
+                % ylabel near ticks,
+                ylabel={\(u\)},
+                legend pos=south east,
+                ytick={-1/2},
+                xtick={0,1,2,3,4,5},
+                xticklabels={0, \(\frac{J}{k_B}\), \(\frac{2J}{k_B}\), \(\frac{3J}{k_B}\), \(\frac{4J}{k_B}\), \(\frac{5J}{k_B}\)},
+                yticklabels={\(-\frac{J}{2}\)},
+                unbounded coords=jump
+            ]
+            \addplot[thick, Mauve] {-1/2 * tanh(1/x)};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Energia interna por partícula para \(H = 0\)}
+    \end{figure}
 
+    A entropia por spin é dada por
+    \begin{equation*}
+        s = \frac{u - f}{T} = -\frac{1}{2T}\frac{J e^{\beta J} \cosh(2 \beta H) + 2H e^{\beta J}\sinh(2\beta H)-J e^{-\beta J}}{e^{\beta J}\cosh(2\beta H) +  e^{-\beta J}} + \frac{k_B}{2} \ln\left[2e^{\beta J}\cosh(2\beta H) + 2 e^{-\beta J}\right].
+    \end{equation*}
+
+    \begin{figure}[!ht]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.8\linewidth,
+                height=0.2\textheight,
+                xmin=0, xmax=5.1,
+                ymin=-0.4,ymax=0.1,
+                domain=0:6,
+                samples=500,
+                axis lines=middle,
+                xlabel={\(T\)},
+                % xlabel near ticks,
+                % ylabel near ticks,
+                ylabel={\(s\)},
+                legend pos=south east,
+                ytick={-ln(2)/2},
+                xtick={0,1,2,3,4,5},
+                xticklabels={0, \(\frac{J}{k_B}\), \(\frac{2J}{k_B}\), \(\frac{3J}{k_B}\), \(\frac{4J}{k_B}\), \(\frac{5J}{k_B}\)},
+                yticklabels={\(-\frac{\ln2}{2}k_B\)},
+                unbounded coords=jump
+            ]
+            \addplot[thick, Mauve] {-1/(2*x) * tanh(1/x) + 1/2 * ln(cosh(1/x))};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Entropia por spin para \(H = 0\)}
+    \end{figure}
+
+    A magnetização por partícula é
+    \begin{equation*}
+        m = -\frac{1}{N}\diffp{F}{H} = \frac{e^{\beta J}\sinh(2 \beta H)}{e^{\beta J}\cosh(2 \beta H) + e^{-\beta J}} = \frac{\sinh(2 \beta H)}{\cosh(2 \beta H) + e^{-2 \beta J}},
+    \end{equation*}
+    portanto a suscetibilidade magnética é
+    \begin{equation*}
+        \chi = \diffp{m}{H} = 2 \beta\frac{e^{-2 \beta J}\cosh(2 \beta H) + 1}{\left[\cosh(2 \beta H) + e^{-2 \beta J}\right]^2}
+    \end{equation*}
+    \begin{figure}[!ht]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.8\linewidth,
+                height=0.2\textheight,
+                xmin=0, xmax=5.1,
+                ymin=0.0,ymax=2.2,
+                domain=0.2:6,
+                samples=500,
+                axis lines=middle,
+                xlabel={\(T\)},
+                % xlabel near ticks,
+                % ylabel near ticks,
+                ylabel={\(\chi\)},
+                legend pos=south east,
+                ytick={-ln(2)/2},
+                xtick={0,1,2,3,4,5},
+                xticklabels={0, \(\frac{J}{k_B}\), \(\frac{2J}{k_B}\), \(\frac{3J}{k_B}\), \(\frac{4J}{k_B}\), \(\frac{5J}{k_B}\)},
+                yticklabels={\(-\frac{\ln2}{2}k_B\)},
+                unbounded coords=jump
+            ]
+            \addplot[thick, Mauve] {2/(x*(exp(-2/x) + 1))};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Suscetibilidade magnética para \(H = 0\)}
+    \end{figure}
 \end{proof}
