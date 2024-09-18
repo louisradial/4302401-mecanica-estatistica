@@ -21,11 +21,11 @@
     A energia interna por oscilador é
     \begin{align*}
         u &= -\frac1N \diffp{\ln Z}{\beta} = \diffp{(\beta f)}{\beta}= \hbar\omega_0\left[\tanh(\beta \hbar \omega_0)+\frac12 \right]\\
-          &= \hbar \omega_0 \left[\frac{1}{\tanh\left(\frac{\hbar \omega_0}{k_B T}\right)} + \frac12\right].
+          &= \hbar \omega_0 \left[\coth\left(\frac{\hbar \omega_0}{k_B T}\right) + \frac12\right].
     \end{align*}
     Para \(\hbar \omega_0 \ll k_B T\), temos
     \begin{align*}
-        \frac{1}{\tanh\left(\frac{\hbar \omega_0}{k_B T}\right)} = \frac{1 + e^{-2\left(\frac{\hbar \omega_0}{k_B T}\right)}}{1 - e^{-2\left(\frac{\hbar \omega_0}{k_B T}\right)}}
+        \coth\left(\frac{\hbar \omega_0}{k_B T}\right) = \frac{1 + e^{-2\left(\frac{\hbar \omega_0}{k_B T}\right)}}{1 - e^{-2\left(\frac{\hbar \omega_0}{k_B T}\right)}}
                                                                  &= 1 + \frac2{e^{2\left(\frac{\hbar \omega_0}{k_B T}\right)} - 1}\\
                                                                  &= 1 + \frac2{\sum_{k = 1}^\infty \left(2\frac{\hbar \omega_0}{k_B T}\right)^2}\\
                                                                  &\simeq \frac{k_B T}{\hbar \omega_0} + \frac{\hbar \omega_0}{3k_B T},
@@ -69,7 +69,7 @@
 
     A entropia por oscilador é dada por
     \begin{align*}
-        s = \frac{u - f}{T} = \frac{\hbar \omega_0}{T\tanh\left(\frac{\hbar\omega_0}{k_BT}\right)} - k_B \ln\left[2\sinh\left(\frac{\hbar \omega_0}{k_B T}\right)\right].
+        s = \frac{u - f}{T} = k_B\left\{\frac{\hbar \omega_0}{k_BT}\coth\left(\frac{\hbar\omega_0}{k_BT}\right)- \ln\left[2\sinh\left(\frac{\hbar \omega_0}{k_B T}\right)\right]\right\}.
     \end{align*}
     Para \(\hbar \omega_0 \ll k_B T\), temos
     \begin{align*}
