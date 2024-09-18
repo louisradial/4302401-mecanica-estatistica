@@ -7,5 +7,54 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    A função de partição por partícula é dada por
+    \begin{align*}
+        \zeta = \sum_{j = -J}^J e^{\beta \alpha j} &= e^{\beta \alpha J} \sum_{n=0}^{2J} e^{-\beta \alpha n}\\
+                                                    &= \frac{e^{-\beta \alpha(2J + 1)} - 1}{e^{-\beta \alpha} - 1}e^{\beta \alpha J}\\
+                                                    &= \frac{e^{-\beta \alpha(J+1)} - e^{\beta \alpha J}}{e^{-\beta \alpha} - 1}\\
+                                                    &= \frac{e^{\beta \alpha \left(J + \frac12\right)} - e^{-\beta \alpha\left(J + \frac12\right)}}{e^{\frac12 \beta \alpha} - e^{-\frac12 \beta \alpha}}\\
+                                                    &= \frac{\sinh\left[\beta \alpha \left(J + \frac12\right)\right]}{\sinh\left(\frac12\beta \alpha\right)}.
+    \end{align*}
+    Assim, a energia livre de Helmholtz é
+    \begin{equation*}
+        F = - \frac{N\ln \zeta}{\beta} = \frac{N}{\beta}\ln\left\{\frac{\sinh\left(\frac12 \beta \alpha\right)}{\sinh\left[\beta \alpha (J + \frac12)\right]}\right\} = N k_B T\ln\left\{\frac{\sinh\left(\frac{g \mu_B H}{2k_BT}\right)}{\sinh\left[\frac{(2J+1)g \mu_B H}{2k_BT}\right]}\right\}.
+    \end{equation*}
+    Portanto, a magnetização por íon é dada por
+    \begin{equation*}
+        m = -\frac{1}{N}\diffp{F}{H} = \frac12g \mu_B\left\{(2J + 1)\coth\left[\frac{(2J + 1)g \mu_B H}{2 k_B T}\right] - \coth\left(\frac{g \mu_B H}{2 k_B T}\right)\right\}
+    \end{equation*}
 
+    \begin{figure}[!ht]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.8\linewidth,
+                height=0.25\textheight,
+                xmin=-5.5, xmax=5.5,
+                ymin=-10,ymax=10,
+                domain=-6:6,
+                samples=500,
+                axis lines=middle,
+                xlabel={\(H\)},
+                % xlabel near ticks,
+                % ylabel near ticks,
+                ylabel={\(m\)},
+                legend pos=south east,
+                ytick=\empty,
+                xtick=\empty,
+            ]
+            \addplot[thick, Mauve] {3/tanh(3*x) - 1/tanh(x)};
+            \addlegendentry{\(J = 1\)}
+            \addplot[thick, Pink] {5/tanh(5*x) - 1/tanh(x)};
+            \addlegendentry{\(J = 2\)}
+            \addplot[thick, Peach] {7/tanh(7*x) - 1/tanh(x)};
+            \addlegendentry{\(J = 3\)}
+            \addplot[thick, Red] {9/tanh(9*x) - 1/tanh(x)};
+            \addlegendentry{\(J = 4\)}
+            % \addplot[thick, Yellow] {11/tanh(11*x) - 1/tanh(x)};
+            % \addlegendentry{\(J = 5\)}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Magnetização por íon}
+    \end{figure}
 \end{proof}
