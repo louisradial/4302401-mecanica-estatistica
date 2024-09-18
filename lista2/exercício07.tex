@@ -6,5 +6,30 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    A função de partição do sistema é dada por
+    \begin{align*}
+        Z = \left[\sum_{n=1}^\infty ne^{-\beta n \epsilon}\right]^N = \left[-\frac{1}{\epsilon}\diffp*{\left(\sum_{n=1}^\infty e^{-\beta n \epsilon}\right)}{\beta}\right]^N &= \left[\frac1{\epsilon} \diffp*{\left(\frac{1}{1 - e^{\beta  \epsilon}}\right)}{\beta}\right]^N\\&= \left[ \frac{e^{\beta \epsilon}}{+ 1 + e^{2\beta \epsilon} - 2 \epsilon^{\beta \epsilon} }\right]^N\\&= \left[\frac{1}{2\cosh(\beta \epsilon) - 2}\right]^N,
+    \end{align*}
+    uma vez que as partículas são não interagentes. Assim, a energia livre de Helmholtz por partícula é
+    \begin{equation*}
+        f = - \frac{\ln Z}{\beta N} = \frac{\ln\left[2\cosh(\beta \epsilon) - 2\right]}{\beta}.
+    \end{equation*}
 
+    A energia interna por partícula é dada por
+    \begin{equation*}
+        u = - \frac{1}{N}\diffp{\ln Z}{\beta} = \diffp{(\beta f)}{\beta} = \frac{\sinh(\beta \epsilon)}{\cosh(\beta \epsilon) - 1}\epsilon = \frac{\sinh\left(\frac{\epsilon}{k_BT}\right)}{\cosh\left(\frac{\epsilon}{k_BT}\right) - 1}\epsilon,
+    \end{equation*}
+    a entropia por partícula por
+    \begin{equation*}
+        s = \frac{u - f}{T} = k_B\left\{\left[\frac{\sinh\left(\frac{\epsilon}{k_BT}\right)}{\cosh\left(\frac{\epsilon}{k_BT}\right) - 1}\right]\frac{\epsilon}{k_B T}-\ln\left[2\cosh\left(\frac{\epsilon}{k_BT}\right)- 2\right]\right\}
+    \end{equation*}
+    e
+    \begin{equation*}
+        c = \diffp{u}{T} = \frac{\epsilon}{k_B T^2}\frac{\cosh^2\left(\frac{\epsilon}{k_BT}\right) - \cosh\left(\frac{\epsilon}{k_BT}\right) - \sinh^2\left(\frac{\epsilon}{k_BT}\right)}{\left[\cosh\left(\frac{\epsilon}{k_BT}\right)-1\right]^2}\epsilon =  k_B\frac{\left(\frac{\epsilon}{k_B T}\right)^2}{\cosh\left(\frac{\epsilon}{k_BT}\right) - 1}
+    \end{equation*}
+    No limite de altas temperaturas, temos
+    \begin{equation*}
+        u\to\infty, s \to \infty, \quad\text{e}\quad c \to 2 k_B
+    \end{equation*}
+    conforme \(T \to \infty\).
 \end{proof}
