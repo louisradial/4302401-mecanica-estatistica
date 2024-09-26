@@ -2,5 +2,31 @@
     A partir da distribuição de Maxwell-Boltzmann deduzida em sala de aula, ache expressões para as médias \(\mean{v}\), \(\mean{v^2}\) e para a velocidade mais provável.
 \end{exercício}
 \begin{proof}[Resolução]
+    A distribuição de Maxwell-Boltzmann para as velocidades é dada por
+    \begin{equation*}
+        \rho(v) = 4\pi \left(\frac{\beta m}{2\pi}\right)^{\frac32} v^2 \exp\left(-\frac{\beta m v^2}{2}\right),
+    \end{equation*}
+    como visto em aula. A velocidade \(v_*\) que maximiza a densidade de probabilidade é dada por
+    \begin{equation*}
+        \diff{\rho}{v}[v_*] = 0\implies 2v_* \exp\left(-\frac{\beta mv_*^2}{2}\right) = \beta m v_*^3 \exp\left(-\frac{\beta m v_*^2}{2}\right) \implies v_* = \sqrt{\frac{2k_B T}{m}}.
+    \end{equation*}
 
+    O valor médio das velocidades é dado por
+    \begin{align*}
+        \mean{v} = \int_0^\infty \dli{v} v\rho(v) &= 4\pi \left(\frac{\beta m}{2\pi}\right)^{\frac32} \int_0^\infty \dli{v} v^3 \exp\left(- \frac{\beta m v^2}{2}\right) \\
+                                                  &= 4\pi \sqrt{\frac{1}{2m \beta \pi^3}} \int_0^{-\infty}\dli{\xi} \xi e^\xi\\
+                                                  &= 2\sqrt{\frac{2k_B T}{\pi m}}
+    \end{align*}
+    e o seu segundo momento por
+    \begin{align*}
+        \mean{v^2} = \int_0^\infty \dli{v} v^2\rho(v) &= 4\pi \left(\frac{\beta m}{2\pi}\right)^{\frac32} \int_0^\infty \dli{v} v^4 \exp\left(- \frac{\beta m v^2}{2}\right) \\
+                                                      &= -\frac{8\pi}{m} \left(\frac{\beta m}{2\pi}\right)^{\frac32} \diffp*{\int_0^{\infty}\dli{v} v^2 \exp\left(-\frac{\beta m v^2}{2}\right))}{\beta}\\
+                                                      &= -\frac{8\pi}{m}\left(\frac{\beta m}{2\pi}\right)^{\frac32}\diffp*{\left[\frac1{4\pi}\left(\frac{2\pi}{\beta m}\right)^{\frac32}\right]}{\beta}\\
+                                                      &= \frac{3 k_BT}{m}
+    \end{align*}
+    portanto
+    \begin{equation*}
+        \mean{v^2} - \mean{v}^2 = \left(3 - \frac{8}{\pi}\right)\frac{k_B T}{m}
+    \end{equation*}
+    é a variância das velocidades.
 \end{proof}
