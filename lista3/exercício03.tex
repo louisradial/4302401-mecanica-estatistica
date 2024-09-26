@@ -6,5 +6,18 @@
     onde \(n\) é um número par e positivo. Utilize o formalismo canônico para obter uma expressão para o calor específico clássico deste sistema.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    A energia interna é dada por
+    \begin{align*}
+        U &= \frac{\iint_{\mathbb{R}^2} \dl{x_1}\dli{p_1}\dots \iint_{\mathbb{R}^2} \dl{x_N}\dli{p_N} \mathcal{H}e^{-\beta \mathcal{H}}}{\iint_{\mathbb{R}^2} \dl{x_1}\dli{p_1}\dots \iint_{\mathbb{R}^2}\dl{x_N}\dli{p_N}e^{-\beta \mathcal{H}}}\\
+          &= \sum_{i=1}^N\frac{\iint_{\mathbb{R}^2} \dl{x_1}\dli{p_1}\dots \iint_{\mathbb{R}^2} \dl{x_N}\dli{p_N} \left(\frac{p_i^2}{2m} + \frac{m\omega^2 x_i^n}{2}\right)\exp\left[-\beta \sum_{j=1}^N \left(\frac{p_j^2}{2m} + \frac{m\omega^2 x_j^n}{2}\right)\right]}{\left[\int_{\mathbb{R}} \dli{x} \exp\left(-\beta\frac{m\omega^2 x^n}{2}\right)\right]^N\left[\int_{\mathbb{R}}\dli{p}\exp\left(-\beta \frac{p^2}{2m}\right)\right]^N}\\
+          &= \sum_{i=1}^N \left[\frac{\int_{\mathbb{R}} \dli{p} \frac{p^2}{2m}\exp\left(-\frac{\beta p^2}{2m}\right)}{\int_{\mathbb{R}}\dli{p}\exp\left(-\frac{\beta p^2}{2m}\right)}+\frac{\int_{\mathbb{R}}\dli{x} \frac{m\omega^2 x^n}{2}\exp\left(-\frac{\beta m\omega^2x^n}{2}\right)}{\int_{\mathbb{R}} \dli{x} \exp\left(-\frac{\beta m\omega^2 x^n}{2}\right)}\right]\\
+          &= N\left\{\frac{-\diffp*{\int_{\mathbb{R}}\dli{p}\exp\left(-\frac{\beta p^2}{2m}\right)}{\beta}}{\int_{\mathbb{R}}\dli{p}\exp\left(-\frac{\beta p^2}{2m}\right)} + \frac{m\omega^2 \left[\left.\frac{-2x}{n \beta m \omega^2}\exp\left(-\frac{\beta m\omega^2 x^n}{2}\right)\right\vert_{-\infty}^\infty + \frac{2}{n \beta m \omega^2}\int_{\mathbb{R}}\dli{x}\exp\left(-\frac{\beta m\omega^2 x^n}{2}\right)\right]}{2\int_{\mathbb{R}}\dli{x} \exp\left(-\frac{\beta m \omega^2 x^n}{2}\right)}\right\}\\
+          &= N\left[- \diffp*{\ln\left(\sqrt{\frac{2\pi m}{\beta}}\right)}{\beta} + \frac{1}{n \beta}\right]\\
+          &= \left(\frac{1}{2} + \frac{1}{n}\right)Nk_B T,
+    \end{align*}
+    portanto
+    \begin{equation*}
+        c_V = \lim_{N\to \infty} \frac{1}{N} \diffp{U}{T}[N, V] = \left(\frac12 + \frac1n\right)k_B T
+    \end{equation*}
+    é o calor específico do sistema.
 \end{proof}
