@@ -1,11 +1,133 @@
 \todo[Trocar rot, tr, m por mathrm]
 \begin{exercício}{Gás de moléculas diatômicas rígidas fracamente interagentes}{exercício4}
-    Desprezando o movimento vibracional, uma molécula diatômica pode ser tratada como um rotor rígido tridimensional. O hamiltoniano \(\mathcal{H}_m\) da molécula é escrito na forma de um termo translacional \(\mathcal{H}_{tr}\) somado de um termo rotacional \(\mathcal{H}_{rot}\), isto é, \(\mathcal{H}_m=\mathcal{H}_{tr} + \mathcal{H}_{rot}\). Considere um sistema de \(N\) moléculas dessa natureza, muito fracamente interagentes, dentro de um recipiente de volume \(V\), a uma dada temperatura \(T\).
+    Desprezando o movimento vibracional, uma molécula diatômica pode ser tratada como um rotor rígido tridimensional. O hamiltoniano \(\mathcal{H}_{\mathrm{m}}\) da molécula é escrito na forma de um termo translacional \(\mathcal{H}_{\mathrm{tr}}\) somado de um termo rotacional \(\mathcal{H}_{\mathrm{rot}}\), isto é, \(\mathcal{H}_{\mathrm{m}}=\mathcal{H}_{\mathrm{tr}} + \mathcal{H}_{\mathrm{rot}}\). Considere um sistema de \(N\) moléculas dessa natureza, muito fracamente interagentes, dentro de um recipiente de volume \(V\), a uma dada temperatura \(T\).
     \begin{enumerate}[label=(\alph*)]
-        \item Obtenha a expressão para \(\mathcal{H}_{rot}\) em coordenadas esféricas. Obtenha a contribuição do termo rotacional para a função de partição e uma expressão para o calor específico a volume constante.
+        \item Obtenha a expressão para \(\mathcal{H}_{\mathrm{rot}}\) em coordenadas esféricas. Obtenha a contribuição do termo rotacional para a função de partição e uma expressão para o calor específico a volume constante.
         \item Suponha agora que cada molécula possua momento de dipolo permanente \(\vetor{d}\) dirigido ao longo do eixo do rotor e que o sistema se encontre encontre na presença de um campo elétrico externo \(\vetor{E}\), de forma que na Hamiltoniana é acrescido um termo dado por \(-d E \cos\theta\). Obtenha as propriedades termodinâmicas do gás. Ache a polarização por molécula \(P = N\mean{d \cos\theta}\) e a suscetibilidade elétrica \(\chi = \diffp{P}{E}\).
     \end{enumerate}
 \end{exercício}
-\begin{proof}[Resolução]
+\begin{proof}[Resolução do item (a)]
+    Sejam \(m_1, m_2\) as massas dos átomos da molécula nas posições \(\vetor{r}_1\) e \(\vetor{r}_2\), então o centro de massa da molécula tem posição dada por
+    \begin{equation*}
+        \vetor{R} = \frac{m_1 \vetor{r}_1 + m_2 \vetor{r}_2}{m_1 + m_2}.
+    \end{equation*}
+    Definindo \(\frac1\mu = \frac{1}{m_1} + \frac{1}{m_2}\) como a massa reduzida, segue que
+    \begin{equation*}
+        \vetor{r}_1 = \vetor{R} + \frac{\mu}{m_1}\vetor{r}
+        \quad\text{e}\quad
+        \vetor{r}_2 = \vetor{R} - \frac{\mu}{m_2}\vetor{r},
+    \end{equation*}
+    onde \(\vetor{r} = \vetor{r}_1 - \vetor{r}_2\) é a posição relativa entre os átomos. Desse modo, a energia cinética do sistema é
+    \begin{align*}
+        T &= \frac12m_1\inner{\dot{\vetor{r}}_1}{\dot{\vetor{r}}_1} + \frac12 m_2 \inner{\dot{\vetor{r}}_2}{\dot{\vetor{r}}_2}\\
+          &= \frac12 m_1 \inner*{\dot{\vetor{R}} + \frac{\mu}{m_1}\dot{\vetor{r}}}{\dot{\vetor{R}} + \frac{\mu}{m_1}\dot{\vetor{r}}} + \frac12 m_2 \inner*{\dot{\vetor{R}} - \frac{\mu}{m_2}\dot{\vetor{r}}}{\dot{\vetor{R}} - \frac{\mu}{m_2}\dot{\vetor{r}}}\\
+          &= \frac12 (m_1 + m_2) \inner{\dot{\vetor{R}}}{\dot{\vetor{R}}} + \frac12 \mu^2\left(\frac{1}{m_1} + \frac{1}{m_2}\right) \inner{\dot{\vetor{r}}}{\dot{\vetor{r}}}\\
+          &= \frac12 M\inner{\dot{\vetor{R}}}{\dot{\vetor{R}}} + \frac12 \mu \inner{\dot{\vetor{r}}}{\dot{\vetor{r}}},
+    \end{align*}
+    onde \(M = m_1 + m_2\) é a massa total da molécula. Escrevendo \(\vetor{R} = x\vetor{e}_x + y\vetor{e}_y + z\vetor{e}_z\) e \(\vetor{r} = r\vetor{e}_r\), temos
+    \begin{equation*}
+        \dot{\vetor{R}} = \dot{x}\vetor{e}_x + \dot{y}\vetor{e}_y + \dot{z} \vetor{e}_z
+    \end{equation*}
+    para a velocidade do centro de massa e
+    \begin{equation*}
+        \dot{\vetor{r}} = \dot{r}\vetor{e}_r + r\left(\dot{\theta}\vetor{e}_\theta + \dot{\varphi}\sin\theta \vetor{e}_\varphi\right)
+    \end{equation*}
+    para a velocidade relativa, portanto a Lagrangiana de uma molécula diatômica livre é
+    \begin{equation*}
+        L = \frac12 M\left(\dot{x}^2 + \dot{y}^2 + \dot{z}^2\right) + \frac12 \mu \left(\dot{r}^2 + r^2\dot{\theta}^2 + r^2\dot{\varphi}^2\sin^2\theta\right).
+    \end{equation*}
+    Os momentos conjugados às coordenadas utilizadas são dados por
+    \begin{equation*}
+        p_x = M \dot{x},\quad
+        p_y = M \dot{y},\quad
+        p_z = M \dot{z},\quad
+        p_r = \mu \dot{r},\quad
+        p_\theta = \mu r^2\dot{\theta},\quad\text{e}\quad
+        p_{\varphi} = \mu r^2 \sin\theta\dot{\varphi},
+    \end{equation*}
+    então a Hamiltoniana de uma molécula diatômica é dada por
+    \begin{equation*}
+        \mathcal{H}_{\mathrm{m}} = \frac{p_x^2 + p_y^2 + p_z^2}{2M} + \frac{p_r^2}{2\mu} + \frac{p_\theta^2}{2\mu r^2} + \frac{p_\varphi^2}{2\mu r^2 \sin^2\theta}.
+    \end{equation*}
+    Para uma molécula rígida temos \(p_r = 0\) pois \(\dot{r} = 0\), portanto
+    \begin{equation*}
+        \mathcal{H}_{\mathrm{tr}}(p_x, p_y, p_z) = \frac{p_x^2 + p_y^2 + p_z^2}{2M}
+        \quad\text{e}\quad
+        \mathcal{H}_{\mathrm{rot}}(p_\theta, p_\varphi) = \frac{p_\theta^2}{2\mu r^2} + \frac{p_\varphi^2}{2\mu r^2 \sin^2\theta}
+    \end{equation*}
+    são as Hamiltonianas de translação e rotacional, com \(\mathcal{H}_{\mathrm{m}} = \mathcal{H}_{\mathrm{tr}}\).
 
+    A função de partição por molécula é dada por
+    \begin{align*}
+        \zeta &= \frac{1}{h^5}\iiint_V \dli{x,y,z} \int_0^{\pi}\dli{\theta}\int_0^{2\pi} \dli{\varphi} \int_{\mathbb{R}}\dli{p_x}\int_{\mathbb{R}} \dli{p_y} \int_{\mathbb{R}}\dli{p_z}\int_{\mathbb{R}}\dli{p_\theta} \int_{\mathbb{R}}\dli{p_{\varphi}} e^{-\beta \mathcal{H}_{\mathrm{m}}}\\
+              &= \underbrace{\left(\frac{1}{h^3}\iiint_V \dli{x,y,z}\int_{\mathbb{R}}\dli{p_x}\int_{\mathbb{R}} \dli{p_y} \int_{\mathbb{R}}\dli{p_z} e^{-\beta \mathcal{H}_{\mathrm{tr}}}\right)}_{\zeta_{\mathrm{tr}}}\underbrace{\left(\frac{1}{h^2}\int_0^{2\pi} \dli{\varphi} \int_0^\pi \dli{\theta} \int_{\mathbb{R}}\dli{p_\theta} \int_{\mathbb{R}}\dli{p_{\varphi}} e^{-\beta \mathcal{H}_{\mathrm{rot}}}\right)}_{\zeta_{\mathrm{rot}}},
+    \end{align*}
+    onde \(\zeta_{\mathrm{tr}}\) e \(\zeta_{\mathrm{rot}}\) são as contribuições dos termos translacional e rotacional para a função de partição por molécula. Temos
+    \begin{align*}
+        \zeta_{\mathrm{tr}} &= \frac{1}{h^3}\iiint_V \dli{x,y,z}\int_{\mathbb{R}}\dli{p_x}\int_{\mathbb{R}} \dli{p_y} \int_{\mathbb{R}}\dli{p_z} e^{-\beta \mathcal{H}_{\mathrm{tr}}}\\
+                   &= \frac{V}{h^3} \int_{\mathbb{R}}\dli{p_x} \exp\left(-\frac{\beta p_x^2}{2M}\right) \int_{\mathbb{R}}\dli{p_y}\exp\left(-\frac{\beta p_y^2}{2M}\right)\int_{\mathbb{R}}\dli{p_z}\exp\left(-\frac{\beta p_z^2}{2M}\right)\\
+                   &= \frac{V}{h^3} \left[\int_{\mathbb{R}}\dli{p} \exp\left(-\frac{\beta p^2}{2M}\right)\right]^3\\
+                   &= \frac{V}{h^3}\left(\frac{2\pi M}{\beta}\right)^{\frac32}
+    \end{align*}
+    e
+    \begin{align*}
+        \zeta_{\mathrm{rot}} &= \frac{1}{h^2}\int_0^{2\pi} \dli{\varphi} \int_0^\pi \dli{\theta} \int_{\mathbb{R}}\dli{p_\theta} \int_{\mathbb{R}}\dli{p_{\varphi}} e^{-\beta \mathcal{H}_{\mathrm{rot}}}\\
+                    &= \frac{2\pi}{h^2} \int_0^\pi \dli{\theta} \int_{\mathbb{R}} \dli{p_\theta} \exp\left(-\frac{\beta p_\theta^2}{2\mu r^2}\right) \int_{\mathbb{R}} \dli{p_{\varphi}} \exp\left(-\frac{\beta p_{\varphi}^2}{2\mu r^2 \sin^2\theta}\right)\\
+                    &= \frac{2\pi}{h^2} \sqrt{\frac{2\pi\mu r^2}{\beta}} \int_0^\pi \dli{\theta} \sqrt{\frac{2\pi\mu r^2 \sin^2\theta}{\beta}}\\
+                    &= \frac{8\pi^2 \mu r^2}{h^2 \beta},
+    \end{align*}
+    portanto a função de partição por molécula é
+    \begin{equation*}
+        \zeta = \zeta_{\mathrm{tr}}\zeta_{\mathrm{rot}} = \frac{2^{\frac92}\pi^{\frac72}\mu M^{\frac32} r^2V}{h^5 \beta^{\frac52}}.
+    \end{equation*}
+
+    Num sistema de \(N\) moléculas rígidas, a função de partição é
+    \begin{equation*}
+        Z = \frac{\zeta^N}{N!} = \frac{1}{N!}\left(\frac{2^{\frac92}\pi^{\frac72}\mu M^{\frac32} r^2V}{h^5\beta^{\frac52}}\right)^N,
+    \end{equation*}
+    logo
+    \begin{equation*}
+        F(V, T, N) = -k_B T \ln Z = - Nk_BT\left[\ln\left(\frac{2^{\frac92}\pi^{\frac72}\mu M^{\frac32} r^2V(k_BT)^{\frac52}}{h^5 N}\right) + 1\right]
+    \end{equation*}
+    é a energia livre de Helmholtz. Assim, a energia interna é
+    \begin{equation*}
+        U(V, T, N) = \diffp{(\beta F)}{\beta} = \frac52 N k_B T,
+    \end{equation*}
+    e, portanto,
+    \begin{equation*}
+        c_V = \diffp*{\left(\lim_{N\to \infty} \frac{U}{N}\right)}{T} = \frac52 k_B
+    \end{equation*}
+    é o calor específico a volume constante.
+\end{proof}
+
+\begin{proof}[Resolução do item (b)]
+    Na presença de um campo externo, a função de partição por molécula é
+    \begin{align*}
+        \tilde{\zeta} &= \frac{\zeta_{\mathrm{tr}}}{h^2}\int_0^{2\pi} \dli{\varphi} \int_0^\pi \dli{\theta} \int_{\mathbb{R}}\dli{p_\theta} \int_{\mathbb{R}}\dli{p_{\varphi}} \exp\left[-\beta\left(\mathcal{H}_{\mathrm{rot}}-d E \cos\theta\right)\right]\\
+              &= \frac{2\pi\zeta_{\mathrm{tr}}}{h^2} \int_0^\pi \dli{\theta} \exp(\beta d E \cos\theta) \int_{\mathbb{R}}\dli{p_\theta} \exp\left(-\frac{\beta p_\theta^2}{2\mu r^2}\right) \int_{\mathbb{R}}\dli{p_{\varphi}}\exp\left(-\frac{\beta p_{\varphi}^2}{2\mu r^2 \sin^2\theta}\right)\\
+              &= \frac{4\pi^2 \zeta_{\mathrm{tr}} \mu r^2}{h^2 \beta} \int_0^\pi \dli{\theta} \sin\theta \exp\left(\beta d E \cos\theta\right)\\
+              &= \frac{2^{\frac92}\pi^{\frac72} \mu M^{\frac32}r^2V}{h^5 \beta^{\frac52} d E} \sinh\left(\beta d E\right)\\
+              &= \frac{\zeta}{dE} \sinh\left(\beta dE\right),
+    \end{align*}
+    onde \(\zeta\) é a função de partição por molécula na ausência do campo externo. Desse modo, a energia livre de Helmholtz é
+    \begin{align*}
+        \tilde{F}(V, T, N) = -k_BT \ln \left(\frac{\tilde{\zeta}^N}{N!}\right)
+        &= -k_B T \left\{\ln\left(\frac{\zeta^N}{N!}\right) + N\ln\left[\frac{\sinh\left(\beta d E\right)}{d E}\right]\right\}\\
+        &= F(V, T, N) - N k_B T\ln\left[\frac{\sinh\left(\frac{d E}{k_BT}\right)}{d E}\right],
+    \end{align*}
+    logo a energia interna é
+    \begin{equation*}
+        \tilde{U}(V, T, N) = \diffp{(\beta \tilde{F})}{\beta} = \frac52 N k_B T - N d E\coth\left(\frac{dE}{k_BT}\right).
+    \end{equation*}
+    A polarização por partícula é dada por
+    \begin{align*}
+        P &= \frac{1}{h^5 \tilde{\zeta}} \iiint_V \dli{x,y,z} \int_0^\pi \dli{\theta}\int_0^{2\pi} \dli{\varphi} \int_{\mathbb{R}} \dli{p_x} \int_{\mathbb{R}} \dli{p_y} \int_{\mathbb{R}} \dli{p_z} \int_{\mathbb{R}} \dli{p_\theta} \int_{\mathbb{R}} \dli{p_{\varphi}} d \cos\theta e^{dE\cos\theta-\beta \mathcal{H}_{\mathrm{m}}}\\
+          &= \frac{1}{\tilde{\zeta}} \diffp{\tilde{\zeta}}{E} = \diffp{\ln \tilde{\zeta}}{E} = \frac{\zeta}{d} \diffp*{\ln\left[\frac{\sinh( \beta d E)}{E}\right]}{E}\\
+          &= \zeta\left[\frac{1}{k_B T} \coth\left(\frac{d E}{k_B T}\right) - \frac{1}{d E}\right]
+    \end{align*}
+    e
+    \begin{equation*}
+        \chi = \diffp{P}{E} = d\zeta\left[\frac{1}{(k_BT)^2}\csch^2\left(\frac{dE}{k_BT}\right) + \frac{1}{(dE)^2}\right]
+    \end{equation*}
+    é a suscetibilidade elétrica.
 \end{proof}
