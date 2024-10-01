@@ -10,30 +10,32 @@
     \begin{align*}
         \zeta &= \frac{1}{h^3}\iiint_{V} \dln3x \iiint_{\mathbb{R}^3} \dln3p \exp\left(-\beta c \norm{\vetor{p}}\right)\\
               &= \frac{V}{h^3} \int_0^\infty \dli{p} \int_0^{\pi} p \dli{\theta} \int_0^{2\pi} p\sin\theta \dli{\phi} \exp(- \beta pc)\\
-              &= \frac{4\pi V}{h^3} \int_0^\infty \dli{p} \exp(- \beta pc)\\
-              &= \frac{4\pi V}{ \beta h^3c},
+              &= \frac{4\pi V}{h^3} \int_0^\infty \dli{p} p^2\exp(- \beta pc)\\
+              &= \frac{4\pi V}{h^3} \diffp*[2]{\int_0^\infty \dli{p} \exp(-\alpha p)}{\alpha}[\alpha = \beta c]\\
+              &= \frac{4\pi V}{h^3} \diffp[2]{(\alpha^{-1})}{\alpha}[\alpha = \beta c]\\
+              &= \frac{8 \pi V(k_B T)^3}{h^3 c^3},
     \end{align*}
     portanto a função de partição canônica é
     \begin{equation*}
-        Z = \frac{\zeta^N}{N!} = \frac{1}{N!}\left(\frac{4\pi V}{ \beta c h^3}\right)^N.
+        Z = \frac{\zeta^N}{N!} = \frac{1}{N!}\left(\frac{8\pi V(k_B T)^3}{h^3c^3}\right)^N.
     \end{equation*}
     Assim, a energia livre de Helmholtz é dada por
     \begin{align*}
         F = - k_BT \ln Z &= -k_BT\left(N \ln{\zeta} - \ln{N!}\right)\\
                          &= -N k_BT\left[1 + \ln\left(\frac{\zeta}{N}\right)\right]\\
-                         &= -N k_B T\left[1 + \ln\left(\frac{4\pi V k_B T}{N h^3c}\right)\right]
+                         &= -N k_B T\left[1 + \ln\left(\frac{8\pi V (k_B T)^3}{N h^3c^3}\right)\right]
     \end{align*}
     e a energia interna por
     \begin{equation*}
-        U = \diffp{\beta F}{\beta} = -N \diffp*{\ln\left(\frac{4\pi V}{N \beta h^3 c}\right)}{\beta} = N k_B T.
+        U = \diffp{(\beta F)}{\beta} = -N \diffp*{\ln\left(\frac{8\pi V}{N \beta^3 h^3 c^3}\right)}{\beta} = 3N k_B T.
     \end{equation*}
     Dessa forma, a entropia é
     \begin{equation*}
-        S = \frac{U - F}{T} = N k_B\left[2 + \ln\left(\frac{4\pi V k_BT}{N h^3 c}\right)\right]
+        S = \frac{U - F}{T} = N k_B\left[4 + \ln\left(\frac{8\pi V (k_BT)^3}{N h^3 c^3}\right)\right]
     \end{equation*}
     e
     \begin{equation*}
-        c_V = \lim_{N \to \infty} \frac{1}{N}\diffp{U}{T}[V,N] = k_B
+        c_V = \lim_{N \to \infty} \frac{1}{N}\diffp{U}{T}[V,N] = 3k_B
     \end{equation*}
     é o calor específico a volume constante.
 \end{proof}
