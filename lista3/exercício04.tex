@@ -121,12 +121,12 @@
     A polarização por partícula é dada por
     \begin{align*}
         P &= \frac{1}{h^5 \tilde{\zeta}} \iiint_V \dli{x,y,z} \int_0^\pi \dli{\theta}\int_0^{2\pi} \dli{\varphi} \int_{\mathbb{R}} \dli{p_x} \int_{\mathbb{R}} \dli{p_y} \int_{\mathbb{R}} \dli{p_z} \int_{\mathbb{R}} \dli{p_\theta} \int_{\mathbb{R}} \dli{p_{\varphi}} d \cos\theta e^{dE\cos\theta-\beta \mathcal{H}_{\mathrm{m}}}\\
-          &= \frac{1}{\tilde{\zeta}} \diffp{\tilde{\zeta}}{E} = \diffp{\ln \tilde{\zeta}}{E} = \frac{\zeta}{d} \diffp*{\ln\left[\frac{\sinh( \beta d E)}{E}\right]}{E}\\
-          &= \zeta\left[\frac{1}{k_B T} \coth\left(\frac{d E}{k_B T}\right) - \frac{1}{d E}\right]
+          &= \frac{1}{\tilde{\zeta}} \diffp{\tilde{\zeta}}{E} = \diffp{\ln \tilde{\zeta}}{E} = \frac{1}{d} \diffp*{\ln\left[\frac{\sinh( \beta d E)}{E}\right]}{E}\\
+          &= \left[\frac{1}{k_B T} \coth\left(\frac{d E}{k_B T}\right) - \frac{1}{d E}\right]
     \end{align*}
     e
     \begin{equation*}
-        \chi = \diffp{P}{E} = d\zeta\left[\frac{1}{(k_BT)^2}\csch^2\left(\frac{dE}{k_BT}\right) + \frac{1}{(dE)^2}\right]
+        \chi = \diffp{P}{E} = d\left[\frac{1}{(k_BT)^2}\csch^2\left(\frac{dE}{k_BT}\right) + \frac{1}{(dE)^2}\right]
     \end{equation*}
     é a suscetibilidade elétrica.
 \end{proof}
