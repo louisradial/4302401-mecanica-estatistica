@@ -6,5 +6,43 @@
     onde \(K > 0\) é uma constante elástica. Ache as propriedades termodinâmicas e obtenha uma expressão para a energia livre de Helmholtz deste sistema. Calcule o calor específico a volume constante. Calcule o diâmetro molecular médio \(D = \sqrt{\mean{\norm{\vetor{r}_1 - \vetor{r}_2}^2}}\).
 \end{exercício}
 \begin{proof}[Resolução]
+    Modelando o potencial devido à interação da vibração da molécula como o de um oscilador harmônico e utilizando a Hmailtoniana determinada no \cref{ex:exercício4}, segue que
+    \begin{equation*}
+        \mathcal{H} = \frac{p_x^2 + p_y^2 + p_z^2}{2M} + \frac{p_r^2}{2\mu} + \frac{p_\theta^2}{2\mu r^2} + \frac{p_{\varphi}^2}{2\mu r^2 \sin^2\theta} + \frac{Kr^2}{2}
+    \end{equation*}
+    é a Hamiltoniana para a molécula diatômica. Assim, a função de partição por molécula é dada por
+    \begin{align*}
+        \zeta &= \frac{1}{h^6}\iiint_V \dli{x,y,z}\int_{0}^{\infty}\dli{r} \int_0^{\pi}\dli{\theta}\int_0^{2\pi} \dli{\varphi} \int_{\mathbb{R}}\dli{p_x}\int_{\mathbb{R}} \dli{p_y} \int_{\mathbb{R}}\dli{p_z}\int_{\mathbb{R}}\dli{p_r}\int_{\mathbb{R}}\dli{p_\theta} \int_{\mathbb{R}}\dli{p_{\varphi}} e^{-\beta \mathcal{H}}\\
+              &= \frac{2\pi V}{h^6}\left(\frac{2\pi M}{\beta}\right)^{\frac32}\left(\frac{2\pi \mu}{\beta}\right)^{\frac12}\int_0^\infty \dli{r}\exp\left(-\frac{\beta K r^2}{2}\right)\int_0^{\pi}\dli{\theta} \left(\frac{4\mu^2r^4\sin^2\theta}{\beta^2}\right)^{\frac12}\\
+              &= \frac{4(2\pi)^3M^{\frac32}\mu^{\frac32}V}{h^6\beta^3} \int_0^\infty \dli{r} r^2 \exp\left(-\frac{\beta K r^2}{2}\right)\\
+              &= -\frac{4(2\pi)^3M^{\frac32}\mu^{\frac32}V}{h^6\beta^3} \diffp*{\int_0^\infty \dli{r} \exp\left(-\alpha r^2\right)}{\alpha}[\alpha = \frac{\beta K}{2}]\\
+              &= -\frac{2(2\pi)^3M^{\frac32}\mu^{\frac32}V}{h^6\beta^3} \diffp*{\sqrt{\frac{\pi}{\alpha}}}{\alpha}[\alpha = \frac{\beta K}{2}]\\
+              &= \frac{2^{\frac92}\pi^{\frac72}M^{\frac32}\mu^{\frac32}V}{K^{\frac32}h^6\beta^{\frac92}}.
+    \end{align*}
 
+    A energia livre de Helmholtz deste sistema é dada por
+    \begin{align*}
+        F(V, T, N) = -k_BT\ln\left(\frac{\zeta^N}{N!}\right)
+        &= -Nk_BT \left[ \ln\left(\frac{\zeta}{N}\right) + 1\right]\\
+        &= - N k_B T \left[1 + \ln\left(\frac{2^{\frac92}\pi^{\frac72}M^{\frac32}\mu^{\frac32}V(k_B T)^{\frac92}}{K^{\frac32}h^6 N}\right)\right],
+    \end{align*}
+    portanto a energia interna é
+    \begin{equation*}
+        U(V, T, N) = \diffp{(\beta F)}{\beta} = \frac92 Nk_B T,
+    \end{equation*}
+    e concluímos que o calor específico a volume constante é \(c_V = \frac92 k_B\).
+
+    Notemos que
+    \begin{align*}
+        \mean{r^2} &= \frac{\iiint_V \dli{x,y,z}\int_{0}^{\infty}\dli{r} \int_0^{\pi}\dli{\theta}\int_0^{2\pi} \dli{\varphi} \int_{\mathbb{R}}\dli{p_x}\int_{\mathbb{R}} \dli{p_y} \int_{\mathbb{R}}\dli{p_z}\int_{\mathbb{R}}\dli{p_r}\int_{\mathbb{R}}\dli{p_\theta} \int_{\mathbb{R}}\dli{p_{\varphi}} r^2 e^{-\beta \mathcal{H}}}{h^6 \zeta}\\
+                   &= \frac{\int_0^\infty \dli{r}r^4 \exp\left(-\frac{\beta K r^2}{2}\right)}{\int_0^\infty\dli{r} r^2\exp\left(-\frac{\beta K r^2}{2}\right)}\\
+                   &= -\frac{\diffp*[2]{\int_0^\infty \dli{r} \exp\left(-\alpha r^2\right)}{\alpha}[\alpha = \frac{\beta K}{2}]}{\diffp*{\int_0^\infty \dli{r} \exp\left(-\alpha r^2\right)}{\alpha}[\alpha = \frac{\beta K}{2}]}\\
+                   &= -\frac{\diffp*[2]{\alpha^{-\frac12}}{\alpha}[\alpha = \frac{\beta K}{2}]}{\diffp*{\alpha^{-\frac12}}{\alpha}[\alpha = \frac{\beta K}{2}]}\\
+                   &= \frac{3 k_BT}{K},
+    \end{align*}
+    portanto
+    \begin{equation*}
+        D = \sqrt{\mean{r^2}} = \sqrt{\frac{3 k_B T}{K}}
+    \end{equation*}
+    é o diâmetro molecular médio.
 \end{proof}
