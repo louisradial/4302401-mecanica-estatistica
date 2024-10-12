@@ -2,7 +2,7 @@
     Desprezando o movimento vibracional, uma molécula diatômica pode ser tratada como um rotor rígido tridimensional. O hamiltoniano \(\mathcal{H}\) da molécula é escrito na forma de um termo translacional \(\mathcal{H}_{\mathrm{tr}}\) somado de um termo rotacional \(\mathcal{H}_{\mathrm{rot}}\), isto é, \(\mathcal{H}=\mathcal{H}_{\mathrm{tr}} + \mathcal{H}_{\mathrm{rot}}\). Considere um sistema de \(N\) moléculas dessa natureza, muito fracamente interagentes, dentro de um recipiente de volume \(V\), a uma dada temperatura \(T\).
     \begin{enumerate}[label=(\alph*)]
         \item Obtenha a expressão para \(\mathcal{H}_{\mathrm{rot}}\) em coordenadas esféricas. Obtenha a contribuição do termo rotacional para a função de partição e uma expressão para o calor específico a volume constante.
-        \item Suponha agora que cada molécula possua momento de dipolo permanente \(\vetor{d}\) dirigido ao longo do eixo do rotor e que o sistema se encontre encontre na presença de um campo elétrico externo \(\vetor{E}\), de forma que na Hamiltoniana é acrescido um termo dado por \(-d E \cos\theta\). Obtenha as propriedades termodinâmicas do gás. Ache a polarização por molécula \(P = N\mean{d \cos\theta}\) e a suscetibilidade elétrica \(\chi = \diffp{P}{E}\).
+        \item Suponha agora que cada molécula possua momento de dipolo permanente \(\vetor{d}\) dirigido ao longo do eixo do rotor e que o sistema se encontre encontre na presença de um campo elétrico externo \(\vetor{E}\), de forma que na Hamiltoniana é acrescido um termo dado por \(-d E \cos\theta\). Obtenha as propriedades termodinâmicas do gás. Ache a polarização por molécula \(P = \mean{d \cos\theta}\) e a suscetibilidade elétrica \(\chi = N\diffp{P}{E}\).
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução do item (a)]
@@ -121,12 +121,12 @@
     A polarização por partícula é dada por
     \begin{align*}
         P &= \frac{1}{h^5 \tilde{\zeta}} \iiint_V \dli{x,y,z} \int_0^\pi \dli{\theta}\int_0^{2\pi} \dli{\varphi} \int_{\mathbb{R}} \dli{p_x} \int_{\mathbb{R}} \dli{p_y} \int_{\mathbb{R}} \dli{p_z} \int_{\mathbb{R}} \dli{p_\theta} \int_{\mathbb{R}} \dli{p_{\varphi}} d \cos\theta e^{\beta dE\cos\theta-\beta \mathcal{H}}\\
-          &= \frac{1}{\beta \tilde{\zeta}} \diffp{\tilde{\zeta}}{E} = \frac1\beta\diffp{\ln \tilde{\zeta}}{E} = \frac{1}{\beta d} \diffp*{\ln\left[\frac{\sinh( \beta d E)}{E}\right]}{E}\\
-          &= \left[\coth\left(\frac{d E}{k_B T}\right) - \frac{k_BT}{d E}\right]
+          &= \frac{1}{\beta \tilde{\zeta}} \diffp{\tilde{\zeta}}{E} = \frac1\beta\diffp{\ln \tilde{\zeta}}{E} = \frac{1}{\beta} \diffp*{\ln\left[\frac{\sinh( \beta d E)}{\beta dE}\right]}{E}\\
+          &= d\left[\coth\left(\frac{d E}{k_B T}\right) - \frac{k_BT}{d E}\right]
     \end{align*}
     e
     \begin{equation*}
-        \chi = \diffp{P}{E} = d\left[\frac{1}{k_BT}\csch^2\left(\frac{dE}{k_BT}\right) + \frac{k_BT}{(dE)^2}\right]
+        \chi = N\diffp{P}{E} = \frac{Nd}{E}\left[\frac{k_B T}{dE} - \frac{dE}{k_BT}\csch^2\left(\frac{dE}{k_B T}\right)\right]
     \end{equation*}
     é a suscetibilidade elétrica.
 \end{proof}
