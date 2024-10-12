@@ -1,10 +1,42 @@
-\begin{exercício}{Desvio quadrático médio do número de partículas no ensemble grande canônico}{exercício8}
+\begin{exercício}{Desvio quadrático médio do número de partículas}{exercício8}
     Mostre que o desvio quadrático médio do número de partículas no ensemble grande canônico pode ser expresso pela fórmula
     \begin{equation*}
-        \mean{(\Delta N)^2} = \mean{N_j^2}-\mean{N_j}^2 = z\diffp*{\left[z \diffp{\ln \Xi(\beta, z)}{z}\right]}{z}.
+        \mean{(\Delta N)^2} = \mean{N^2}-\mean{N}^2 = z\diffp*{\left[z \diffp{\ln \Xi(\beta, z)}{z}\right]}{z}.
     \end{equation*}
-    Obtenha uma expressão para o desvio relativo \(\frac{\sqrt{\mean{(\Delta N)^2}}}{\mean{N_j}}\) no caso de um gás ideal monoatômico clássico.
+    Obtenha uma expressão para o desvio relativo \(\frac{\sqrt{\mean{(\Delta N)^2}}}{\mean{N}}\) no caso de um gás ideal monoatômico clássico.
 \end{exercício}
 \begin{proof}[Resolução]
+    O valor esperado do número de partículas no ensemble grande canônico é dado por
+    \begin{equation*}
+        \mean{N} = \Xi^{-1} \sum_{N = 0}^\infty N z^N Z(V, T, N) = \Xi^{-1} z\diffp{\Xi}{z} = z \diffp{\ln \Xi}{z}
+    \end{equation*}
+    e o segundo momento do número de partículas é
+    \begin{equation*}
+        \mean{N^2} = \Xi^{-1} \sum_{N= 0}^\infty N^2 z^N Z(V, T, N)
+                   = \Xi^{-1} z \diffp*{\sum_{N = 0}^\infty N z^N Z(V, T, N)}{z}
+                   = \Xi^{-1} z \diffp*{\left(z \diffp{\Xi}{z}\right)}{z}.
+    \end{equation*}
+    Portanto, o desvio quadrático médio do número de partículas é
+    \begin{align*}
+        \mean{(\Delta N)^2} = \mean{N^2} - \mean{N}^2 &= \Xi^{-1} z\diffp*{\left(z\diffp{\Xi}{z}\right)}{z} - \left(\Xi^{-1} z\diffp{\Xi}{z}\right)^2\\
+                                                      &= \Xi^{-1} z \diffp{\Xi}{z} + \Xi^{-1} z^2 \diffp[2]{\Xi}{z} - \Xi^{-2} z^2 \left(\diffp{\Xi}{z}\right)^2\\
+                                                      &= \Xi^{-1} z \diffp{\Xi}{z} + \Xi^{-1} z^2 \diffp[2]{\Xi}{z} + z^2 \diffp{\Xi}{z} \diffp{(\Xi^{-1})}{z}\\
+                                                      &= z \left\{\diffp{\ln{\Xi}}{z} + z\left[\Xi^{-1} \diffp[2]{\Xi}{z} + \diffp{\Xi}{z} \diffp{(\Xi^{-1})}{z} \right]\right\}\\
+                                                      &= z \left(\diffp{\ln\Xi}{z} + z \diffp[2]{\ln\Xi}{z}\right)\\
+                                                      &= z \diffp*{\left(z \diffp{\ln\Xi}{z}\right)}{z}.
+    \end{align*}
 
+    A função de partição canônica por partícula de um gás ideal monoatômico em um volume \(V\) a temperatura \(T\) é
+    \begin{equation*}
+        \zeta(V, T) = \frac{1}{h^3} \iiint_{V} \dli{x,y,z}\iiint_{\mathbb{R}^3} \dli{p_x,p_y,p_z} \exp{\left(-\frac{p_x^2 + p_y^2 + p_z^2}{2mk_B T}\right)} = V\left(\frac{2\pi m k_BT}{h^2}\right)^{\frac32},
+    \end{equation*}
+    portanto a grande função de partição para este sistema é
+    \begin{equation*}
+        \Xi(V, T, z) = \sum_{N = 0}^\infty z^N \frac{\zeta^N}{N!} = \exp[z \zeta(V, T)].
+    \end{equation*}
+    Assim, é fácil que ver que o número médio de partículas é \(\mean{N} = z \zeta\) e o desvio quadrático médio é \(\mean{(\Delta N)^2} = z \zeta\), portanto
+    \begin{equation*}
+        \frac{\sqrt{\mean{(\Delta N)^2}}}{\mean{N}} = 1
+    \end{equation*}
+    é o desvio relativo.
 \end{proof}
