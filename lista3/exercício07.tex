@@ -6,5 +6,13 @@
     em contato agora com um reservatório térmico e de partículas. Obtenha a grande função de partição e o potencial grande canônico desse sistema.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Pelo \cref{ex:exercício3}, a grande função de partição é dada por
+    \begin{equation*}
+        \Xi(V, T, \mu) = \sum_{N = 0}^\infty e^{\beta \mu N} Z(V, T, N) = \sum_{N=0}^\infty \frac{1}{N!}\left[\frac{8\pi Ve^{\beta \mu}(k_BT)^3}{h^3 c^3}\right]^N = \exp\left[\frac{8\pi Ve^{\beta \mu}(k_BT)^3}{h^3 c^3}\right].
+    \end{equation*}
+    Dessa forma,
+    \begin{equation*}
+        \Phi(V, T, \mu) = -k_B T \ln\Xi(V, T, \mu) = -\frac{8\pi V e^{\beta \mu}(k_BT)^4}{h^3 c^3}
+    \end{equation*}
+    é o potencial grande canônico do sistema.
 \end{proof}
