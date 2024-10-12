@@ -13,18 +13,19 @@
     é a Hamiltoniana para a molécula diatômica. Assim, a função de partição por molécula é dada por
     \begin{align*}
         \zeta &= \frac{1}{h^6}\iiint_V \dli{x,y,z}\int_{0}^{\infty}\dli{r} \int_0^{\pi}\dli{\theta}\int_0^{2\pi} \dli{\varphi} \int_{\mathbb{R}}\dli{p_x}\int_{\mathbb{R}} \dli{p_y} \int_{\mathbb{R}}\dli{p_z}\int_{\mathbb{R}}\dli{p_r}\int_{\mathbb{R}}\dli{p_\theta} \int_{\mathbb{R}}\dli{p_{\varphi}} e^{-\beta \mathcal{H}}\\
-              &= \frac{2\pi V}{h^6}\left(\frac{2\pi M}{\beta}\right)^{\frac32}\left(\frac{2\pi \mu}{\beta}\right)^{\frac12}\int_0^\infty \dli{r}\exp\left(-\frac{\beta K r^2}{2}\right)\int_0^{\pi}\dli{\theta} \left(\frac{4\mu^2r^4\sin^2\theta}{\beta^2}\right)^{\frac12}\\
-              &= \frac{4(2\pi)^3M^{\frac32}\mu^{\frac32}V}{h^6\beta^3} \int_0^\infty \dli{r} r^2 \exp\left(-\frac{\beta K r^2}{2}\right)\\
-              &= -\frac{4(2\pi)^3M^{\frac32}\mu^{\frac32}V}{h^6\beta^3} \diffp*{\int_0^\infty \dli{r} \exp\left(-\alpha r^2\right)}{\alpha}[\alpha = \frac{\beta K}{2}]\\
-              &= -\frac{2(2\pi)^3M^{\frac32}\mu^{\frac32}V}{h^6\beta^3} \diffp*{\sqrt{\frac{\pi}{\alpha}}}{\alpha}[\alpha = \frac{\beta K}{2}]\\
-              &= \frac{2^{\frac92}\pi^{\frac72}M^{\frac32}\mu^{\frac32}V}{K^{\frac32}h^6\beta^{\frac92}}.
+              &= \frac{2\pi V}{h^6}\left(\frac{2\pi M}{\beta}\right)^{\frac32}\left(\frac{2\pi \mu}{\beta}\right)^{\frac12}\int_0^\infty \dli{r}\exp\left(-\frac{\beta K r^2}{2}\right)\int_0^{\pi}\dli{\theta} \left(\frac{4\pi^2\mu^2r^4\sin^2\theta}{\beta^2}\right)^{\frac12}\\
+              &= \frac{2(2\pi)^4M^{\frac32}\mu^{\frac32}V}{h^6\beta^3} \int_0^\infty \dli{r} r^2 \exp\left(-\frac{\beta K r^2}{2}\right)\\
+              &= -\frac{2(2\pi)^4M^{\frac32}\mu^{\frac32}V}{h^6\beta^3} \diffp*{\int_0^\infty \dli{r} \exp\left(-\alpha r^2\right)}{\alpha}[\alpha = \frac{\beta K}{2}]\\
+              &= -\frac{(2\pi)^4M^{\frac32}\mu^{\frac32}V}{h^6\beta^3} \diffp*{\sqrt{\frac{\pi}{\alpha}}}{\alpha}[\alpha = \frac{\beta K}{2}]\\
+              &= \frac{(2\pi)^{\frac92}M^{\frac32}\mu^{\frac32}V}{K^{\frac32}h^6\beta^{\frac92}}\\
+              &= V \left[\frac{(2\pi)^3M \mu}{Kh^4}\right]^{\frac32} \beta^{-\frac92}
     \end{align*}
 
     A energia livre de Helmholtz deste sistema é dada por
     \begin{align*}
         F(V, T, N) = -k_BT\ln\left(\frac{\zeta^N}{N!}\right)
         &= -Nk_BT \left[ \ln\left(\frac{\zeta}{N}\right) + 1\right]\\
-        &= - N k_B T \left[1 + \ln\left(\frac{2^{\frac92}\pi^{\frac72}M^{\frac32}\mu^{\frac32}V(k_B T)^{\frac92}}{K^{\frac32}h^6 N}\right)\right],
+        &= - N k_B T \left\{1 + \frac92 \ln(2\pi) + \ln\left[\beta^{-\frac92}\frac{V}{N}\left(\frac{M\mu}{K h^4}\right)^{\frac32}\right]\right\},
     \end{align*}
     portanto a energia interna é
     \begin{equation*}
