@@ -10,5 +10,12 @@
     é a expressão para a probabilidade \(P_j\).
 \end{exercício}
 \begin{proof}[Resolução]
-
+    O grande potencial é dado por \(\Phi = -k_B T \ln \Xi(V, T, N)\), então a entropia é
+    \begin{align*}
+        S = - \diffp{\Phi}{T}[V, N] &= k_B \ln \Xi + k_B T \Xi^{-1} \diffp{\Xi}{\beta}[V,N]\diff{\beta}{T}\\
+                                    &= k_B \ln \Xi - k_B \Xi^{-1} \sum_{j} \frac{\mu N_j - E_j}{k_BT} \exp\left(\frac{\mu N_j - E_j}{k_B T}\right)\\
+                                    &= k_B \ln \Xi - k_B \sum_j \ln\left(\Xi P_j\right) P_j\\
+                                    &= -k_B \sum_j P_j \ln P_j,
+    \end{align*}
+    como desejado.
 \end{proof}
