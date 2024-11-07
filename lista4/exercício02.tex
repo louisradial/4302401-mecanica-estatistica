@@ -1,3 +1,30 @@
 \begin{exercício}{Gás de elétrons livres em uma caixa}{exercício02}
     Considere um gás de elétrons livres, num espaço \(d\)-dimensional, dentro de uma caixa hipercúbica de lado \(L\). Esboce gráficos da densidade de estados \(D(\epsilon)\) contra a energia \(\epsilon\) para dimensões \(d = 1\) e \(d = 2\). Qual é a expressão para a energia de Fermi em função da densidade para \(d = 1\) e \(d = 2\)?
 \end{exercício}
+\begin{proof}[Resolução]
+    Em uma caixa hipercúbica \(d\)-dimensional de lado \(L\), o espectro é dado por
+    \begin{equation*}
+        \epsilon_{\vetor{k}} = \frac{\hbar^2\norm{\vetor{k}}^2}{2m},
+    \end{equation*}
+    onde \(k_i = \frac{2\pi n_i}{L}\) e \(n_i \in \mathbb{Z}\). O número médio de partículas no volume \(V = L^d\) é dado por
+    \begin{equation*}
+        N = \sum_j f_j \simeq \frac{\gamma V}{(2\pi)^d} \int_{\mathbb{R}^d}\dln{d}{k} \frac{1}{\exp\left(\frac{\beta\hbar^2\norm{\vetor{k}}^2}{2m} - \beta \mu\right) + 1}.
+    \end{equation*}
+    Pela simetria esférica, a integral nas coordenadas angulares resulta em alguma constante \(C_d\) que depende apenas da dimensão \(d\), portanto
+    \begin{equation*}
+        N = \frac{\gamma C_d V}{(2\pi)^d} \int_{0}^\infty\dli{k} \frac{k^{d - 1}}{\exp\left(\frac{\beta \hbar^2 k^2}{2m} - \beta \mu\right)+ 1} = \frac{\gamma C_d V}{2(2\pi)^d}  \left(\frac{2m}{\hbar^2}\right)^{\frac{d}2} \int_0^\infty \dli{\epsilon} \frac{\epsilon^{\frac{d}{2} - 1}}{\exp(\beta \epsilon - \beta \mu) + 1},
+    \end{equation*}
+    isto é, a densidade de estados é dada por
+    \begin{equation*}
+        D(\epsilon) = \frac12 C_d \left(\frac{2m}{\hbar^2}\right)^{\frac{d}{2}} \epsilon^{\frac{d}{2} - 1}.
+    \end{equation*}
+    Para um gás de férmions livres totalmente degenerado temos
+    \begin{equation*}
+        N = \frac{\gamma C_d V}{2(2\pi)^d}\left(\frac{2m}{\hbar^2}\right)^{\frac{d}{2}} \int_0^{\epsilon_F} \dli{\epsilon} \epsilon^{\frac{d}{2}-1} = \frac{\gamma C_d V}{d(2\pi)^d}\left(\frac{2m}{\hbar^2}\right)^{\frac{d}{2}} {\epsilon_F}^{\frac{d}2},
+    \end{equation*}
+    isto é,
+    \begin{equation*}
+        \epsilon_F = \frac{h}{2m}\left(\frac{Nd}{\gamma C_dV}\right)^{\frac{2}{d}}
+    \end{equation*}
+    é a expressão para a energia de Fermi.
+\end{proof}
