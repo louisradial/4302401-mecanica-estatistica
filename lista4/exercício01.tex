@@ -9,3 +9,29 @@
     \end{equation*}
     é a distribuição de Fermi-Dirac (Bose-Einstein). Mostre que os resultados acima também podem ser utilizados para o gás ideal clássico.
 \end{exercício}
+\begin{proof}[Resolução]
+    Notemos que
+    \begin{equation*}
+        f_j = \frac{\exp(\beta \mu - \beta \epsilon_j)}{1 \pm \exp(\beta \mu - \beta \epsilon_j)} \implies \exp(\beta \mu - \beta \epsilon_j) = \frac{f_j}{1 \mp f_j} \implies 1 \pm \exp(\beta \mu - \beta \epsilon_j) = \frac{1}{1 \mp f_j},
+    \end{equation*}
+    portanto a grande função de partição é dada por
+    \begin{equation*}
+        \ln{\Xi} = \pm \sum_j \ln[1 \pm \exp(\beta \mu - \beta \epsilon_j)] = \pm \sum_j \ln\left(\frac{1}{1 \mp f_j}\right) = \mp \sum_j \ln(1 \mp f_j).
+    \end{equation*}
+    Como a entropia é dada por \(S = -\diffp{\Phi}{T}[V,\mu]\), temos
+    \begin{align*}
+        S = k_B \beta^2 \diffp*{(-\beta^{-1} \ln\Xi)}{\beta}[T,\mu]
+          &= k_B \ln\Xi - k_B \beta \diffp*{\ln{\Xi}}{\beta} \\
+          &= \mp k_B  \sum_i \ln(1 \mp f_i) \mp k_B \beta \sum_{j}\diffp*{\ln\left(\frac{1}{1 \mp f_j}\right)}{\beta}\\
+          &= \mp k_B \sum_j\left[ \ln(1 \mp f_j) \pm (\beta\mu - \beta \epsilon_j) \exp(\beta \mu - \beta \epsilon_j) (1 \mp f_j) \right]\\
+          &= \mp k_B \sum_j\left[\ln(1\mp f_j) \pm f_j \ln\left(\frac{f_j}{1 \mp f_j}\right)\right]\\
+          &= -k_B\sum_j\left[f_j \ln f_j \pm (1 \mp f_j)\ln(1 \mp f_j) \right]
+    \end{align*}
+    como desejado.
+
+    No limite clássico, temos \(\exp(\beta \epsilon_j - \beta \mu) \gg 1\), de modo que \(f_j \simeq \exp(\beta \mu - \beta \epsilon_j)\) e então a expressão encontrada se torna
+    \begin{equation*}
+        S = -k_B \sum_j (\beta \mu - \beta \epsilon_j) \exp(\beta \mu -\beta \epsilon_j) = -k_B \sum_j P_j \ln P_j,
+    \end{equation*}
+    que é a entropia no ensemble grande canônico para o gás clássico.
+\end{proof}
