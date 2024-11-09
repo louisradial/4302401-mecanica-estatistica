@@ -10,3 +10,65 @@
         \item Obtenha uma forma assintótica para o calor específico a volume constante no limite \(T \ll T_F\).
     \end{enumerate}
 \end{exercício}
+\begin{proof}[Resolução]
+    No volume \(V = L^3\), o espectro é dado por
+    \begin{equation*}
+        \epsilon_{\vetor{k}} = \hbar\norm{\vetor{k}} c,
+    \end{equation*}
+    onde \(k_i = \frac{2\pi n_i}{L}\) e \(n_i \in \mathbb{Z}\). Dessa forma, o número médio de partículas no gás de férmions ultrarelativísticos totalmente degenerado é dado por
+    \begin{equation*}
+        N = \sum_j f_j \simeq \frac{\gamma V}{(2\pi)^3} \int_{\mathbb{R}^3} \dln3k f(\epsilon_{\vetor{k}}) \simeq \frac{\gamma V}{(2\pi)^3} \int_0^{k_F} \dli{k} \int_{0}^\pi k \dli{\theta} \int_0^{2\pi} k \sin\theta \dli{\varphi},
+    \end{equation*}
+    onde \(\epsilon_F = \hbar k_F c\) é a energia de Fermi. Assim,
+    \begin{equation*}
+        N = \frac{2\gamma Vk_F^3}{3(2\pi)^2} \implies k_F = \left(\frac{6\pi^2 N}{\gamma V}\right)^{\frac13} \implies \epsilon_F = \hbar c \left(\frac{6\pi^2 N}{\gamma V}\right)^{\frac13}
+    \end{equation*}
+    é a expressão para a energia de Fermi. A energia do sistema é dada por
+    \begin{align*}
+        U = \sum_j \epsilon_j f_j
+        &\simeq \frac{\gamma V}{(2\pi)^3} \int_{\mathbb{R}^3} \dln3k \epsilon_{\vetor{k}} f(\epsilon_{\vetor{k}}) \\
+        &= \frac{4\pi \gamma V}{(2 \pi)^3} \int_{0}^\infty \dli{k} \frac{k^2 \epsilon_{k}}{\exp({\beta \epsilon_k - \beta \mu})+ 1} \\
+        &= \frac{4\pi \gamma V}{(h c)^3} \int_0^\infty \dli{\epsilon} \frac{\epsilon^3}{\exp(\beta \epsilon - \beta \mu) + 1},
+    \end{align*}
+    portanto no estado fundamental temos
+    \begin{equation*}
+        U = \frac{\gamma V}{2\pi^2} \int_0^{k_F} \dli{k} \hbar c k^3 = \frac{\gamma \hbar c V k_F^4}{8\pi^2} = \frac{\gamma V k_F^3}{2 (2\pi)^2}\epsilon_F = \frac34 N \epsilon_F.
+    \end{equation*}
+    No limite \(T \ll T_F = k_B^{-1} \epsilon_F\), temos pela expansão de Sommerfeld que
+    \begin{equation*}
+        U \simeq \frac{4\pi\gamma V}{(hc)^3} \left[\int_0^\mu \dli{\epsilon} \epsilon^3 + \frac{\pi^2\mu^2}{2}(k_B T)^2 + \dots\right] \simeq \frac{\pi\gamma \mu^4 V}{(hc)^3}\left[1 + 2\pi^2 \left(\frac{k_BT}{\mu}\right)^2\right],
+    \end{equation*}
+    e
+    \begin{equation*}
+        N \simeq \frac{4\pi \gamma V}{(hc)^3} \left[\int_0^\mu \dli{\epsilon} \epsilon^2 + \frac{\pi^2\mu}{3} (k_B T)^2 + \dots\right] \simeq \frac{4\pi \gamma \mu^3 V}{3(hc)^3}\left[1 + \pi^2 \left(\frac{k_BT}{\mu}\right)^2\right]
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        u = \frac{U}{N} = \frac{3\mu}{4}\frac{1 + 2\pi\left(\frac{k_B T}{\mu}\right)^2 + \dots}{1 + \pi^2\left(\frac{k_B T}{\mu}\right)^2 + \dots} \simeq \frac{3\mu}{4} \left[1 + \pi^2 \left(\frac{k_B T}{\mu}\right)^2\right]
+    \end{equation*}
+    é a energia interna por partícula. A partir da expressão para o número de partículas, temos
+    \begin{align*}
+        \frac{\gamma}{6\pi^2}\left(\frac{\epsilon_F}{\hbar c}\right)^3 = \frac{4\pi \gamma \mu^3}{3(hc)^3}\left[1 + \pi^2\left(\frac{k_B T}{\mu}\right)^2 + \dots \right]
+        &\implies \epsilon_F^3 = \mu^3 \left[1 + \pi^2\left(\frac{k_B T}{\mu}\right)^2 + \dots\right]\\
+        &\implies \epsilon_F =  \mu \left[1 + \frac{\pi^2}{3}\left(\frac{k_B T}{\mu}\right)^2 + \dots\right]
+    \end{align*}
+    como a relação entre a energia de Fermi e o potencial químico. Supondo uma expansão em série para o potencial químico em função da energia de Fermi e da temperatura, \(\mu = \epsilon_F \sum_{n = 0}^\infty \alpha_{2n} \left(\frac{T}{T_F}\right)^{2n}\), temos
+    \begin{align*}
+        \epsilon_F &= \epsilon_F\sum_{n = 0}^\infty \alpha_{2n} \left(\frac{T}{T_F}\right)^{2n}\left[1 + \frac{\pi^2}{3}\left(\frac{T}{\mu}\right)^2 + \dots\right]\\
+                   &\simeq \epsilon_F\left[1 + \alpha_2 \left(\frac{T}{T_F}\right)^2 + \dots\right]\left[1 + \frac{\pi^2}{3}\left(\frac{T}{T_F}\right)^2 + \dots \right]\\
+                   &= \epsilon_F\left[1 + \left(\frac{\pi^2}{3} + \alpha_2\right)\left(\frac{T}{T_F}\right)^2 + \dots \right],
+    \end{align*}
+    portanto \(\alpha_2 =-\frac{\pi^2}{3}\) e temos
+    \begin{equation*}
+        \mu \simeq \epsilon_F\left[1 - \frac{\pi^2}{3}\left(\frac{T}{T_F}\right)^2\right].
+    \end{equation*}
+    Assim, podemos escrever a energia interna por partícula como
+    \begin{equation*}
+        u \simeq \frac{3 \epsilon_F}{4}\left[1 + \frac{2\pi^2}{3}\left(\frac{T}{T_F}\right)^2\right],
+    \end{equation*}
+    e concluímos que
+    \begin{equation*}
+        c_V = \diffp{u}{T}[V] \simeq \frac{\pi^2 k_B T}{T_F}
+    \end{equation*}
+    é o calor específico a volume constante no limite \(T \ll T_F\).
+\end{proof}
