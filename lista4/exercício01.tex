@@ -29,9 +29,20 @@
     \end{align*}
     como desejado.
 
-    No limite clássico, temos \(\exp(\beta \epsilon_j - \beta \mu) \gg 1\), de modo que \(f_j \simeq \exp(\beta \mu - \beta \epsilon_j)\) e então a expressão encontrada se torna
+    No limite clássico, temos \(\exp(\beta \epsilon_j - \beta \mu) \gg 1\), de modo que \(f_j \simeq \exp(\beta \mu - \beta \epsilon_j)\) e \(\ln(1 \mp f_j) \simeq \mp f_j\). Então temos
     \begin{equation*}
-        S = -k_B \sum_j (\beta \mu - \beta \epsilon_j) \exp(\beta \mu -\beta \epsilon_j) = -k_B \sum_j P_j \ln P_j,
+        -k_B \sum_i\left[f_i \ln f_i \pm (1 \mp f_i)\ln(1 \mp f_i)\right] = -k_B \sum_j \left[(\beta \mu - \beta \epsilon_j) \exp(\beta \mu -\beta \epsilon_j) - \exp(\beta \mu - \beta \epsilon_j)\right].
     \end{equation*}
-    que é a entropia no ensemble grande canônico para o gás clássico.
+    em primeira ordem em \(f_j\). Neste limite a grande função de partição é dada por
+    \begin{equation*}
+        \ln\Xi = \sum_j \exp(\beta \mu - \beta \epsilon_j),
+    \end{equation*}
+    portanto a entropia é dada por
+    \begin{align*}
+        S = \diffp*{(k_B T \ln\Xi)}{T}[V, \mu] &= k_B \sum_j \exp(\beta \mu - \beta \epsilon_j) + k_B T \sum_j (\mu - \epsilon_j)\exp(\beta \mu - \beta \epsilon_j) \diffp{\beta}{T}\\
+                                               &= k_B \sum_j \exp(\beta \mu - \beta \epsilon_j) - k_B \sum_j (\beta \mu - \beta \epsilon_j) \exp(\beta \mu - \beta \epsilon_j)\\
+                                               &= -k_B\sum_j\left[(\beta \mu - \beta \epsilon_j)\exp(\beta \mu - \beta \epsilon_j) - \exp(\beta \mu - \beta \epsilon_j)\right]\\
+                                               &= -k_b \sum_{j} \left[f_j \ln f_j \pm (1 \mp f_j)\ln(1 \mp f_j)\right],
+    \end{align*}
+    como desejado.
 \end{proof}
