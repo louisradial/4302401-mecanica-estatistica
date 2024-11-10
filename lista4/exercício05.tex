@@ -3,9 +3,50 @@
     \begin{equation*}
         \mu = k_B T \ln\left(\frac{\lambda^3}{v}\right),
     \end{equation*}
-    onde \(v = \frac{V}{N}\) e \(\lambda = \frac{h}{\sqrt{2 \pi mk_B T}}\) é o comprimento de onda térmico. Obtenha agora a primeira correção quântica desse resultado. Isto é, mostre que
+    onde \(v = \frac{\gamma V}{N}\) e \(\lambda = \frac{h}{\sqrt{2 \pi mk_B T}}\) é o comprimento de onda térmico. Obtenha agora a primeira correção quântica desse resultado. Isto é, mostre que
     \begin{equation*}
         \mu - k_BT \ln\left(\frac{\lambda^3}{v}\right) = A\left(\frac{\lambda^3}{v}\right) + \dots
     \end{equation*}
     e obtenha explicitamente o prefator \(A\) nos casos de férmions e bósons.
 \end{exercício}
+\begin{proof}[Resolução]
+    Consideremos a grande função de partição dada por
+    \begin{equation*}
+        \ln \Xi = \pm \sum_j \ln\left[1 \pm \exp(\beta \mu - \beta \epsilon_j)\right]
+    \end{equation*}
+    e a expansão \(\ln(1 + x) = \sum_{n = 1}^\infty \frac{(-1)^{n+1} x^n}{n}\) para \(x \in (-1,1)\). Para \(\exp(\beta \mu - \beta \epsilon_j) \in (0, 1)\), temos
+    \begin{align*}
+        \ln \Xi &= \pm \sum_j \sum_{n=1}^\infty \frac{(-1)^{n+1} \left(\pm 1\right)^n\exp(\beta \mu n - \beta \epsilon_j n)}{n}\\
+                &= \sum_j \sum_{n=1}^\infty \frac{(\mp 1)^{n+1} \exp(\beta \mu n - \beta \epsilon_j n)}{n}\\
+                &= \sum_{n=1}^\infty \frac{(\mp 1)^{n+1}\exp(\beta \mu n)}{n} \sum_{j} \exp(-\beta \epsilon_j n)
+    \end{align*}
+    No limite termodinâmico, temos
+    \begin{align*}
+        \ln\Xi &= \sum_{n=1}^\infty \frac{(\mp 1)^{n+1}\exp(\beta \mu n)}{n} \frac{4\pi \gamma V}{(2\pi)^3}\int_0^\infty \dli{k} k^2\exp\left(-\frac{\beta n \hbar^2 k^2}{2m}\right)\\
+               &= -\sum_{n=1}^\infty \frac{(\mp 1)^{n+1} \exp(\beta \mu n)}{n} \frac{\gamma V}{(2\pi)^2}\left(\frac{2m}{n \hbar^2}\right) \diffp*{\int_{\mathbb{R}}\dli{k} \exp\left(-\frac{\beta n \hbar^2 k^2}{2m}\right)}{\beta}\\
+               &= - \sum_{n=1}^\infty \frac{(\mp1)^{n+1} \exp(\beta \mu n)}{n}\frac{2m\gamma V}{n(2\pi\hbar)^2} \diffp*{\sqrt{\frac{2m \pi}{\beta n \hbar^2}}}{\beta}\\
+               &= \gamma V\sum_{n=1}^\infty \frac{(\mp1)^{n+1} \exp(\beta \mu n)}{n}\frac{m}{n(2\pi\hbar)^2} \sqrt{\frac{2m \pi}{\beta^3 n \hbar^2}}\\
+               &=\gamma V \sum_{n=1}^\infty \frac{(\mp1)^{n+1} \exp(\beta \mu n)}{n} \left(\frac{m}{ 2\pi n \hbar^2 \beta}\right)^{\frac32}\\
+               &= \gamma V \sum_{n=1}^\infty \frac{(\mp1)^{n+1} z^n}{n} \left(\frac{2\pi m k_B T}{n h^2}\right)^{\frac32}\\
+               &= \gamma V \sum_{n=1}^\infty \frac{(\mp1)^{n+1} z^n}{\lambda^3 n^{\frac52}},
+    \end{align*}
+    onde \(z = \exp(\beta \mu)\) é a fugacidade e \(\lambda = \frac{h}{\sqrt{2\pi m k_B T}}\) é o comprimento de onda térmico. Assim, o número médio de partículas é
+    \begin{equation*}
+        N = z \diffp{\ln \Xi}{z} = z\gamma V \sum_{n=1}^\infty (\mp1)^{n+1} \frac{z^{n-1}}{\lambda^3 n^{\frac32}} = \frac{\gamma V}{\lambda^3} \sum_{n =1}^\infty (\mp1)^{n+1} \frac{z^n}{n^{\frac32}},
+    \end{equation*}
+    isto é,
+    \begin{equation*}
+        \frac{\lambda^3}{v} = \sum_{n = 1}^\infty (\mp 1)^{n+1} \frac{z^n}{n^{\frac{3}{2}}},
+    \end{equation*}
+    com \(v = \frac{\gamma V}{N}\). Para \(z \ll 1\), temos \(\frac{\lambda^3}{v} \ll 1\) e escrevemos \(z = \sum_{k = 1}^{\infty} \alpha_k \left(\frac{\lambda^3}{v}\right)^k\), de forma que
+    \begin{equation*}
+        \frac{\lambda^3}{v} = \sum_{n = 1}^\infty (\mp 1)^{n+1} \frac{1}{n^{\frac32}} \left[\sum_{k = 1}^\infty \alpha_k \left(\frac{\lambda^3}{v}\right)^k\right]^n = \alpha_1 \left(\frac{\lambda^3}{v}\right) + \left(\alpha_2 \mp \frac{\alpha_1}{2^{\frac32}}\right)\left(\frac{\lambda^3}{v}\right)^2 + O\left(\frac{\lambda^3}{v}\right)^3,
+    \end{equation*}
+    portanto vemos que \(\alpha_1 = 1\) e \(\alpha_2 = \pm \frac{1}{2^{\frac32}}\). Assim,
+    \begin{align*}
+        \mu = k_B T \ln z &= k_B T \ln\left[\left(\frac{\lambda^3}{v}\right) \pm 2^{-\frac32}\left(\frac{\lambda^3}{v}\right)^2 + \dots\right]\\
+                          &= k_BT \ln\left(\frac{\lambda^3}{v}\right) + k_BT \ln\left[1 \pm 2^{-\frac32} \left(\frac{\lambda^3}{v}\right) + \dots\right]\\
+                          &\simeq k_B T \ln\left(\frac{\lambda^3}{v}\right)  \pm 2^{-\frac32} k_B T \left(\frac{\lambda^3}{v}\right)
+    \end{align*}
+    é a expressão para o potencial químico no limite clássico com a primeira correção quântica.
+\end{proof}
