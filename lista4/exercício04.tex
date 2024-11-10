@@ -1,4 +1,4 @@
-\begin{exercício}{}{exercício04}
+\begin{exercício}{Gás de férmions com espectro proporcional a uma potência do momento}{exercício04}
     Considere um sistema de férmions num espaço \(d\)-dimensional, com espectro de energia
     \begin{equation*}
         \epsilon_{\vetor{k}, \sigma} = c \norm{\vetor{k}}^a,
@@ -10,3 +10,74 @@
         \item Obtenha uma forma assintótica para o calor específico a volume constante no limite \(T \ll T_F\).
     \end{enumerate}
 \end{exercício}
+\begin{proof}[Resolução]
+    A pressão é dada por
+    \begin{equation*}
+        p = -\diffp{\Phi}{V}[T,\mu] = \beta^{-1}\diffp*{\sum_{j} \ln\left[\exp(\beta \mu - \beta \epsilon_j) + 1\right]}{V}
+        = -{\sum_{j}\frac{\exp(\beta \mu - \beta \epsilon_j)}{\exp(\beta \mu - \beta \epsilon_j) + 1} \diffp{\epsilon_j}{V}} = -\sum_{j} f_j \diffp{\epsilon_j}{V}.
+    \end{equation*}
+    Como \(\norm{\vetor{k}_j}^2 = \sum_{i=1}^d \left(\frac{2\pi n_{ji}}{V^{\frac1d}}\right)^2\), com \(n_{ji} \in \mathbb{Z}\), segue que
+    \begin{equation*}
+        \diffp{\epsilon_j}{V} = c \diffp*{\left[V^{-\frac2d}\sum_{i = 1}^d (2\pi n_{ji})^2\right]^{\frac{a}{2}}}{V} = -\frac{a}{d}c \left[\sum_{i=1}^d(2\pi n_{ji})^2\right]^{\frac{a}{2}} V^{-\frac{a}{d} - 1} = - \frac{a \epsilon_j}{d V},
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        p V = \frac{a}{d} \sum_j f_j \epsilon_j = \frac{a}{d} U.
+    \end{equation*}
+
+    O número médio de partículas é dado por
+    \begin{align*}
+        N &= \sum_{j} f_j \simeq \frac{\gamma V}{(2\pi)^d}\int_{\mathbb{R}^d} \dln{d}k f(\epsilon_{\vetor{k}, \sigma})\\
+          &= \frac{\gamma V C_d}{(2\pi)^d} \int_0^\infty \dli{k} \frac{k^{d - 1}}{\exp(\beta \epsilon_{\vetor{k},\sigma} - \beta \mu) + 1}\\
+          &= \frac{\gamma V C_d}{(2\pi)^d ac^\frac{d}{a}} \int_0^\infty \dli{\epsilon}\frac{\epsilon^{\frac{d}{a} - 1}}{\exp(\beta \epsilon - \beta \mu) + 1},
+    \end{align*}
+    pelo \cref{lem:hiperesfera}. Isto é, a densidade de estados por energia é
+    \begin{equation*}
+        D(\epsilon) = \frac{C_d}{(2\pi)^d ac^{\frac{d}{a}}} \epsilon^{\frac{d}{a} - 1},
+    \end{equation*}
+    portanto no estado fundamental temos
+    \begin{equation*}
+        N = \gamma V \int_0^{\epsilon_F} \dli{\epsilon} D(\epsilon) = \frac{\gamma V C_d}{(2\pi)^d d } \left(\frac{\epsilon_F}{c}\right)^{\frac{d}{a}} \implies \epsilon_F = c \left[\frac{(2\pi)^{d} d N}{\gamma V C_d}\right]^{\frac{a}{d}} = c\left[2\sqrt{\pi} \Gamma\left(\frac{d}{2}+1\right)\right]^{a} \left(\frac{N}{\gamma V}\right)^{\frac{a}{d}}
+    \end{equation*}
+    como a expressão para a energia de Fermi. Assim, no limite de baixas temperaturas \(T \ll T_F\), podemos escrever
+    \begin{equation*}
+        \epsilon_F^{\frac{d}{a}} = \frac{d}{a}\int_0^\infty \dli{\epsilon} \epsilon^{\frac{d}{a} - 1}f(\epsilon) = \frac{d}{a}\left[\int_0^\mu \dli{\epsilon} \epsilon^{\frac{d}{a} - 1} + \frac{\pi^2}{6} \left(\frac{d}{a} - 1\right)\mu^{\frac{d}{a}}\left(\frac{k_B T}{\mu}\right)^2 + \dots\right] %= \mu^{\frac{d}{a}}\left[1 + \frac{\pi^2d}{6a}\left(\frac{d}{a} - 1\right)\left(\frac{k_B T}{\mu}\right)^2 + \dots\right]
+    \end{equation*}
+    pela expansão de Sommerfeld. Isto é,
+    \begin{align*}
+        \epsilon_F = \mu\left[1 + \frac{\pi^2d}{6a}\left(\frac{d}{a}- 1\right)\left(\frac{k_BT}{\mu}\right)^2+ \dots\right]^{\frac{a}{d}} = \mu\left[1 + \frac{\pi^2}{6}\left(\frac{d}{a} -1\right)\left(\frac{k_B T}{\mu}\right)^2 + \dots\right]
+    \end{align*}
+    é a expressão da energia de Fermi em função da temperatura e do potencial químico. Supondo uma expansão em série para o potencial químico da forma \(\mu = \epsilon_F\sum_{n = 0}^\infty \alpha_n \left(\frac{T}{T_F}\right)^n\), temos
+    \begin{align*}
+        \epsilon_F &= \epsilon_F\sum_{n = 0}^\infty \alpha_{n} \left(\frac{T}{T_F}\right)^{n}\left[1 + \frac{\pi^2}{6}\left(\frac{d}{a} - 1\right)\left(\frac{k_BT}{\mu}\right)^2 + \dots\right]\\
+                   &\simeq \epsilon_F\left[1 + \alpha_1 \left(\frac{T}{T_F}\right) + \alpha_2 \left(\frac{T}{T_F}\right)^2 + \dots\right]\left[1 + \frac{\pi^2}{6}\left(\frac{d}{a} - 1\right)\left(\frac{T}{T_F}\right)^2 + \dots\right]\\
+                   &= \epsilon_F\left\{1 + \alpha_1\left(\frac{T}{T_F}\right) + \left[\frac{\pi^2}{6}\left(\frac{d}{a} - 1\right) + \alpha_2\right]\left(\frac{T}{T_F}\right)^2 + \dots \right\},
+    \end{align*}
+    portanto \(\alpha_1 = 0\), \(\alpha_2 = - \frac{\pi^2}{6}\left(\frac{d}{a} - 1\right)\) e escrevemos
+    \begin{equation*}
+        \mu = \epsilon_F \left[1 + \frac{\pi^2}{6}\left(1 - \frac{d}{a}\right)\left(\frac{T}{T_F}\right)^2 + \dots\right]
+    \end{equation*}
+    como a expressão do potencial químico em função da temperatura. Pela expansão de Sommerfeld, temos
+    \begin{align*}
+        U = \gamma V\int_0^\infty \dli{\epsilon} \epsilon D(\epsilon) f(\epsilon)
+        &= \frac{\gamma V C_d}{(2\pi)^d ac^{\frac{d}{a}}} \left[\frac{\mu^{\frac{d}{a} + 1}}{\frac{d}{a} + 1} + \frac{\pi^2d}{6a}\mu^{\frac{d}{a} + 1}\left(\frac{k_BT}{\mu}\right)^2 + \dots\right]\\
+        &\simeq \frac{\gamma VC_d \mu^{\frac{d}{a} + 1}}{(2\pi)^d ac^{\frac{d}{a}}\left(\frac{d}{a} + 1\right)} \left[1 + \frac{\pi^2d}{6a}\left(\frac{d}{a} + 1\right)\left(\frac{T}{T_F}\right)^2 + \dots\right]
+    \end{align*}
+    e
+    \begin{align*}
+        N = \gamma V \int_0^\infty \dli{\epsilon} D(\epsilon) f(\epsilon)
+        &= \frac{\gamma V C_d}{(2\pi)^d ac^{\frac{d}{a}}}\left[\frac{\mu^{\frac{d}{a}}}{\frac{d}{a}} + \frac{\pi^2}{6}\left(\frac{d}{a} - 1\right)\mu^{\frac{d}{a}}\left(\frac{k_B T}{\mu}\right)^2 + \dots\right]\\
+        &\simeq \frac{\gamma V C_d \mu^{\frac{d}{a}}}{(2\pi)^d d c^{\frac{d}{a}}}\left[1 + \frac{\pi^2 d}{6a}\left(\frac{d}{a} - 1\right)\left(\frac{T}{T_F}\right)^2 + \dots\right],
+    \end{align*}
+    portanto a energia interna por partícula é
+    \begin{align*}
+        u = \frac{U}{N} &= \frac{d\mu}{d + a}  \frac{1 + \frac{\pi^2d}{6a}\left(\frac{d}{a} + 1\right)\left(\frac{T}{T_F}\right)^2 + \dots}{1 + \frac{\pi^2 d}{6a}\left(\frac{d}{a} - 1\right)\left(\frac{T}{T_F}\right)^2 + \dots}\\
+                        &= \frac{d \epsilon_F}{d + a} \left[1 + \frac{\pi^2}{6}\left(1 - \frac{d}{a}\right)\left(\frac{T}{T_F}\right)^2 + \dots\right]\left[1 + \frac{\pi^2 d}{3a}\left(\frac{T}{T_F}\right)^2+ \dots\right]\\
+                        &= \frac{d \epsilon_F}{d + a}\left[1 + \frac{\pi^2}{6}\left(1 + \frac{d}{a}\right)\left(\frac{T}{T_F}\right)^2 + \dots\right]
+    \end{align*}
+    e segue que
+    \begin{equation*}
+        c_V = \diffp{u}{T} = \frac{d\pi^2\epsilon_F T}{3aT_F^2} + \dots \simeq \frac{d \pi^2 k_B T}{3aT_F}
+    \end{equation*}
+    é o calor específico a volume constante.
+\end{proof}
