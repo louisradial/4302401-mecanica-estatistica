@@ -44,7 +44,7 @@
     \end{equation*}
     portanto
     \begin{equation*}
-        u = \frac{U}{N} = \frac{3\mu}{4}\frac{1 + 2\pi\left(\frac{k_B T}{\mu}\right)^2 + \dots}{1 + \pi^2\left(\frac{k_B T}{\mu}\right)^2 + \dots} \simeq \frac{3\mu}{4} \left[1 + \pi^2 \left(\frac{k_B T}{\mu}\right)^2\right]
+        u = \frac{U}{N} = \frac{3\mu}{4}\frac{1 + 2\pi^2\left(\frac{k_B T}{\mu}\right)^2 + \dots}{1 + \pi^2\left(\frac{k_B T}{\mu}\right)^2 + \dots} \simeq \frac{3\mu}{4} \left[1 + \pi^2 \left(\frac{k_B T}{\mu}\right)^2\right]
     \end{equation*}
     é a energia interna por partícula. A partir da expressão para o número de partículas, temos
     \begin{align*}
@@ -52,19 +52,19 @@
         &\implies \epsilon_F^3 = \mu^3 \left[1 + \pi^2\left(\frac{k_B T}{\mu}\right)^2 + \dots\right]\\
         &\implies \epsilon_F =  \mu \left[1 + \frac{\pi^2}{3}\left(\frac{k_B T}{\mu}\right)^2 + \dots\right]
     \end{align*}
-    como a relação entre a energia de Fermi e o potencial químico. Supondo uma expansão em série para o potencial químico em função da energia de Fermi e da temperatura, \(\mu = \epsilon_F \sum_{n = 0}^\infty \alpha_{2n} \left(\frac{T}{T_F}\right)^{2n}\), temos
+    como a relação entre a energia de Fermi e o potencial químico. Supondo uma expansão em série para o potencial químico em função da energia de Fermi e da temperatura, \(\mu = \epsilon_F \sum_{n = 0}^\infty \alpha_{n} \left(\frac{T}{T_F}\right)^{n}\), temos
     \begin{align*}
-        \epsilon_F &= \epsilon_F\sum_{n = 0}^\infty \alpha_{2n} \left(\frac{T}{T_F}\right)^{2n}\left[1 + \frac{\pi^2}{3}\left(\frac{T}{\mu}\right)^2 + \dots\right]\\
-                   &\simeq \epsilon_F\left[1 + \alpha_2 \left(\frac{T}{T_F}\right)^2 + \dots\right]\left[1 + \frac{\pi^2}{3}\left(\frac{T}{T_F}\right)^2 + \dots \right]\\
-                   &= \epsilon_F\left[1 + \left(\frac{\pi^2}{3} + \alpha_2\right)\left(\frac{T}{T_F}\right)^2 + \dots \right],
+        \epsilon_F &= \epsilon_F\sum_{n = 0}^\infty \alpha_{n} \left(\frac{T}{T_F}\right)^{n}\left[1 + \frac{\pi^2}{3}\left(\frac{T}{\mu}\right)^2 + \dots\right]\\
+                   &\simeq \epsilon_F\left[1 + \alpha_1 \left(\frac{T}{T_F}\right) + \alpha_2 \left(\frac{T}{T_F}\right)^2 + \dots\right]\left[1 + \frac{\pi^2}{3}\left(\frac{T}{T_F}\right)^2 + \dots \right]\\
+                   &= \epsilon_F\left[1 + \alpha_1\left(\frac{T}{T_F}\right) + \left(\frac{\pi^2}{3} + \alpha_2\right)\left(\frac{T}{T_F}\right)^2 + \dots \right],
     \end{align*}
-    portanto \(\alpha_2 =-\frac{\pi^2}{3}\) e temos
+    portanto \(\alpha_1 = 0\), \(\alpha_2 =-\frac{\pi^2}{3}\) e temos
     \begin{equation*}
         \mu \simeq \epsilon_F\left[1 - \frac{\pi^2}{3}\left(\frac{T}{T_F}\right)^2\right].
     \end{equation*}
     Assim, podemos escrever a energia interna por partícula como
     \begin{equation*}
-        u \simeq \frac{3 \epsilon_F}{4}\left[1 + \frac{2\pi^2}{3}\left(\frac{T}{T_F}\right)^2\right],
+        u \simeq \frac{3 \epsilon_F}{4} \left[1 - \frac{\pi^2}{3}\left(\frac{T}{T_F}\right)^2 + \dots\right]\left[1 + \pi^2 \left(\frac{k_B T}{\mu}\right)^2 + \dots\right] \simeq \frac{3 \epsilon_F}{4}\left[1 + \frac{2\pi^2}{3}\left(\frac{T}{T_F}\right)^2\right],
     \end{equation*}
     e concluímos que
     \begin{equation*}
