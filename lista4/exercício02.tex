@@ -1,3 +1,63 @@
+\begin{lemma}{Representação integral da função beta}{gamma_beta}
+    A função beta,
+    \begin{equation*}
+        B(p,q) = \frac{\Gamma(p) \Gamma(q)}{\Gamma(p + q)},
+    \end{equation*}
+    pode ser escrita como
+    \begin{equation*}
+        B(p,q) = 2\int_0^{\frac{\pi}{2}} \dli{\theta} \cos^{2p - 1}\theta \sin^{2q - 1}\theta
+    \end{equation*}
+    para todos \(p, q > 0\).
+\end{lemma}
+\begin{proof}
+    Temos para \(x > 0\) que
+    \begin{equation*}
+        \Gamma(x) = \int_0^\infty \dli{t} e^{-t} t^{x - 1} = 2 \int_0^\infty \dli{t} e^{-t^2}t^{2x - 1}
+    \end{equation*}
+    com a mudança de variáveis \(t \mapsto t^2\). Assim, para \(p, q > 0\) segue que
+    \begin{align*}
+        \Gamma(p)\Gamma(q) &= 4 \left(\int_0^\infty\dli{t} e^{-t^2} t^{2p - 1}\right)\left(\int_0^\infty\dli{s} e^{-s^2} s^{2q - 1}\right)\\
+                           &= 4 \int_0^\infty \dli{t} \int_0^\infty \dli{s} e^{-(t^2 + s^2)} t^{2p - 1} s^{2q - 1}.
+    \end{align*}
+    Utilizando coordenadas polares, obtemos
+    \begin{align*}
+        \Gamma(p)\Gamma(q) &= 4 \int_0^\infty \dli{r} \int_0^{\frac{\pi}{2}} r\dli\theta e^{-r^2}r^{2(p+q) - 2} \cos^{2p - 1}\theta \sin^{2q-1}\theta\\
+                           &= \left(2 \int_0^{\infty}\dli{r} e^{-r^2}r^{2(p+q)-1}\right)\left(2 \int_0^{\frac{\pi}{2}}\dli{\theta} \cos^{2p - 1}\theta \sin^{2q - 1}\theta\right)\\
+                           &= \Gamma(p + q) \left(2 \int_0^{\frac{\pi}{2}}\dli{\theta} \cos^{2p - 1}\theta \sin^{2q - 1}\theta\right),
+    \end{align*}
+    isto é,
+    \begin{equation*}
+        B(p,q) = \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)} = 2 \int_0^{\frac{\pi}{2}}\dli{\theta} \cos^{2p - 1}\theta \sin^{2q - 1}\theta
+    \end{equation*}
+    como desejado.
+\end{proof}
+\begin{lemma}{Integral \(d\)-dimensional com simetria radial}{hiperesfera}
+    Seja \(\Omega = \setc{\vetor{x} \in \mathbb{R}^d}{\norm{\vetor{x}} < R}\), com \(R > 0\), e seja \(f : \mathbb{R}^d \to \mathbb{R}\) uma função \(\Omega\)-integrável tal que \(f(\vetor{x}) = \tilde{f}(\norm{\vetor{x}})\) para todo \(\vetor{x} \in \Omega\), onde \(\tilde{f} : \mathbb{R} \to \mathbb{R}\) é uma função integrável em \([0, R]\). Então
+    \begin{equation*}
+        \int_{\Omega} \dln{d}x f(\vetor{x}) = C_d \int_0^R \dli{r} r^{d - 1}\tilde{f}(r)
+    \end{equation*}
+    com
+    \begin{equation*}
+        C_d = \frac{\pi^{\frac{d}{2}}d}{\Gamma(\frac{d}{2}+1)}.
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Com a mudança de variáveis para coordenadas hiperesféricas, temos
+    \begin{align*}
+        \int_{\Omega} \dln{d}xf(\vetor{x}) &= \int_0^R \dli{r} \int_0^{\pi} r \dli{\varphi_1} \int_0^{\pi} r\sin\varphi_1 \dli{\varphi_2} \dots \int_0^{2\pi} r \left(\prod_{n = 1}^{d-2} \sin\varphi_n\right)\dli{\varphi_{d-1}} \tilde{f}(r)\\
+                                           &= 2\int_{0}^R \dli{r} r^{d-1} \tilde{f}(r) \int_0^\pi \dli{\varphi_1} \sin^{d-2}\varphi_1 \int_0^\pi \dli{\varphi_2}\sin^{d - 3}\varphi_2 \dots \int_0^\pi \dli{\varphi_{d-1}}\\
+                                           % &= 2\left[\int_0^R \dli{r} r^{d-1} \tilde{f}(r)\right] \prod_{n = 1}^{d-1} \left[\int_0^\pi \dli{\varphi_n} \sin^{d - 1 - n}\varphi_n\right]\\
+                                           &= 2\left[\int_0^R \dli{r} r^{d-1} \tilde{f}(r)\right] \prod_{n=1}^{d-1} \left[2\int_0^{\frac{\pi}{2}}\dli{\varphi \sin^{n-1}\varphi}\right] = C_d \int_0^R \dli{r} r^{d-1} \tilde{f}(r),
+    \end{align*}
+
+
+    onde
+    \begin{equation*}
+        C_d = 2 \prod_{n=1}^{d-1} \left[2 \int_0^{\frac{\pi}{2}} \sin^{n - 1}\varphi\right] = 2\prod_{n=1}^{d-1}\frac{\sqrt{\pi} \Gamma(\frac{n}{2})}{\Gamma(\frac{n+1}{2})} = \frac{2 \pi^{\frac{d-1}{2}}\Gamma(\frac12)}{\Gamma(\frac{d}{2})} = \frac{2d \pi^{\frac{d}{2}}}{d \Gamma(\frac{d}{2})} = \frac{\pi^{\frac{d}{2}}d}{\Gamma(\frac{d}{2} + 1)},
+    \end{equation*}
+    como desejado.
+\end{proof}
+
 \begin{exercício}{Gás de elétrons livres em uma caixa}{exercício02}
     Considere um gás de elétrons livres, num espaço \(d\)-dimensional, dentro de uma caixa hipercúbica de lado \(L\). Esboce gráficos da densidade de estados \(D(\epsilon)\) contra a energia \(\epsilon\) para dimensões \(d = 1\) e \(d = 2\). Qual é a expressão para a energia de Fermi em função da densidade para \(d = 1\) e \(d = 2\)?
 \end{exercício}
@@ -10,21 +70,21 @@
     \begin{equation*}
         N = \sum_j f_j \simeq \frac{\gamma V}{(2\pi)^d} \int_{\mathbb{R}^d}\dln{d}{k} \frac{1}{\exp\left(\frac{\beta\hbar^2\norm{\vetor{k}}^2}{2m} - \beta \mu\right) + 1}.
     \end{equation*}
-    Pela simetria esférica, a integral nas coordenadas angulares resulta em alguma constante \(C_d\) que depende apenas da dimensão \(d\), portanto
+    Pela isotropia, segue do \cref{lem:hiperesfera} que
     \begin{equation*}
         N = \frac{\gamma C_d V}{(2\pi)^d} \int_{0}^\infty\dli{k} \frac{k^{d - 1}}{\exp\left(\frac{\beta \hbar^2 k^2}{2m} - \beta \mu\right)+ 1} = \frac{\gamma C_d V}{2(2\pi)^d}  \left(\frac{2m}{\hbar^2}\right)^{\frac{d}2} \int_0^\infty \dli{\epsilon} \frac{\epsilon^{\frac{d}{2} - 1}}{\exp(\beta \epsilon - \beta \mu) + 1},
     \end{equation*}
     isto é, a densidade de estados é dada por
     \begin{equation*}
-        D(\epsilon) = \frac12 C_d \left(\frac{2m}{\hbar^2}\right)^{\frac{d}{2}} \epsilon^{\frac{d}{2} - 1}.
+        D(\epsilon) = \frac{C_d}{2(2\pi)^d}\left(\frac{2m}{\hbar^2}\right)^{\frac{d}{2}} \epsilon^{\frac{d}{2} - 1} = \frac{C_d}{2}\left(\frac{2m}{h^2}\right)^{\frac{d}{2}} \epsilon^{\frac{d}{2} - 1} = \frac{d}{2 \Gamma\left(\frac{d}{2} + 1\right)}\left(\frac{2\pi m}{h^2}\right)^{\frac{d}{2}} \epsilon^{\frac{d}{2} - 1}
     \end{equation*}
     Para um gás de férmions livres totalmente degenerado temos
     \begin{equation*}
-        N = \frac{\gamma C_d V}{2(2\pi)^d}\left(\frac{2m}{\hbar^2}\right)^{\frac{d}{2}} \int_0^{\epsilon_F} \dli{\epsilon} \epsilon^{\frac{d}{2}-1} = \frac{\gamma C_d V}{d(2\pi)^d}\left(\frac{2m}{\hbar^2}\right)^{\frac{d}{2}} {\epsilon_F}^{\frac{d}2},
+        N = \frac{\gamma V d}{2 \Gamma\left(\frac{d}{2} + 1\right)}\left(\frac{2\pi m}{h^2}\right)^{\frac{d}{2}} \int_0^{\epsilon_F} \dli{\epsilon} \epsilon^{\frac{d}{2}-1} = \frac{\gamma V}{\Gamma\left(\frac{d}{2} + 1\right)}\left(\frac{2\pi m \epsilon_F}{h^2}\right)^{\frac{d}{2}}
     \end{equation*}
     isto é,
     \begin{equation*}
-        \epsilon_F = \frac{h}{2m}\left(\frac{Nd}{\gamma C_dV}\right)^{\frac{2}{d}}
+        \epsilon_F = \frac{h^2}{2\pi m}\left[\frac{\Gamma\left(\frac{d}{2}+1\right)N}{\gamma V}\right]^{\frac2d} = \frac{h^2}{2\pi m}\left[\frac{\Gamma\left(\frac{d}{2} + 1\right)}{\gamma}\rho\right]^{\frac2d}
     \end{equation*}
-    é a expressão para a energia de Fermi.
+    é a expressão para a energia de Fermi, onde \(\rho = \frac{N}{V}\) é a densidade.
 \end{proof}
