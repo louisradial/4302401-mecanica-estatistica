@@ -6,5 +6,26 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    Para cada par \(j, \vetor{k}\), temos
+    \begin{equation*}
+        \Xi_{\vetor{k},j} = \sum_{n = 0}^\infty e^{-\beta \hbar c \norm{\vetor{k}} \left(n + \frac12\right)} = e^{-\frac12\beta \hbar c \norm{\vetor{k}}} \sum_{n=0}^\infty e^{- \beta \hbar c \norm{\vetor{k}} n} = \frac{e^{-\frac12 \beta \hbar c \norm{\vetor{k}}}}{1 - e^{-\beta\hbar c \norm{\vetor{k}}}} = \frac12 \csch\left(\frac12 \beta \hbar c \norm{\vetor{k}}\right)
+    \end{equation*}
+    portanto a grande função de partição é dada por
+    \begin{equation*}
+        \Xi = \prod_{\vetor{k},j} \Xi_{\vetor{k},j} = \prod_{\vetor{k},j} \frac12 \csch\left(\frac12 \beta \hbar c\norm{\vetor{k}}\right) \implies \ln \Xi = - \sum_{\vetor{k}, j} \ln\left[2\sinh\left(\frac12 \beta \hbar c \norm{\vetor{k}}\right)\right],
+    \end{equation*}
+    e como não há acoplamento com a polarização, temos
+    \begin{equation*}
+        \ln \Xi = - 2 \sum_{\vetor{k}} \ln\left[2\sinh\left(\frac12 \beta \hbar c \norm{\vetor{k}}\right)\right].
+    \end{equation*}
+
+    A energia interna é dada por
+    \begin{equation*}
+        U = - \diffp{\ln \Xi}{\beta} = \sum_{\vetor{k}} \coth\left(\frac12 \beta \hbar c \norm{\vetor{k}}\right) \hbar c \norm{\vetor{k}} = \frac{V}{(2\pi)^d}\int_{\mathbb{R}^d} \dln{d}k \hbar c \norm{\vetor{k}} \coth\left(\frac12 \beta \hbar c \norm{\vetor{k}}\right),
+    \end{equation*}
+    onde escrevemos \(V = L^d\) para o volume. Como feito na Lista IV\footnote{Botar link}, temos
+    \begin{equation*}
+        U = \frac{\pi^{\frac{d}{2}}Vd}{(2\pi)^d \Gamma\left(\frac{d}{2} + 1\right)} \int_0^\infty \dli{k} \hbar c k^d \coth\left(\frac12 \beta \hbar c k\right) = \frac{\pi^{\frac{d}{2}}V d}{(hc)^d \Gamma\left(\frac{d}{2} + 1\right)} \int_0^\infty \dli{\epsilon} \epsilon^d \coth\left(\frac12 \beta \epsilon\right).
+    \end{equation*}
 
 \end{proof}
