@@ -18,5 +18,27 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-
+    Acima da temperatura de condensação, o grande potencial é dado por
+    \begin{align*}
+        \Phi = -k_B T \ln\Xi &= k_B T \sum_{\vetor{k}} \ln\left(1 - e^{\beta \mu -\beta \epsilon_{\vetor{k}}}\right)\\
+                             &= \frac{4\pi V}{(2\pi)^3\beta} \int_{0}^\infty\dli{k} k^2\ln\left[1 - z e^{-\beta \epsilon_{\vetor{k}}}\right]\\
+                             &= \frac{V}{(2\pi)^2 \beta} \left(\frac{2m}{\hbar^2}\right)^{\frac32}\int_0^\infty \dli{\epsilon} \epsilon^{\frac12} \ln\left[1 - z e^{- \beta \epsilon}\right].
+    \end{align*}
+    Com a expansão \(\ln(1 - x) = - \sum_{n = 1}^\infty \frac{x^n}{n}\), temos
+    \begin{align*}
+        \Phi &= -\frac{V}{(2\pi)^2 \beta} \left(\frac{2 m}{\hbar^2}\right)^{\frac32} \int_0^\infty \dli{\epsilon} \epsilon^{\frac12} \sum_{n = 1}^\infty \frac{z^n}{n}  e^{- \beta \epsilon n}\\
+             &= - \frac{V}{(2\pi)^2 \beta} \left(\frac{2m}{\hbar^2}\right)^{\frac32} \sum_{n = 1}^\infty \frac{z^n}{n} \int_0^\infty \dli{\epsilon} \epsilon^{\frac12} e^{-\beta \epsilon n}\\
+             &= - \frac{V}{(2\pi)^2 \beta^{\frac52}} \left(\frac{2m}{\hbar^2}\right)^{\frac32} \sum_{n = 1}^\infty \frac{z^n}{n^{\frac52}} \int_0^\infty \dli{\xi} \xi^{\frac12} e^{-\xi}\\
+             &= -\frac{\Gamma\left(\frac32\right)V}{(2\pi)^2 \beta}\left(\frac{2m}{\hbar^2 \beta}\right)^{\frac32} \sum_{n = 1}^{\infty} \frac{z^n}{n^{\frac52}}\\
+             &= - \frac{V}{\beta} \left(\frac{2\pi m k_BT}{h^2}\right)^{\frac32} g_{\frac52}(z)\\
+             &= -\frac{V k_B T}{\lambda^3} g_{\frac52}(z),
+    \end{align*}
+    onde \(\lambda = \sqrt{\frac{h^2}{2\pi m k_B T}}\) é o comprimento de onda térmico de de Broglie. Com isso, o número de partículas é dado por
+    \begin{equation*}
+        N = z\diffp{\ln \Xi}{z}[V, T] = \frac{V}{\lambda^3} z \diffp*{\sum_{n=1}^\infty \frac{z^n}{n^{\frac52}}}{z} = \frac{V}{\lambda^3}\sum_{n = 1}^\infty \frac{z^n}{n^{\frac32}} = \frac{V}{\lambda^3}g_{\frac32}(z)
+    \end{equation*}
+    a entropia é dada por
+    \begin{equation*}
+        S = - \diffp{\Phi}{T}[V, N] = - k_B \beta^2 \diffp{\Phi}{\beta}[N, V] = -k_B \beta^2 \left[\diffp{\Phi}{\beta}[z, V] + \diffp{\Phi}{z}[\beta] \diffp{z}{\beta}[N]\right]
+    \end{equation*}
 \end{proof}
