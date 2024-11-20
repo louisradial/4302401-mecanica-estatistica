@@ -5,6 +5,20 @@
         \item supondo que a densidade de estados \(D(\epsilon)\) seja dada por \(\alpha \epsilon^2\) para \(\epsilon > 0\) e nula caso contrário, com \(\alpha > 0\) constante.
     \end{enumerate}
 \end{exercício}
-\begin{proof}[Resolução]
-
+\begin{proof}[Resolução do item (a)]
+    O número de partículas na temperatura de condensação é dada por
+    \begin{equation*}
+        N = \sum_{\vetor{k}} \frac{1}{e^{\beta_0 \epsilon_{\vetor{k}}} - 1} = \frac{4\pi V}{(2\pi)^3} \int_0^\infty \dli{k} \frac{k^2}{e^{\beta_0 \epsilon_{\vetor{k}}} - 1} = \frac{4\pi V}{(2\pi \beta_0 \hbar c)^3} \int_0^\infty \dli{\xi} \frac{\xi^2}{e^{\xi} - 1} = \frac{V}{6(\beta_0 \hbar c)^3},
+    \end{equation*}
+    isto é,
+    \begin{equation*}
+        T_0 = \frac{\hbar c}{k_B}\left(\frac{6 N}{V}\right)^{\frac13}
+    \end{equation*}
+    é a temperatura de condensação.
+\end{proof}
+\begin{proof}[Resolução do item (b)]
+    O número de partículas é dado por
+    \begin{equation*}
+        N = V\int_{\mathbb{R}} \dli{\epsilon} \frac{D(\epsilon)}{e^{\beta_0 \epsilon} - 1} = \alpha V \int_{0}^{\infty} \frac{\epsilon^2}{e^{\beta_0 \epsilon} - 1}
+    \end{equation*}
 \end{proof}
