@@ -1,5 +1,24 @@
+\begin{lemma}{Função zeta de Riemann}{integralzetagama}
+    Para todo \(s > 1\), vale
+    \begin{equation*}
+        \zeta(s) = \frac{1}{\Gamma(s)}\int_0^\infty \dli{x} \frac{x^{s-1}}{e^x - 1},
+    \end{equation*}
+    onde \(\zeta(s) = \sum_{n\in \mathbb{N}}n^{-s}\) é a função zeta de Riemann.
+\end{lemma}
+\begin{proof}
+    Temos
+    \begin{align*}
+        \int_0^\infty \dli{x} \frac{x^{s-1}}{e^x - 1}
+        &= \int_0^\infty\dli{x} x^{s-1} \sum_{n = 1}^\infty e^{-nx} \\
+        &= \sum_{n = 1} \int_0^\infty \dli{x}{x}^{s - 1}e^{-nx} \\
+        &= \sum_{n = 1}^\infty n^{-s} \int_0^\infty \dli{x} x^{s - 1} e^{-x}\\
+        &= \sum_{n=1} n^{-s} \Gamma(s)\\
+        &= \Gamma(s)\zeta(s),
+    \end{align*}
+    como desejado.
+\end{proof}
 \begin{exercício}{Gás de Fótons e lei de Stefan-Boltzmann}{exercício1}
-    O espectro de energia de um gás de fótons num espaço \(d\)-dimensional de volume \(L^d\) é dado pela expressão \(\mathcal{H} = \sum_{\vetor{k}, j} \hbar \omega_{\vetor{k}, j}(n_{\vetor{k}, j} + \frac12)\), onde \(j \in \set{1,2}\) indica a polarização, \(\vetor{k}\) é o vetor de onda e \(\omega_{\vetor{k},j} = c\norm{\vetor{k}}\) é a relação de dispersão, onde \(c\) é a velocidade da luz.
+    O espectro de energia de um gás de fótons num espaço \(d\)-dimensional de volume \(L^d\) é dado pela expressão \(\mathcal{H} = \sum_{\vetor{k}, j} \hbar \omega_{\vetor{k}, j}(n_{\vetor{k}, j} + \frac12)\), onde \(j\) indica a polarização, \(\vetor{k}\) é o vetor de onda e \(\omega_{\vetor{k},j} = c\norm{\vetor{k}}\) é a relação de dispersão, onde \(c\) é a velocidade da luz.
     \begin{enumerate}[label=(\alph*)]
         \item Calcule a função de partição canônica associada a este hamiltoniano.
         \item Mostre que a energia interna é dada pela expressão \(U = \sigma V T^n\) e determine os valores das constantes \(n\) e \(\sigma\).
@@ -8,24 +27,35 @@
 \begin{proof}[Resolução]
     Para cada par \(j, \vetor{k}\), temos
     \begin{equation*}
-        \Xi_{\vetor{k},j} = \sum_{n = 0}^\infty e^{-\beta \hbar c \norm{\vetor{k}} \left(n + \frac12\right)} = e^{-\frac12\beta \hbar c \norm{\vetor{k}}} \sum_{n=0}^\infty e^{- \beta \hbar c \norm{\vetor{k}} n} = \frac{e^{-\frac12 \beta \hbar c \norm{\vetor{k}}}}{1 - e^{-\beta\hbar c \norm{\vetor{k}}}} = \frac12 \csch\left(\frac12 \beta \hbar c \norm{\vetor{k}}\right)
+        \Xi_{\vetor{k},j} = \sum_{n = 0}^\infty e^{-\beta \hbar c \norm{\vetor{k}} \left(n + \frac12\right)} = e^{-\frac12\beta \hbar c \norm{\vetor{k}}} \sum_{n=0}^\infty e^{- \beta \hbar c \norm{\vetor{k}} n} = \frac{e^{-\frac12 \beta \hbar c \norm{\vetor{k}}}}{1 - e^{-\beta\hbar c \norm{\vetor{k}}}}
     \end{equation*}
     portanto a grande função de partição é dada por
+    \begin{align*}
+        \Xi = \prod_{\vetor{k},j} \Xi_{\vetor{k},j} = \prod_{\vetor{k},j} \frac{e^{-\frac12 \beta \hbar c \norm{\vetor{k}}}}{1 - e^{-\beta \hbar c \norm{\vetor{k}}}}
+        &\implies \ln \Xi = \sum_{\vetor{k}, j} \left[-\frac12 \beta \hbar c \norm{\vetor{k}} - \ln\left(1 - e^{- \beta \hbar c \norm{\vetor{k}}}\right)\right]\\
+        &\implies \ln \Xi = -\frac12\sum_{\vetor{k}, j} \beta \hbar c \norm{\vetor{k}} - \sum_{\vetor{k},j} \ln\left(1 - e^{- \beta \hbar c \norm{\vetor{k}}}\right).
+    \end{align*}
+    O primeiro termo se refere a energia do vácuo, portanto doravante consideraremos o segundo termo, isto é, a função de partição dada por
     \begin{equation*}
-        \Xi = \prod_{\vetor{k},j} \Xi_{\vetor{k},j} = \prod_{\vetor{k},j} \frac12 \csch\left(\frac12 \beta \hbar c\norm{\vetor{k}}\right) \implies \ln \Xi = - \sum_{\vetor{k}, j} \ln\left[2\sinh\left(\frac12 \beta \hbar c \norm{\vetor{k}}\right)\right],
+        \ln \tilde{\Xi} = - \sum_{\vetor{k}, j} \ln\left(1 - e^{-\beta \hbar c \norm{\vetor{k}}}\right)
     \end{equation*}
-    e como não há acoplamento com a polarização, temos
+    e, como não há acoplamento com a polarização, temos
     \begin{equation*}
-        \ln \Xi = - 2 \sum_{\vetor{k}} \ln\left[2\sinh\left(\frac12 \beta \hbar c \norm{\vetor{k}}\right)\right].
+        \ln \tilde\Xi = -\ell \sum_{\vetor{k}} \ln\left(1 - e^{- \beta \hbar c \norm{\vetor{k}}}\right),
     \end{equation*}
+    pois \todo[há \(\ell\) direções de polarização.  Por que aparece o 2?]
 
     A energia interna é dada por
     \begin{equation*}
-        U = - \diffp{\ln \Xi}{\beta} = \sum_{\vetor{k}} \coth\left(\frac12 \beta \hbar c \norm{\vetor{k}}\right) \hbar c \norm{\vetor{k}} = \frac{V}{(2\pi)^d}\int_{\mathbb{R}^d} \dln{d}k \hbar c \norm{\vetor{k}} \coth\left(\frac12 \beta \hbar c \norm{\vetor{k}}\right),
+        U = - \diffp{\ln \tilde\Xi}{\beta} = \ell \sum_{\vetor{k}} \frac{\hbar c \norm{\vetor{k}} e^{-\beta \hbar c \norm{\vetor{k}}}}{1 - e^{-\beta \hbar c \norm{\vetor{k}}}} = \frac{\ell V}{(2\pi)^d} \int_{\mathbb{R}^3}\dln{d}{k} \frac{\hbar c \norm{\vetor{k}}}{e^{\beta \hbar c \norm{\vetor{k}}}-1}
     \end{equation*}
     onde escrevemos \(V = L^d\) para o volume. Como feito na Lista IV\footnote{Botar link}, temos
     \begin{equation*}
-        U = \frac{\pi^{\frac{d}{2}}Vd}{(2\pi)^d \Gamma\left(\frac{d}{2} + 1\right)} \int_0^\infty \dli{k} \hbar c k^d \coth\left(\frac12 \beta \hbar c k\right) = \frac{\pi^{\frac{d}{2}}V d}{(hc)^d \Gamma\left(\frac{d}{2} + 1\right)} \int_0^\infty \dli{\epsilon} \epsilon^d \coth\left(\frac12 \beta \epsilon\right).
+        U = \frac{\pi^{\frac{d}{2}}\ell Vd}{(2\pi)^d \Gamma\left(\frac{d}{2} + 1\right)} \int_0^\infty \dli{k} \frac{\hbar c k^d}{e^{\beta \hbar c k}-1} = \frac{\pi^{\frac{d}{2}} \ell V d}{\beta^{d + 1}(h c)^d \Gamma\left(\frac{d}{2} + 1\right)} \int_0^\infty \dli{\xi} \frac{\xi^d}{e^\xi - 1} = \sigma V T^{n},
     \end{equation*}
-
+    onde \(n = d + 1\) e
+    \begin{equation*}
+        \sigma = \frac{\pi^{\frac{d}{2}} k_B^{d + 1}\ell d}{(hc)^d \Gamma(\frac{d}{2} + 1)}\int_0^\infty \dli{\xi} \frac{\xi^d}{e^{\xi} - 1} = \frac{\pi^{\frac{d}{2}}k_B \ell d \Gamma(d + 1) \zeta(d + 1)}{\Gamma(\frac{d}{2} + 1)} \left(\frac{k_B}{hc}\right)^d,
+    \end{equation*}
+    pelo \cref{lem:integralzetagama}.
 \end{proof}
