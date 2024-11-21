@@ -1,19 +1,35 @@
+\begin{lemma}{Derivada da função polilogarítmica}{derivada_lisz}
+    Para todo \(s > 0\) e \(0 < z < 1\), temos
+    \begin{equation*}
+        z\diffp{\Li{s}(z)}{z} = \Li{s-1}(z).
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Temos
+    \begin{align*}
+        z\diffp{\Li{s}(z)}{z} &= z \diffp*{\sum_{n = 1}^\infty \frac{z^n}{n^s}}{z}\\
+                              &= z\sum_{n = 1}^\infty \frac{nz^{n-1}}{n^{s}}\\
+                              &= \sum_{n = 1}^\infty \frac{z^n}{n^{s-1}}\\
+                              &= \Li{s - 1}(z),
+    \end{align*}
+    como desejado.
+\end{proof}
 \begin{exercício}{Entropia e calor específico a volume constante para um sistema bosônico}{exercício5}
     Considere um sistema de bósons ideais de spin nulo dentro de um recipiente de volume \(V\).
     \begin{enumerate}[label=(\alph*)]
         \item Mostre que a entropia acima da temperatura de condensação \(T_0\) deve ser dada pela expressão
             \begin{equation*}
-                S = \frac{k_BV}{\lambda^3}\left[\frac52 g_{\frac52}(z) - \frac{\mu}{k_B T}g_{\frac32}(z)\right],
+                S = \frac{k_BV}{\lambda^3}\left[\frac52 \Li{\frac52}(z) - \frac{\mu}{k_B T}\Li{\frac32}(z)\right],
             \end{equation*}
-            onde \(g_{\alpha}(z) = \sum_{n = 1}^\infty \frac{z^n}{n^\alpha}\) é a função polilogarítmica.
-        \item Dados \(N\) e \(V\), qual a expressão da entropia abaixo de \(T_0?\) Qual a entropia associada às partículas do condensado?
+            onde \(\Li{s}(z) = \sum_{n = 1}^\infty \frac{z^n}{n^s}\) é a função polilogarítmica.
         \item A partir da expressão para a entropia, mostre que o calor específico a volume constante acima de \(T_0\) é dado pela expressão
             \begin{equation*}
-                c_V = \frac{3}{4} k_B \left[5 \frac{g_{\frac52}(z)}{g_{\frac32}(z)} - 3 \frac{g_{\frac32}(z)}{g_{\frac12}(z)}\right].
+                c_V = \frac{3}{4} k_B \left[5 \frac{\Li{\frac52}(z)}{\Li{\frac32}(z)} - 3 \frac{\Li{\frac32}(z)}{\Li{\frac12}(z)}\right].
             \end{equation*}
+        \item Dados \(N\) e \(V\), qual a expressão da entropia abaixo de \(T_0?\) Qual a entropia associada às partículas do condensado?
         \item Mostre que abaixo de \(T_0\), o calor específico a volume constante é dado pela expressão
             \begin{equation*}
-                c_V = \frac{15}{4} k_B \frac{v}{\lambda^3}g_{\frac52}(1).
+                c_V = \frac{15}{4} k_B \frac{v}{\lambda^3}\Li{\frac52}(1).
             \end{equation*}
     \end{enumerate}
 \end{exercício}
@@ -30,15 +46,54 @@
              &= - \frac{V}{(2\pi)^2 \beta} \left(\frac{2m}{\hbar^2}\right)^{\frac32} \sum_{n = 1}^\infty \frac{z^n}{n} \int_0^\infty \dli{\epsilon} \epsilon^{\frac12} e^{-\beta \epsilon n}\\
              &= - \frac{V}{(2\pi)^2 \beta^{\frac52}} \left(\frac{2m}{\hbar^2}\right)^{\frac32} \sum_{n = 1}^\infty \frac{z^n}{n^{\frac52}} \int_0^\infty \dli{\xi} \xi^{\frac12} e^{-\xi}\\
              &= -\frac{\Gamma\left(\frac32\right)V}{(2\pi)^2 \beta}\left(\frac{2m}{\hbar^2 \beta}\right)^{\frac32} \sum_{n = 1}^{\infty} \frac{z^n}{n^{\frac52}}\\
-             &= - \frac{V}{\beta} \left(\frac{2\pi m k_BT}{h^2}\right)^{\frac32} g_{\frac52}(z)\\
-             &= -\frac{V k_B T}{\lambda^3} g_{\frac52}(z),
+             &= - \frac{V}{\beta} \left(\frac{2\pi m k_BT}{h^2}\right)^{\frac32} \Li{\frac52}(z)\\
+             &= -\frac{V k_B T}{\lambda^3} \Li{\frac52}(z),
     \end{align*}
-    onde \(\lambda = \sqrt{\frac{h^2}{2\pi m k_B T}}\) é o comprimento de onda térmico de de Broglie. Com isso, o número de partículas é dado por
-    \begin{equation*}
-        N = z\diffp{\ln \Xi}{z}[V, T] = \frac{V}{\lambda^3} z \diffp*{\sum_{n=1}^\infty \frac{z^n}{n^{\frac52}}}{z} = \frac{V}{\lambda^3}\sum_{n = 1}^\infty \frac{z^n}{n^{\frac32}} = \frac{V}{\lambda^3}g_{\frac32}(z)
-    \end{equation*}
+    onde \(\lambda = \sqrt{\frac{h^2}{2\pi m k_B T}}\) é o comprimento de onda térmico de de Broglie. Com isso,
     a entropia é dada por
+    \begin{align*}
+        S = - \diffp{\Phi}{T}[V, \mu] = k_B \beta^2 \diffp{\Phi}{\beta}[V, \mu]
+        &= -k_B \beta^2V \left[\left(\frac{2\pi m}{h^2}\right)^{\frac32}\Li{\frac52}(z)\diff*{\beta^{-\frac52}}{\beta} + \frac{1}{\lambda^3 \beta}\diffp{\Li{\frac52}(z)}{\beta}[V,\mu]\right]\\
+        &= \frac{k_B V}{\lambda^3}\left[\frac52 \Li{\frac52}(z) - \beta \mu z\diff{\Li{\frac52}(z)}{z}\right]\\
+        &= \frac{k_B V}{\lambda^3} \left[\frac52 \Li{\frac52}(z) - \frac{\mu}{k_BT}\Li{\frac32}(z)\right],%\\
+        % &= \frac{k_B V}{\lambda^3} \left[\frac52 \Li{\frac52}(z) - \ln(z)\Li{\frac32}(z)\right],
+    \end{align*}
+    pelo \cref{lem:derivada_lisz}. Neste regime, o número de partículas é dado por
     \begin{equation*}
-        S = - \diffp{\Phi}{T}[V, N] = - k_B \beta^2 \diffp{\Phi}{\beta}[N, V] = -k_B \beta^2 \left[\diffp{\Phi}{\beta}[z, V] + \diffp{\Phi}{z}[\beta] \diffp{z}{\beta}[N]\right]
+        N = z\diffp{\ln \Xi}{z}[V, T] = \frac{V}{\lambda^3} z \diffp*{\Li{\frac52}(z)}{z} = \frac{V}{\lambda^3}\Li{\frac32}(z).
     \end{equation*}
+    O calor específico a volume constante é dado por
+    \begin{equation*}
+        c_V = \frac{T}{N}\diffp{S}{T}[N,V] = -\frac{\beta}{N} \jacob{S,N,V}{\beta, N, V}
+                                           = -\frac{\beta}{N} \jacob{S,N,V}{\beta, z, V}\cdot\jacob{\beta, z, V}{\beta, N, V}
+                                           = - \frac{\beta}{N} \left[\diffp{S}{\beta}[z, V] - \diffp{S}{z}[\beta, V]\frac{\diffp{N}{\beta}[z,V]}{\diffp{N}{z}[\beta, V]}\right],
+    \end{equation*}
+    portanto de
+    \begin{align*}
+        \diffp{S}{\beta}[z,V] &= k_B V\left[\frac52 \Li{\frac52}(z) - \ln(z) \Li{\frac32}(z)\right] \diff{\lambda^{-3}}{\beta} = -\frac{3k_B V}{2\beta \lambda^3} \left[\frac52 \Li{\frac52}(z) - \ln(z) \Li{\frac32}(z)\right],\\
+        \diffp{S}{z}[\beta, V] &= \frac{k_B V}{\lambda^3}\left[\frac52 \frac{\Li{\frac32}(z)}{z} - \frac{\Li{\frac32}(z)}{z} - \ln(z) \frac{\Li{\frac12}(z)}{z}\right] = \frac{k_B V}{z\lambda^3}\left[\frac32 \Li{\frac32}(z) - \ln(z) \Li{\frac12}(z)\right],\\
+        \diffp{N}{\beta}[z,V] &= V\Li{\frac32}(z)\diff{\lambda^{-3}}{\beta} = -\frac{3 V}{2\beta \lambda^3}\Li{\frac32}(z),\quad\text{e}\\
+        \diffp{N}{z}[\beta,V] &= \frac{V}{\lambda^3}\diff{\Li{\frac32}(z)}{z} = \frac{V}{z\lambda^3}\Li{\frac12}(z)
+    \end{align*}
+    temos
+    \begin{align*}
+        c_V &= -\frac{3k_B}{2\Li{\frac32}(z)} \left[\left(-\frac{5}{2}\Li{\frac52}(z) + \ln(z) \Li{\frac32}(z)\right) + \left(\frac32\Li{\frac32}(z) - \ln(z) \Li{\frac12}(z)\right)\frac{\Li{\frac32}(z)}{\Li{\frac12}(z)}\right]\\
+            &= \frac{3 k_B}{4 \Li{\frac32}(z)} \left[5\Li{\frac52}(z) - \frac{3\left(\Li{\frac32}(z)\right)^2}{\Li{\frac12}(z)}\right]\\
+            &= \frac{3k_B}{4}\left[5\frac{\Li{\frac52}(z)}{\Li{\frac32}(z)} - 3\frac{\Li{\frac32}(z)}{\Li{\frac12}(z)}\right]
+    \end{align*}
+    como a expressão do calor específico.
+
+    Na região de coexistência, temos \(z = 1\), então seguindo o mesmo cômputo anterior, temos
+    \begin{equation*}
+        \Phi = -\frac{Vk_B T}{\lambda^3}\Li{\frac52}(1)
+    \end{equation*}
+    como o grande potencial, logo a entropia é dada por
+    \begin{equation*}
+        S = - \diffp{\Phi}{T}[V, \mu] = \frac{5k_B V}{2 \lambda^3}\Li{\frac52}(1).
+    \end{equation*}
+    Assim, o calor específico a volume constante é
+    \begin{equation*}
+        c_V = \frac{T}{N} \diffp{S}{T}{N, V} = \frac{3S}{2N} = \frac{15 k_B v}{4 \lambda^3}\Li{\frac52}(1),
+    \end{equation*}
+    onde \(v = \frac{V}{N}\).
 \end{proof}
