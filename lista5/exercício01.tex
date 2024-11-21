@@ -1,19 +1,26 @@
-\begin{lemma}{Função zeta de Riemann}{integralzetagama}
-    Para todo \(s > 1\), vale
+\begin{lemma}{Integral de Bose-Einstein}{integral_bose_einstein}
+    Para todo \(0 < z \leq 1\) e \(s > 0\), vale
     \begin{equation*}
-        \zeta(s) = \frac{1}{\Gamma(s)}\int_0^\infty \dli{x} \frac{x^{s-1}}{e^x - 1},
+        \int_0^\infty \dli{x} \frac{x^{s-1}}{\frac{e^x}{z} - 1} = \begin{cases}
+            \Li{s}(z)\Gamma(s),&\text{se }s \neq 1\\
+            -\ln(1 - z),&\text{se }s = 1
+        \end{cases},
     \end{equation*}
-    onde \(\zeta(s) = \sum_{n\in \mathbb{N}}n^{-s}\) é a função zeta de Riemann.
+    onde \(\Li{s}(z) = \sum_{n\in \mathbb{N}}\frac{z^n}{n^s}\) é a função polilogarítmica e \(\Gamma(s) = \int_0^\infty\dli{x} x^{s-1} e^{-x}\) é a função gama.
 \end{lemma}
 \begin{proof}
-    Temos
+    Seja \(z \in (0,1]\) e \(s > 0\), com \(s \neq 1\). Então
     \begin{align*}
-        \int_0^\infty \dli{x} \frac{x^{s-1}}{e^x - 1}
-        &= \int_0^\infty\dli{x} x^{s-1} \sum_{n = 1}^\infty e^{-nx} \\
-        &= \sum_{n = 1} \int_0^\infty \dli{x}{x}^{s - 1}e^{-nx} \\
-        &= \sum_{n = 1}^\infty n^{-s} \int_0^\infty \dli{x} x^{s - 1} e^{-x}\\
-        &= \sum_{n=1} n^{-s} \Gamma(s)\\
-        &= \Gamma(s)\zeta(s),
+        \int_0^\infty \dli{x} \frac{x^{s-1}}{\frac{e^x}{z} - 1} &= \int_0^\infty\dli{x} x^{s-1} \sum_{n = 1}^\infty \left(\frac{e^{x}}{z}\right)^{-n} &
+        \int_0^\infty \dli{x} \frac{1}{\frac{e^x}{z} - 1} &= \int_0^\infty\dli{x} \sum_{n = 1}^\infty \left(\frac{e^{x}}{z}\right)^{-n} \\
+        &= \sum_{n = 1}^\infty z^{n} \int_0^\infty \dli{x}{x}^{s - 1}e^{-nx} &
+        &= \sum_{n = 1}^\infty z^{n} \int_0^\infty \dli{x}e^{-nx} \\
+        &= \sum_{n = 1}^\infty \frac{z^n}{n^s} \int_0^\infty \dli{x} x^{s - 1} e^{-x}&
+        &= \sum_{n = 1}^\infty \frac{z^n}{n} \int_0^\infty \dli{x} e^{-x}\\
+        &= \sum_{n=1}^\infty \frac{z^n}{n^s} \Gamma(s)&
+        &= \sum_{n=1}^\infty \frac{z^n}{n}\\
+        &= \Li{s}(z)\zeta(s)&
+        &= -\ln(1 - z),
     \end{align*}
     como desejado.
 \end{proof}
@@ -43,7 +50,7 @@
     \begin{equation*}
         \ln \tilde\Xi = -\ell \sum_{\vetor{k}} \ln\left(1 - e^{- \beta \hbar c \norm{\vetor{k}}}\right),
     \end{equation*}
-    pois \todo[há \(\ell\) direções de polarização.  Por que aparece o 2?]
+    pois \todo[há \(\ell\) modos de polarização.]
 
     A energia interna é dada por
     \begin{equation*}
@@ -51,11 +58,11 @@
     \end{equation*}
     onde escrevemos \(V = L^d\) para o volume. Como feito na Lista IV\footnote{Botar link}, temos
     \begin{equation*}
-        U = \frac{\pi^{\frac{d}{2}}\ell Vd}{(2\pi)^d \Gamma\left(\frac{d}{2} + 1\right)} \int_0^\infty \dli{k} \frac{\hbar c k^d}{e^{\beta \hbar c k}-1} = \frac{\pi^{\frac{d}{2}} \ell V d}{\beta^{d + 1}(h c)^d \Gamma\left(\frac{d}{2} + 1\right)} \int_0^\infty \dli{\xi} \frac{\xi^d}{e^\xi - 1} = \sigma V T^{n},
+        U = \frac{2\pi^{\frac{d}{2}}\ell V}{(2\pi)^d \Gamma\left(\frac{d}{2}\right)} \int_0^\infty \dli{k} \frac{\hbar c k^d}{e^{\beta \hbar c k}-1} = \frac{2\pi^{\frac{d}{2}} \ell V}{\beta^{d + 1}(h c)^d \Gamma\left(\frac{d}{2}\right)} \int_0^\infty \dli{\xi} \frac{\xi^d}{e^\xi - 1} = \sigma V T^{n},
     \end{equation*}
     onde \(n = d + 1\) e
     \begin{equation*}
-        \sigma = \frac{\pi^{\frac{d}{2}} k_B^{d + 1}\ell d}{(hc)^d \Gamma(\frac{d}{2} + 1)}\int_0^\infty \dli{\xi} \frac{\xi^d}{e^{\xi} - 1} = \frac{\pi^{\frac{d}{2}}k_B \ell d \Gamma(d + 1) \zeta(d + 1)}{\Gamma(\frac{d}{2} + 1)} \left(\frac{k_B}{hc}\right)^d,
+        \sigma = \frac{2\pi^{\frac{d}{2}} k_B^{d + 1}\ell}{(hc)^d \Gamma\left(\frac{d}{2}\right)}\int_0^\infty \dli{\xi} \frac{\xi^d}{e^{\xi} - 1} = \frac{2\pi^{\frac{d}{2}}k_B \ell \Gamma(d + 1) \zeta(d + 1)}{\Gamma\left(\frac{d}{2}\right)} \left(\frac{k_B}{hc}\right)^d,
     \end{equation*}
-    pelo \cref{lem:integralzetagama}.
+    pelo \cref{lem:integral_bose_einstein}, com \(\Li{s}(1) = \zeta(s)\) para todo \(s > 1\).
 \end{proof}
