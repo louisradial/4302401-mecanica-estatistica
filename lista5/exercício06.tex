@@ -2,5 +2,18 @@
     Considere novamente o problema de um gás ideal de bósons numa superfície de área \(A\). Mostre que não há condensação de Bose-Einstein neste caso, isto é, mostre que a temperatura de condensação é nula.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    O número de partículas do gás ideal de bósons em um hipercubo \(d\)-dimensional de volume \(V=L^d\) é dado por
+    \begin{align*}
+        N = \sum_{\vetor{k}} \frac{1}{\frac{e^{\beta \epsilon_{\vetor{k}}}}{z}-1}
+        &= \frac{V}{(2\pi)^d}\int_{\mathbb{R}^d} \dln{d}k \frac{1}{\frac{e^{\beta \epsilon_{\vetor{k}}}}{z}-1}\\
+        &= \frac{2\pi^{\frac{d}{2}} V}{(2\pi)^d \Gamma\left(\frac{d}{2}\right)} \int_0^\infty \dli{k} \frac{k^{d-1}}{\frac{e^{\beta \epsilon_{k}}}{z}-1}\\
+        &= \frac{2V}{\Gamma\left(\frac{d}{2}\right)}\left(\frac{2\pi m}{h^2}\right)^{\frac{d}{2}}\int_0^\infty\dli{\epsilon} \frac{\epsilon^{\frac{d}{2} -1 }}{\frac{e^{\beta \epsilon}}{z} - 1}\\
+        &= \frac{2V}{\Gamma\left(\frac{d}{2}\right)}\left(\frac{2\pi m k_B T}{h^2}\right)^{\frac{d}{2}}\int_0^\infty\dli{\xi} \frac{\xi^{\frac{d}{2} -1 }}{\frac{e^{\xi}}{z} - 1}\\
+        &= \frac{2V}{\Gamma\left(\frac{d}{2}\right)}\left(\frac{2\pi m k_B T}{h^2}\right)^{\frac{d}{2}}I(d, z),
+    \end{align*}
+    onde \(I(d,z)\) é a integral dada pelo \cref{lem:integral_bose_einstein} com \(s = \frac{d}{2}\). Assim, tomando \(z \to 1\),
+    \begin{equation*}
+        T_0 = \frac{h^2}{2\pi m k_B}\left[\frac{\Gamma\left(\frac{d}{2}\right)N}{2V I(d, 1)}\right]^{\frac2d}
+    \end{equation*}
+    é a temperatura de condensação. Para \(d \leq 2\), temos \(I(d,1) \to \infty\), portanto com a densidade de partículas \(\frac{N}{V}\) finita, segue que \(T_0 = 0\). Desta forma, não há condensação de Bose-Einstein.
 \end{proof}
