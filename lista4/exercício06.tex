@@ -24,5 +24,38 @@
     \begin{equation*}
         D(\epsilon) = \frac{1}{(2\pi)^2 \left(\frac{\hbar^2}{2m}\right)^{\frac{3}{2}}} \epsilon^{\frac12},
     \end{equation*}
-    onde \(k_B T_F = \epsilon_F\) é a energia de Fermi.
+    onde \(k_B T_F = \epsilon_F\) é a energia de Fermi. Assim, em primeira ordem de \(\frac{T}{T_F}\), temos
+    \begin{equation*}
+        \diffp{U}{T}[\mu] = \frac{2 \gamma V \mu^{\frac{5}{2}}}{5(2\pi)^2 \left(\frac{\hbar^2}{2m}\right)^{\frac{3}{2}}} \left[\frac{5\pi^2}{4T_F}\left(\frac{T}{T_F}\right) + \dots\right] \simeq \frac{\gamma V \epsilon_F^{\frac52}}{8T_F \left(\frac{\hbar^2}{2m}\right)^{\frac32}}\left(\frac{T}{T_F}\right),
+    \end{equation*}
+    \begin{equation*}
+        \diffp{U}{\mu}[T] = \frac{\gamma V \mu^{\frac{3}{2}}}{(2\pi)^2 \left(\frac{\hbar^2}{2m}\right)^{\frac{3}{2}}} \left[1 + \frac{5\pi^2}{8}\left(\frac{T}{T_F}\right)^2 + \dots\right] \simeq \frac{\gamma V \epsilon_F^{\frac32}}{(2\pi)^2\left(\frac{\hbar^2}{2m}\right)^{\frac32}},
+    \end{equation*}
+    \begin{equation*}
+        \diffp{N}{T}[\mu] = \frac{2\gamma V \mu^{\frac{3}{2}}}{3(2\pi)^2 \left(\frac{\hbar^2}{2m}\right)^{\frac{3}{2}}}\left[\frac{\pi^2}{4T_F}\left(\frac{T}{T_F}\right) + \dots\right] \simeq \frac{\gamma V \epsilon_F^{\frac{3}{2}}}{24 T_F \left(\frac{\hbar^2}{2m}\right)^{\frac{3}{2}}}\left(\frac{T}{T_F}\right),
+    \end{equation*}
+    e
+    \begin{equation*}
+        \diffp{N}{\mu}[T] = \frac{\gamma V \mu^{\frac{1}{2}}}{(2\pi)^2 \left(\frac{\hbar^2}{2m}\right)^{\frac{3}{2}}}\left[1 + \frac{\pi^2}{8}\left(\frac{T}{T_F}\right)^2 + \dots\right] \simeq \frac{\gamma V \epsilon_F^{\frac{1}{2}}}{(2\pi)^2 \left(\frac{\hbar^2}{2m}\right)^{\frac{3}{2}}},
+    \end{equation*}
+    portanto de
+    \begin{equation*}
+        \diffp{U}{T}[N] = \jacob{U,N}{T,N} = \jacob{U,N}{T,\mu} \cdot \jacob{T, \mu}{T,N} = \diffp{U}{T}[\mu] - \diffp{U}{\mu}[T]\frac{\diffp{N}{T}[\mu]}{\diffp{N}{\mu}[T]}
+    \end{equation*}
+    temos
+    \begin{align*}
+        C_V = \diffp{U}{T}[N]
+        &\simeq \frac{\gamma V \epsilon_F^{\frac52}}{8T_F \left(\frac{\hbar^2}{2m}\right)^{\frac32}}\left(\frac{T}{T_F}\right) - \frac{\gamma V \epsilon_F^{\frac32}}{(2\pi)^2\left(\frac{\hbar^2}{2m}\right)^{\frac32}} \frac{\frac{\gamma V \epsilon_F^{\frac{3}{2}}}{24 T_F \left(\frac{\hbar^2}{2m}\right)^{\frac{3}{2}}}\left(\frac{T}{T_F}\right)}{\frac{\gamma V \epsilon_F^{\frac{1}{2}}}{(2\pi)^2 \left(\frac{\hbar^2}{2m}\right)^{\frac{3}{2}}}}\\
+        &= \frac{\gamma V\epsilon_F^{\frac52}}{12T_F\left(\frac{\hbar^2}{2m}\right)^{\frac32}}\left(\frac{T}{T_F}\right)\\
+        &= \frac{\pi^2 \gamma V}{3} D(\epsilon_F) k_B^2 T.
+    \end{align*}
+    Como a energia de Fermi é dada por
+    \begin{equation*}
+        \epsilon_F = \frac{\hbar^2}{2m} \left[\frac{6 \pi^2 N}{\gamma V}\right]^{\frac{2}{3}}
+    \end{equation*}
+    segue que
+    \begin{equation*}
+        C_V = \frac{\pi^2 Nk_B}{2}\left(\frac{T}{T_F}\right),
+    \end{equation*}
+    como desejado.
 \end{proof}
