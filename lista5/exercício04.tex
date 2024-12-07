@@ -2,7 +2,7 @@
     Considere um gás ideal de partículas bosônicas, de spin nulo e massa \(m\). Obtenha uma expressão para a temperatura de condensação de Bose-Einstein nas seguintes situações:
     \begin{enumerate}[label=(\alph*)]
         \item supondo que o espectro de energia seja dado por \(\epsilon = \hbar c \norm{\vetor{k}}\); e
-        \item supondo que a densidade de estados \(D(\epsilon)\) seja dada por \(\alpha \epsilon^2\) para \(\epsilon > 0\) e nula caso contrário, com \(\alpha > 0\) constante.
+        \item supondo que a densidade de estados \(D(\epsilon)\) seja dada por \(\alpha \epsilon^n\) para \(\epsilon > 0\) e nula caso contrário, com \(\alpha > 0\) e \(n > 0\) constantes.
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução do item (a)]
@@ -19,6 +19,11 @@
 \begin{proof}[Resolução do item (b)]
     O número de partículas é dado por
     \begin{equation*}
-        N = V\int_{\mathbb{R}} \dli{\epsilon} \frac{D(\epsilon)}{e^{\beta_0 \epsilon} - 1} = \alpha V \int_{0}^{\infty} \frac{\epsilon^2}{e^{\beta_0 \epsilon} - 1}
+        N = V\int_{\mathbb{R}} \dli{\epsilon} \frac{D(\epsilon)}{e^{\beta_0 \epsilon} - 1} = \alpha V \int_{0}^{\infty} \dli{\epsilon}\frac{\epsilon^n}{e^{\beta_0 \epsilon} - 1} = \frac{\alpha V}{\beta^{n+1}} \int_0^\infty \dli{\xi}\frac{\xi^n}{e^{\xi} - 1} = \frac{\alpha V \zeta(n + 1)\Gamma(n+1)}{\beta^{n+1}},
     \end{equation*}
+    pelo \cref{lem:integral_bose_einstein}. Assim,
+    \begin{equation*}
+        T_0 = \frac{1}{k_B}\left[\frac{N}{\alpha \zeta(n+1) \Gamma(n+1) V}\right]^{\frac1{n+1}}
+    \end{equation*}
+    é a temperatura de condensação. Para \(n = 2\) e \(\alpha = \frac{4\pi}{(h c)^3}\), recuperamos o resultado do item (a).
 \end{proof}
