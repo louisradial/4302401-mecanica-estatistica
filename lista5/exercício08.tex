@@ -2,5 +2,46 @@
     Obtenha a densidade de estados de um sólido bidimensional usando a teoria de Debye. A partir dela, determine a capacidade térmica a altas e baixas temperaturas. Repita o exercício para um sólido unidimensional.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    No modelo de Debye, a relação de dispersão é aproximada para uma expressão linear da forma
+    \begin{equation*}
+        \omega_{\vetor{k}} = v \norm{\vetor{k}},
+    \end{equation*}
+    onde \(v\) pode ser interpretado como a velocidade de propagação do som no sólido. Aproximando a zona de Brillouin por uma hiperesfera em \(d\) dimensões de raio \(k_D\), o número de modos de vibração na primeira zona de Brillouin é dado por
+    \begin{equation*}
+        N = \frac{2 \pi^{\frac{d}{2}}V}{(2\pi)^d \Gamma\left(\frac{d}{2}\right)} \int_0^{k_D} \dli{k} k^{d - 1} = \frac{2 \pi^{\frac{d}{2}} V k_D^d}{(2\pi)^d d \Gamma\left(\frac{d}{2}\right)},
+    \end{equation*}
+    onde \(V\) é o volume do sólido \(d-\)dimensional.
+    Substituindo \(A = \hbar v\) e \(n = 1\) no resultado do \cref{ex:exercício2}, temos
+    \begin{equation*}
+        \beta \Phi = \frac{2\pi^{\frac{d}{2}} V \ell}{(2\pi)^d \Gamma\left(\frac{d}{2}\right)} \int_0^{k_D} \dli{k} k^{d - 1} \ln\left(1 - e^{- \beta \hbar v k}\right)
+    \end{equation*}
+    como o grande potencial, onde \(k_D\) é o raio da primeira zona de Brillouin aproximada por uma hiperesfera em \(d\) dimensões. Assim, a energia interna é dada por
+    \begin{equation*}
+        U = \diffp{(\beta \Phi)}{\beta} = \frac{2\pi^{\frac{d}{2}} V \ell}{(2\pi)^d \Gamma\left(\frac{d}{2}\right)} \int_0^{k_D} \dli{k} \frac{\hbar v k^d}{e^{\beta \hbar v k} - 1} = \frac{2 \pi^{\frac{d}{2}} V \ell}{(2\pi \hbar v)^d \Gamma\left(\frac{d}{2}\right)} \int_0^{k_B T_D} \dli{\epsilon} \frac{\epsilon^d}{e^{\beta \epsilon} - 1},
+    \end{equation*}
+    onde definimos a temperatura de Debye por \(k_B T_D = \hbar v k_D\). Assim, a densidade de estados é dada por
+    \begin{equation*}
+        D(\epsilon) = \frac{2 \pi^{\frac{d}{2}} V\ell \epsilon^{d - 1}}{(2\pi \hbar v)^d \Gamma\left(\frac{d}{2}\right)} = \frac{N \ell d \epsilon^{d - 1}}{(\hbar v k_D)^d} = \frac{N \ell d \epsilon^{d - 1}}{(k_B T_D)^d},
+    \end{equation*}
+    de modo que
+    \begin{equation*}
+        U = \int_0^{k_B T_D} \dli{\epsilon} \frac{\epsilon D(\epsilon)}{e^{\beta \epsilon} - 1}.
+    \end{equation*}
+    Já determinamos naquele exercício que para baixas temperaturas, \(T \ll T_D\), temos
+    \begin{equation*}
+        C_V = N c_V = \Gamma(d + 2)\zeta(d + 1) \ell d N k_B \left(\frac{T}{T_D}\right)^{d},
+    \end{equation*}
+    portanto em uma e duas dimensões temos
+    \begin{equation*}
+        C_V^{(1)} = \frac{\pi^2 N k_B T}{3 T_D}\quad\text{e}\quad C_V^{(2)} = 24 \zeta(3) N k_B \left(\frac{T}{T_D}\right)^2
+    \end{equation*}
+    como as expressões assintóticas para a capacidade térmica a volume constante. No limite de altas temperaturas, \(T \gg T_D\), temos
+    \begin{equation*}
+        U \simeq \int_0^{k_B T_D} \dli{\epsilon} \frac{\epsilon D(\epsilon)}{\beta \epsilon} = \frac{N \ell d}{\beta (k_B T_D)^d} \int_0^{k_B T_D} \dli{\epsilon} \epsilon^{d - 1} = N \ell k_B T,
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        C_V = \ell N k_B
+    \end{equation*}
+    é a capacidade térmica a volume constante neste limite, isto é, temos \(C_V^{(1)} = N k_B\) e \(C_V^{(2)} = 2 N k_B\) em uma e duas dimensões, respectivamente.
 \end{proof}
