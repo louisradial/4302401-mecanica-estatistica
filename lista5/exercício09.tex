@@ -6,5 +6,38 @@
     em que \(\epsilon_0 = 2\hbar \omega_0\). Mostre também que \(\int_0^{\epsilon_0} \dli{\epsilon} D(\epsilon) = N\), efetuando explicitamente a integral.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    A função de partição é dada por
+    \begin{equation*}
+        \ln \Xi = - \sum_{\vetor{k}} \ln\left(1 - e^{-\beta \hbar \omega_{\vetor{k}}}\right),
+    \end{equation*}
+    portanto a energia interna é
+    \begin{equation*}
+        U = -\diffp{\ln{\Xi}}{\beta} = \sum_{\vetor{k}} \frac{\hbar \omega_{\vetor{k}}}{e^{\beta \hbar \omega_{\vetor{k}}} - 1}.
+    \end{equation*}
+    No limite termodinâmico temos
+    \begin{equation*}
+        U = \frac{L}{\pi} \int_{0}^{\frac{\pi}{a}}\dli{k} \frac{2\hbar \omega_0 \sin\left(\frac{a k}{2}\right)}{\exp\left[2 \beta \hbar \omega_0 \sin\left(\frac{a k}{2}\right)\right] - 1}
+    \end{equation*}
+    portanto com a mudança de variáveis \(\epsilon = 2 \hbar \omega_0 \sin\left(\frac{ak}{2}\right)\), temos \(\dl{\epsilon} = a \hbar \omega_0 \cos\left(\frac{a k}{2}\right) \dl{k}\) e então
+    \begin{align*}
+        U &= \frac{L}{a \hbar \omega_0 \pi} \int_0^{\epsilon_0} \dli{\epsilon} \frac{\epsilon}{\sqrt{1 - \left(\frac{\epsilon}{2 \hbar \omega_0}\right)^2}(e^{\beta \epsilon} - 1)}\\
+          &= \int_0^{\epsilon_0} \frac{2L \epsilon}{\pi a \sqrt{\epsilon_0^2 - \epsilon^2}} f(\epsilon),
+    \end{align*}
+    onde \(\epsilon_0 = 2 \hbar \omega_0\) e \(f(\epsilon) = \frac{1}{\exp(\beta \epsilon) - 1}\) é a distribuição de Bose-Einstein. Isto é,
+    \begin{equation*}
+        D(\epsilon) = \frac{2L}{\pi a \sqrt{\epsilon_0^2-\epsilon^2}}
+    \end{equation*}
+    é a densidade de estados. O número de osciladores é dado por
+    \begin{equation*}
+        N = \frac{L}{\pi} \int_0^{\frac{\pi}{a}} \dli{k} = \frac{L}{a},
+    \end{equation*}
+    portanto obtemos
+    \begin{equation*}
+        D(\epsilon) = \frac{2N}{\pi \sqrt{\epsilon_0^2 - \epsilon^2}}.
+    \end{equation*}
+    Notemos que
+    \begin{equation*}
+        \int_0^{\epsilon_0} \dli{\epsilon} D(\epsilon) = \frac{2N}{\pi}\int_0^{\epsilon_0} \dli{\epsilon} \left(\epsilon_0^2 - \epsilon^2\right)^{-\frac12} = \frac{2N}{\pi} \int_0^{\frac{\pi}{2}} \epsilon_0 \cos\theta\dli{\theta} \left(\epsilon_0^2 - \epsilon_0^2 \sin^2 \theta\right)^{-\frac12} = N,
+    \end{equation*}
+    como desejado.
 \end{proof}
