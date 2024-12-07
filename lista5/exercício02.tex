@@ -1,6 +1,58 @@
 \begin{exercício}{Calor específico de gás de excitações elementares}{exercício2}
-    Considere um modelo para um sistema \(d\)-dimensional, com hamiltoniana diagonalizada por uma transformação de Fourier. As excitações elementares estão relacionadas com o operador \(\mathcal{H} = \sum_{\vetor{k}} \epsilon_{\vetor{k}} a_{\vetor{k}}^\dag a_{\vetor{k}},\) onde a soma é efetuada sobre a primeira zona de Brillouin e os operadores de criação e aniquilação obedecem as regras de comutação de Bose-Einstein. O espectro de energia é dado por \(\epsilon_{\vetor{k}} = A\norm{k}^n\), sendo \(A\) uma constante positiva e \(n \in \mathbb{N}\), por exemplo \(n = 1\) para fótons e \(n = 2\) para mágnons ferromagnéticos. Obtenha uma expressão para o calor específico a volume constante no regime de baixas temperaturas.
+    Considere um modelo para um sistema \(d\)-dimensional, com hamiltoniana diagonalizada por uma transformação de Fourier. As excitações elementares estão relacionadas com o operador \(\mathcal{H} = \sum_{\vetor{k}} \epsilon_{\vetor{k}} \herm{a}_{\vetor{k}}a_{\vetor{k}},\) onde a soma é efetuada sobre a primeira zona de Brillouin e os operadores de criação e aniquilação obedecem as regras de comutação de Bose-Einstein. O espectro de energia é dado por \(\epsilon_{\vetor{k}} = A\norm{k}^n\), sendo \(A\) uma constante positiva e \(n \in \mathbb{N}\), por exemplo \(n = 1\) para fótons e \(n = 2\) para mágnons ferromagnéticos. Obtenha uma expressão para o calor específico a volume constante no regime de baixas temperaturas.
 \end{exercício}
 \begin{proof}[Resolução]
-
+    A função de partição é dada por
+    \begin{equation*}
+        \Xi = \Tr(e^{- \beta \mathcal{H}}) = \Tr\left[\exp\left(- \beta \sum_{\vetor{k},j} \epsilon_{\vetor{k}}\herm{a}_{\vetor{k}} a_{\vetor{k}}\right)\right] = \Tr\left[\prod_{\vetor{k},j} \exp(- \beta \epsilon_{\vetor{k}} \herm{a}_{\vetor{k}}a_{\vetor{k}})\right],
+    \end{equation*}
+    então como os modos são independentes segue que
+    \begin{equation*}
+        \Xi = \prod_{\vetor{k},j} \sum_{n_{\vetor{k}} = 0}^\infty \bra{n_k}\exp(- \beta \epsilon_{\vetor{k}}\herm{a}_{\vetor{k}}a_{\vetor{k}})\ket{n_{\vetor{k}}} = \prod_{\vetor{k},j} \sum_{n_{\vetor{k}} = 0}^{\infty} e^{- \beta \epsilon_{\vetor{k}} n_{\vetor{k}}} = \prod_{\vetor{k},j} \frac{1}{1 - e^{- \beta \epsilon_{\vetor{k}}}},
+    \end{equation*}
+    já que \(\herm{a}_{\vetor{k}}a_{\vetor{k}} \ket{\set{n_{\vetor{\tilde{k}}}}} = n_{\vetor{k}} \ket{\set{n_{\vetor{\tilde{k}}}}}\) para todo \(\vetor{k}\). Assim, sendo \(\ell = \sum_{j}\)  o número de modos de polarização, temos
+    \begin{equation*}
+        \ln \Xi = -\ell \sum_{\vetor{k}} \ln\left(1 - e^{-\beta \epsilon_{\vetor{k}}}\right),
+    \end{equation*}
+    portanto no limite termodinâmico o grande potencial é dado por
+    \begin{equation*}
+        \Phi = \frac{V \ell}{\beta  (2\pi)^d} \int_{\Omega} \dln{d}k \ln\left(1 - e^{-\beta \epsilon_{\vetor{k}}}\right)
+    \end{equation*}
+    onde \(\Omega\) representa a integração sobre a primeira zona de Brillouin. Como o espectro é isotrópico, consideramos a primeira zona de Brillouin como um volume hiperesférico de raio \(k_D > 0\), portanto
+    \begin{equation*}
+        \beta\Phi = \frac{2 \pi^{\frac{d}{2}} V \ell}{(2\pi)^d \Gamma\left(\frac{d}{2}\right)} \int_0^{k_D} \dli{k} k^{d - 1}\ln\left(1 - e^{- A \beta k^n}\right) =\frac{2 \pi^{\frac{d}{2}} V \ell}{(A \beta)^{\frac{d}{n}}n(2\pi)^d \Gamma\left(\frac{d}{2}\right)} \int_0^{\frac{T_D}{T}} \dli{x} x^{\frac{d}{n} - 1}\ln\left(1 - e^{-x}\right)
+    \end{equation*}
+    onde definimos a temperatura de Debye \(T_D = \frac{A k_D^n}{k_B}\). No limite de baixas temperaturas, \(T \ll T_D\), podemos aproximar
+    \begin{equation*}
+        \beta \Phi = \frac{2 \pi^{\frac{d}{2}} V \ell}{(A \beta)^{\frac{d}{n}}n(2\pi)^d \Gamma\left(\frac{d}{2}\right)} \int_0^{\infty} \dli{x} x^{\frac{d}{n} - 1}\ln\left(1 - e^{-x}\right),
+    \end{equation*}
+    portanto como
+    \begin{equation*}
+        \int_0^\infty \dli{x} x^{s - 1} \ln\left(1 - e^{-x}\right) = \left.\frac{\ln\left(1- e^{-x}\right)}{s x^{-s}}\right|_0^\infty - \frac1s\int_0^\infty \dli{x} \frac{x^{s}}{e^x - 1} = -\frac1s \Gamma(s + 1)\zeta(s + 1) = -\Gamma(s) \zeta(s+1),
+    \end{equation*}
+    temos
+    \begin{equation*}
+        \beta \Phi = -\frac{\Gamma\left(\frac{d}{n}\right) \zeta\left(\frac{d}{n} + 1\right) V \ell}{2^{d-1} \pi^{\frac{d}{2}} n\Gamma\left(\frac{d}{2}\right)}(A \beta)^{-\frac{d}{n}}.
+    \end{equation*}
+    Assim, a energia interna é dada por
+    \begin{equation*}
+        U = \diffp{(\beta \Phi)}{\beta} = \frac{ \Gamma\left(\frac{d}{n}+1\right) \zeta\left(\frac{d}{n} + 1\right) A V \ell}{2^{d-1} \pi^{\frac{d}{2}}n\Gamma\left(\frac{d}{2}\right)}(A \beta)^{-\left(1 +\frac{d}{n}\right)}.
+    \end{equation*}
+    Na primeira zona de Brillouin há \(N\) modos de vibração, isto é,
+    \begin{equation*}
+        N = \frac{V}{(2\pi)^d} \int_{\Omega} \dln{d}k = \frac{2V}{2^d\pi^{\frac{d}{2}}\Gamma\left(\frac{d}{2}\right)} \int_{0}^{k_D} \dli{k} k^{d-1} = \frac{V k_D^{d}}{2^{d-1}\pi^{\frac{d}{2}} d\Gamma\left(\frac{d}{2}\right)}
+    \end{equation*}
+    portanto podemos escrever
+    \begin{equation*}
+        U =  \frac{\Gamma\left(1 + \frac{d}{n}\right)  \zeta\left(\frac{d}{n} + 1\right)N d \ell (k_B T)^{\frac{d}{n} + 1}}{n A^{\frac{d}{n}} k_D^d} = \frac{\Gamma\left(1 + \frac{d}{n}\right)  \zeta\left(\frac{d}{n} + 1\right)\ell d N k_B T^{1 + \frac{d}{n}}}{n T_D^{\frac{d}{n}}}.
+    \end{equation*}
+    Dessa forma, a energia interna por modo de vibração é
+    \begin{equation*}
+        u = \frac{\Gamma\left(1 + \frac{d}{n}\right)  \zeta\left(\frac{d}{n} + 1\right)\ell d k_B T^{1 + \frac{d}{n}}}{n T_D^{\frac{d}{n}}}
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        c_V = \diffp{u}{T}[V] =  \frac{\Gamma\left(2 + \frac{d}{n}\right) \zeta\left(\frac{d}{n} + 1\right)\ell d k_B}{n} \left(\frac{T}{T_D}\right)^{\frac{d}{n}}
+    \end{equation*}
+    é o calor específico a volume constante.
 \end{proof}
